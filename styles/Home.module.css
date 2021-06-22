@@ -113,7 +113,10 @@
 .logo {
   height: 1em;
 }
-
+.link {
+  color: blue;
+  padding: 8px;
+}
 @media (max-width: 600px) {
   .grid {
     width: 100%;
