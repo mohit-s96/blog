@@ -1,4 +1,3 @@
-import Head from "next/head";
 type Props = {
   posts: [number];
 };
