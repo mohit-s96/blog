@@ -1,16 +1,19 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+type Props = {
+  posts: [number];
+};
 
-export default function Home() {
+const Index = ({}: Props) => {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Mohit's Blog</title>
         <link rel="canonical" href="https://mohits.dev/" />
+        <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
         <meta name="title" content="Mohit's Blog" />
         <meta
           name="description"
-          content="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and some C++"
+          content="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and C++"
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Mohit's Blog" />
@@ -18,7 +21,7 @@ export default function Home() {
         <meta property="og:title" content="Mohit's Blog" />
         <meta
           property="og:description"
-          content="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and some C++"
+          content="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and C++"
         />
         <meta
           property="og:image"
@@ -39,19 +42,34 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to My Blog!</h1>
-        <p className={styles.description}>W.I.P.</p>
-        <a
-          href="https://github.com/msx47/blog"
-          target="_blank"
-          referrerPolicy="no-referrer"
-          className={styles.link}
-        >
-          Github
-        </a>
-      </main>
-    </div>
+      <div
+        style={{
+          display: "flex",
+          minHeight: "98vh",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h1 className="text-center text-6xl">WIP</h1>
+        <p className="text-center">
+          <a
+            className="text-blue-700 font-extrabold"
+            href="https://github.com/msx47/blog"
+            target="_blank"
+          >
+            View on github
+          </a>
+        </p>
+      </div>
+    </>
   );
-}
+};
+
+export default Index;
+
+export const getStaticProps = async () => {
+  return {
+    props: { posts: [5] },
+  };
+};

@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Personal blog 💻
 
-## Getting Started
+[🔗 Visit here](https://mohits.dev)
 
-First, run the development server:
+#### WIP 🚧 👷‍♂️ 🛠
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Hi I am building this personal blog from scratch. I am not using any pre-existing blog service because I wanted to work on a fun project.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Tech Stack
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- NextJS - React server and backend
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- MongoDB - Database/CMS
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Custom admin panel with react
 
-## Learn More
+- Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+- Storybook
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Roadmap and Target checklist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [x] Setup nextjs and typescript project
+- [x] Create mongo db connection
+- [x] Define schema types in typescript
+- [x] Create endpoints for reading and changing blog data
+- [x] Create some mock data for testing.
+- [ ] Create landing page components in storybook
+- [ ] Unit test storybook components for landing page
+- [ ] Make first design responsive
+- [ ] Fetch live data and test
+- [ ] Create blog page design storybook
+- [ ] Make blog page design responsive
+- [ ] Fetch live data and test
+- [ ] Error handling and 404 pages
+- [ ] Create admin panel for adding blog data [Seperate project with CRA]
+- [ ] Add comment components storybook and unit test.
+- [ ] Create oauth login with github
+- [ ] Test aunthentication
+- [ ] Fetch live data and test authentication
+- [ ] Post comment and test
+- [ ] Trigger a rebuild on new comment posted
+- [ ] Design data structure to hold hierarchically related comments
+- [ ] Add admin control to remove comments
+- [ ] Option to delete comment
