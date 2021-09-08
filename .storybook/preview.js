@@ -8,3 +8,11 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <div className="text-center p-16">
+      <Story />
+    </div>
+  ),
+];

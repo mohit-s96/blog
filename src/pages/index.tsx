@@ -1,3 +1,5 @@
+import Tags from "../components/tags/Tags";
+
 type Props = {
   posts: [number];
 };
@@ -16,6 +18,9 @@ const Index = ({}: Props) => {
       >
         <h1 className="text-center text-6xl">WIP</h1>
         <p className="text-center">
+          <Tags theme="light" variant="md">
+            Hello world
+          </Tags>
           <a
             className="text-blue-700 font-extrabold"
             href="https://github.com/msx47/blog"
