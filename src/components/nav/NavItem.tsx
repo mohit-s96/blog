@@ -6,18 +6,28 @@ export interface Props {
   size: "xsm" | "sm" | "md";
   theme: "light" | "dark";
   Icon?: ({ color, size }: SvgProps) => JSX.Element;
+  callback?: () => any;
 }
 
-function NavItem({ children, size, theme, Icon }: Props): ReactElement {
+function NavItem({
+  children,
+  size,
+  theme,
+  Icon,
+  callback = () => {},
+}: Props): ReactElement {
   return (
     <div
-      className={`p-2 flex justify-center items-center font-bold ${
+      tabIndex={1}
+      className={`focus:outline-black p-2 flex justify-center items-center font-bold ${
         size === "sm" ? "text-sm" : size === "xsm" ? "text-xsm" : "text-base"
       } ${
         theme === "light"
           ? "text-secondary-text-light"
           : "text-primary-text-dark"
-      }`}
+      } cursor-pointer`}
+      onClick={() => callback()}
+      onFocus={() => callback()}
     >
       {Icon && <Icon color={theme} size={size} />}
       <span className="ml-2">{children}</span>

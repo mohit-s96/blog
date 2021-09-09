@@ -1,14 +1,16 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Avatar from "../avatars/Avatar";
 import uri from "../../../public/favicon/icon-512x512.png";
 import NavItem from "./NavItem";
 import { Search } from "../svg/collection.svg";
+import NavInput from "./NavInput";
 
 export interface Props {
   theme: "light" | "dark";
 }
 
 function Navbar({ theme = "dark" }: Props): ReactElement {
+  const [active, setActive] = useState(false);
   return (
     <div
       className={`w-full flex justify-between items-center p-2 ${
@@ -16,12 +18,23 @@ function Navbar({ theme = "dark" }: Props): ReactElement {
       }`}
     >
       <Avatar
-        imageUri={(uri as unknown) as string}
+        imageUri={uri.src}
         alt="Branding logo image of the letter m"
         size="lg"
       />
       <div className="flex justify-between items-center">
-        <NavItem theme={theme} size="md" children="Search" Icon={Search} />
+        <NavItem
+          theme={theme}
+          size="md"
+          children="Search"
+          Icon={Search}
+          callback={() => setActive(!active)}
+        />
+        <NavInput
+          active={active}
+          theme={theme}
+          callback={() => setActive(false)}
+        />
         <NavItem theme={theme} size="md" children="About me" />
       </div>
     </div>

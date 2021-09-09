@@ -7,6 +7,8 @@ export interface Props {
 }
 
 export default function Avatar({ imageUri, size, alt }: Props): ReactElement {
+  console.log(imageUri);
+
   return (
     <div className="inline-block">
       <img
