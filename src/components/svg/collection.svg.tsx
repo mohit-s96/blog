@@ -1,13 +1,14 @@
 import React from "react";
 
-type Props = {
+export type SvgProps = {
   color: "light" | "dark";
+  size?: "xsm" | "sm" | "md";
 };
 
-export const Solid = ({ color }: Props) => (
+export const Solid = ({ color, size }: SvgProps) => (
   <svg
-    width="24"
-    height="24"
+    width={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
+    height={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,10 +20,10 @@ export const Solid = ({ color }: Props) => (
   </svg>
 );
 
-export const Search = ({ color }: Props) => (
+export const Search = ({ color, size }: SvgProps) => (
   <svg
-    width="24"
-    height="24"
+    width={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
+    height={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -34,10 +35,10 @@ export const Search = ({ color }: Props) => (
   </svg>
 );
 
-export const Clock = ({ color }: Props) => (
+export const Clock = ({ color, size }: SvgProps) => (
   <svg
-    width="24"
-    height="24"
+    width={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
+    height={size === "xsm" ? 14 : size === "sm" ? 18 : 24}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

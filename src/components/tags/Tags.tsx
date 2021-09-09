@@ -52,7 +52,7 @@ function Tags({
             ? "rounded-brc-md"
             : "rounded-brc-sm"
           : ""
-      } text-sm p-2`}
+      } text-sm p-2 px-8`}
     >
       {children}
     </button>
