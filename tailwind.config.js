@@ -54,8 +54,8 @@ module.exports = {
         "card-lg-horiz": "71%",
       },
       minWidth: {
-        "btn-sm": "80px",
-        "btn-md": "100px",
+        "btn-sm": "60px",
+        "btn-md": "80px",
       },
       height: {
         "btn-sm": "30px",
@@ -64,6 +64,7 @@ module.exports = {
       inset: {
         sm: "-30px",
         md: "-40px",
+        neg: "-1rem",
       },
       borderWidth: {
         sm: "30px",

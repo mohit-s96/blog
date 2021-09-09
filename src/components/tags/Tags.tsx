@@ -41,19 +41,20 @@ function Tags({
       } ${
         !accent
           ? theme === "dark"
-            ? "font-bold bg-primary-dark"
-            : "font-bold bg-primary-light"
-          : "font-bold bg-primary-accent-light flex items-center justify-center"
+            ? "font-bold bg-primary-dark text-primary-text-dark"
+            : "font-bold bg-primary-light text-primary-text-light"
+          : "font-bold bg-primary-accent-light flex items-center justify-center text-primary-text-dark"
       } ${variant === "md" ? "min-w-btn-md" : "min-w-btn-sm"} ${
         variant === "md" ? "h-btn-md" : "h-btn-sm"
       } border-none ${
         !triangular
           ? variant === "md"
-            ? "rounded-brc-md px-8"
+            ? "rounded-brc-md p-2 px-8"
             : "rounded-brc-sm px-8"
           : ""
-      } text-sm p-2 text-primary-text-dark`}
+      } text-sm px-4`}
     >
+      {triangular ? <span className="absolute left-neg">•</span> : null}{" "}
       {children}
     </button>
   );
