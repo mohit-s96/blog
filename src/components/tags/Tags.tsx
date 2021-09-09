@@ -3,10 +3,11 @@ import { Solid } from "../svg/collection.svg";
 
 export interface TagProps {
   children: ReactNode;
-  variant: "sm" | "md";
+  variant?: "sm" | "md";
   theme: "light" | "dark";
   triangular?: boolean;
   accent?: boolean;
+  classes?: string;
 }
 
 function Tags({
@@ -15,10 +16,11 @@ function Tags({
   theme,
   triangular,
   accent,
+  classes,
 }: TagProps): ReactElement {
   return (
     <button
-      className={`${
+      className={`${classes ? classes : ""} ${
         triangular
           ? `relative before:absolute before:h-0 before:w-0 ${
               variant === "sm" ? "before:left-sm" : "before:left-md"
@@ -42,17 +44,15 @@ function Tags({
             ? "font-bold bg-primary-dark"
             : "font-bold bg-primary-light"
           : "font-bold bg-primary-accent-light flex items-center justify-center"
-      } ${
-        theme === "dark" ? "text-primary-text-dark" : "text-primary-text-light"
       } ${variant === "md" ? "min-w-btn-md" : "min-w-btn-sm"} ${
         variant === "md" ? "h-btn-md" : "h-btn-sm"
       } border-none ${
         !triangular
           ? variant === "md"
-            ? "rounded-brc-md"
-            : "rounded-brc-sm"
+            ? "rounded-brc-md px-8"
+            : "rounded-brc-sm px-8"
           : ""
-      } text-sm p-2 px-8`}
+      } text-sm p-2 text-primary-text-dark`}
     >
       {children}
     </button>
