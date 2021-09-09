@@ -1,13 +1,7 @@
 module.exports = {
   mode: "jit",
   purge: {
-    content: ["./src/**/*.*"],
-    options: {
-      safelist: [/([a-zA-Z]-)*(\${[a-zA-Z]}(-2)?])/],
-      blocklist: [/^debug-/],
-      keyframes: true,
-      fontFace: true,
-    },
+    content: ["./src/**/*.tsx"],
   },
   theme: {
     extend: {
@@ -53,6 +47,9 @@ module.exports = {
       width: {
         "btn-md": "8rem",
         "btn-sm": "5.5rem",
+        "avat-img-sm": "1.5rem",
+        "avat-img-md": "3.0rem",
+        "avat-img-lg": "4.5rem",
       },
       minWidth: {
         "btn-sm": "100px",

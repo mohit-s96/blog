@@ -1,4 +1,5 @@
 import "../styles/index.css";
+import { Solid } from "../src/components/svg/collection.svg";
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -11,7 +12,7 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <div className="text-center p-16">
+    <div style={{ display: "flex", justifyContent: "center", padding: "3rem" }}>
       <Story />
     </div>
   ),
