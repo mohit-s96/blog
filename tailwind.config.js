@@ -66,6 +66,9 @@ module.exports = {
         md: "-40px",
         neg: "-1rem",
       },
+      padding: {
+        one: "1px",
+      },
       borderWidth: {
         sm: "30px",
         "sm-2": "15px",

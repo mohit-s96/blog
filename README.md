@@ -26,7 +26,7 @@ Hi I am building this personal blog from scratch. I am not using any pre-existin
 - [x] Create endpoints for reading and changing blog data
 - [x] Create some mock data for testing
 - [x] Setup and configure storybook
-- [ ] Create landing page components in storybook
+- [x] Create landing page components in storybook
 - [ ] Unit test storybook components for landing page
 - [ ] Make first design responsive
 - [ ] Fetch live data and test

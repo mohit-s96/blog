@@ -25,7 +25,7 @@ function PostPreview({
     <div
       className={`${
         layoutType === "horiz" ? "w-full" : "w-card-lg-vert flex-col"
-      } flex relative`}
+      } flex relative mb-3`}
     >
       <PostPreviewImage type={layoutType} uri={imgUri} alt={altText} />
       <PostPreviewContent content={content} type={layoutType} theme={theme} />

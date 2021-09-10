@@ -1,5 +1,5 @@
 import React from "react";
-import Cards, { Props } from "./Cards";
+import Cards, { CardArrayProps } from "./Cards";
 import { Story, Meta } from "@storybook/react";
 import data from "../../../data.json";
 
@@ -8,14 +8,14 @@ export default {
   component: Cards,
 } as Meta;
 
-const Template: Story<Props> = (args) => <Cards {...args} />;
+const Template: Story<CardArrayProps> = (args) => <Cards {...args} />;
 
 export const Small = Template.bind({});
 
-const testData: Props = {
+const testData: CardArrayProps = {
   theme: "dark",
   data: data.map((x) => {
-    const obj: Props["data"][0] = {
+    const obj: CardArrayProps["data"][0] = {
       imgUri: x.images.hero,
       content: {
         excerpt: x.excerpt,

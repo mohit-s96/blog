@@ -12,7 +12,7 @@ function SortMenu({ visible, theme }: Props): ReactElement {
     <div
       className={`${visible ? "h-auto p-2" : "h-0"} ${
         visible ? (theme === "light" ? "shadow-md border-b-2" : "") : ""
-      } transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-36`}
+      } transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-36 absolute z-10 top-12`}
     >
       <div
         className={`${

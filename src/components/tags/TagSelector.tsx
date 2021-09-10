@@ -13,13 +13,13 @@ export interface Props {
 function TagSelector({ tags, theme, variant }: Props): ReactElement {
   const [menuVisible, setMenuVisible] = useState(false);
   return (
-    <div className="flex justify-between p-2 w-10/12">
+    <div className="flex justify-between p-4">
       <TagList theme={theme} tags={tags} variant={variant} />
-      <div className="flex flex-col p-2">
+      <div className="flex flex-col p-2 relative">
         <Tags
           variant={variant}
           accent={true}
-          classes="mx-2"
+          classes="mx-2 font-bold"
           callback={() => setMenuVisible(!menuVisible)}
         >
           Sort <Solid color="dark" />

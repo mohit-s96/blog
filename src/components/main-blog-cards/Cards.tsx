@@ -2,16 +2,17 @@ import { formatDistance } from "date-fns";
 import React, { ReactElement } from "react";
 import PostPreview, { CardProps } from "../card/PostPreview";
 
-export interface Props {
+export interface CardArrayProps {
   theme: CardProps["theme"];
   data: Array<CardProps["blog"]>;
 }
 
-function Cards({ data, theme }: Props): ReactElement {
+function Cards({ data, theme }: CardArrayProps): ReactElement {
   return (
     <div className="flex flex-wrap justify-between">
       {data.map((blog, i) => (
         <PostPreview
+          key={blog.content.time}
           theme={theme}
           blog={{
             ...blog,

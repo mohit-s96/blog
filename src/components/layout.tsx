@@ -2,14 +2,19 @@ import Navbar from "./nav/Navbar";
 
 type Props = {
   children: React.ReactNode;
+  theme?: "dark" | "light";
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, theme = "dark" }: Props) => {
   return (
     <>
-      <div>
-        <Navbar theme="dark" />
-        <main>{children}</main>
+      <div
+        className={`${
+          theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
+        }`}
+      >
+        <Navbar theme={theme} />
+        <main className="w-10/12 mx-auto">{children}</main>
       </div>
     </>
   );

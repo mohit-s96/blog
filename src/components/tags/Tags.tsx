@@ -44,9 +44,9 @@ function Tags({
       } ${
         !accent
           ? theme === "dark"
-            ? "font-bold bg-primary-dark text-primary-text-dark"
-            : "font-bold bg-primary-light text-primary-text-light"
-          : "font-bold bg-primary-accent-light flex items-center justify-center text-primary-text-dark"
+            ? "bg-primary-dark text-primary-text-dark"
+            : "bg-primary-light text-primary-text-light"
+          : "bg-primary-accent-light flex items-center justify-center text-primary-text-dark"
       } ${variant === "md" ? "min-w-btn-md" : "min-w-btn-sm"} ${
         variant === "md" ? "h-btn-md" : "h-btn-sm"
       } border-none ${
@@ -54,10 +54,10 @@ function Tags({
           ? variant === "md"
             ? "rounded-brc-md p-2 px-8"
             : "rounded-brc-sm px-8"
-          : ""
-      } text-sm px-4`}
+          : "pr-4"
+      } text-sm`}
     >
-      {triangular ? <span className="absolute left-neg">•</span> : null}{" "}
+      {triangular ? <span className="absolute left-neg p-one">•</span> : null}{" "}
       {children}
     </button>
   );
