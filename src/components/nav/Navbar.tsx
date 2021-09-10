@@ -13,12 +13,12 @@ function Navbar({ theme = "dark" }: Props): ReactElement {
   const [active, setActive] = useState(false);
   return (
     <div
-      className={`w-full flex justify-between items-center p-2 ${
+      className={`w-full flex justify-between items-center p-2 overflow-hidden ${
         theme === "dark" ? "bg-primary-dark" : "bg-primary-light"
       }`}
     >
       <Avatar
-        imageUri={uri.src}
+        imageUri={(uri.src as unknown) as string}
         alt="Branding logo image of the letter m"
         size="lg"
       />

@@ -2,26 +2,25 @@ import React, { ReactElement } from "react";
 import PostPreviewContent from "./PostPreviewContent";
 import PostPreviewImage from "./PostPreviewImage";
 
-export interface Props {
+export interface CardProps {
   theme: "dark" | "light";
-  layoutType: "horiz" | "vert";
-  imgUri: string;
-  altText: string;
-  content: {
-    title: string;
-    excerpt: string;
-    tags: Array<string>;
-    time: number;
+  blog: {
+    layoutType?: "horiz" | "vert";
+    imgUri: string;
+    altText?: string;
+    content: {
+      title: string;
+      excerpt: string;
+      tags: Array<string>;
+      time: number;
+    };
   };
 }
 
 function PostPreview({
-  layoutType,
-  imgUri,
-  content,
-  altText,
+  blog: { layoutType = "horiz", imgUri, content, altText = "" },
   theme,
-}: Props): ReactElement {
+}: CardProps): ReactElement {
   return (
     <div
       className={`${

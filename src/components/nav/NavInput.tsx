@@ -8,6 +8,7 @@ interface Props {
 
 function NavInput({ active, theme, callback = () => {} }: Props): ReactElement {
   const [value, setValue] = useState("");
+
   return (
     <div>
       <input

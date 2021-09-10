@@ -8,7 +8,7 @@ interface Props {
 
 function PostPreviewImage({ type, uri, alt }: Props): ReactElement {
   return (
-    <div className={`${type === "horiz" ? "w-card-lg-vert" : "w-full"}`}>
+    <div className={`${type === "horiz" ? "w-card-lg-vert" : "w-full h-3/6"}`}>
       <img
         src={uri}
         alt={alt}

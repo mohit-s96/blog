@@ -4,10 +4,11 @@ import { Solid } from "../svg/collection.svg";
 export interface TagProps {
   children: ReactNode;
   variant?: "sm" | "md";
-  theme: "light" | "dark";
+  theme?: "light" | "dark";
   triangular?: boolean;
   accent?: boolean;
   classes?: string;
+  callback?: () => void;
 }
 
 function Tags({
@@ -17,9 +18,11 @@ function Tags({
   triangular,
   accent,
   classes,
+  callback,
 }: TagProps): ReactElement {
   return (
     <button
+      onClick={() => callback && callback()}
       className={`${classes ? classes : ""} ${
         triangular
           ? `relative before:absolute before:h-0 before:w-0 ${

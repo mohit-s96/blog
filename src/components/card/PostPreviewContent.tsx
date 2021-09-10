@@ -23,25 +23,20 @@ function PostPreviewContent({
 }: Props): ReactElement {
   return (
     <div
-      className={`${type === "horiz" ? "w-card-lg-horiz" : "w-full"} ${
-        theme === "dark" ? "bg-primary-dark" : "bg-primary-light"
-      } ${
+      className={`${
+        type === "horiz" ? "w-card-lg-horiz" : "w-full min-h-[50%]"
+      } ${theme === "dark" ? "bg-primary-dark" : "bg-primary-light"} ${
         type === "horiz"
           ? "rounded-br-3xl rounded-tr-3xl"
           : "rounded-br-3xl rounded-bl-3xl"
       }`}
     >
-      <div className={`w-11/12 p-2 flex flex-col h-full justify-evenly`}>
+      <div className={`p-2 flex flex-col h-full justify-evenly`}>
         <PostTitle text={title} theme={theme} type={type} />
         <PostExcerpt text={excerpt} theme={theme} type={type} />
         <PostTags tags={tags} theme={theme} type={type} />
         <div className="inline-block absolute bottom-2 right-2">
-          <NavItem
-            size="xsm"
-            theme={theme}
-            children={time + " hours ago"}
-            Icon={Clock}
-          />
+          <NavItem size="xsm" theme={theme} children={time} Icon={Clock} />
         </div>
       </div>
     </div>
