@@ -2,6 +2,7 @@ import Layout from "../components/layout";
 import data from "../../data.json";
 import Cards, { CardArrayProps } from "../components/main-blog-cards/Cards";
 import TagSelector from "../components/tags/TagSelector";
+import { useState, useEffect } from "react";
 
 type Props = {
   posts: [number];
@@ -21,22 +22,31 @@ const testData: CardArrayProps = {
     return obj;
   }),
 };
+const testTags = [
+  "#c++ 8",
+  "#css 5",
+  "#javascript 4",
+  "typescript 2",
+  "#v8 3",
+  "#design 4",
+  "#figma 5",
+];
 const Index = ({}: Props) => {
+  const [visible, setVisible] = useState(768);
+  useEffect(() => {
+    setVisible(window.innerWidth);
+  }, []);
   return (
     <Layout theme={testData.theme}>
-      <TagSelector
-        tags={[
-          "#c++ 8",
-          "#css 5",
-          "#javascript 4",
-          "typescript 2",
-          "#v8 3",
-          "#design 4",
-          "#figma 5",
-        ]}
-        theme={testData.theme}
-        variant="md"
-      />
+      {visible >= 1024 ? (
+        <TagSelector
+          tags={
+            visible >= 1024 && visible < 1200 ? testTags.slice(0, 5) : testTags
+          }
+          theme={testData.theme}
+          variant="md"
+        />
+      ) : null}
       <Cards {...testData} />
     </Layout>
   );

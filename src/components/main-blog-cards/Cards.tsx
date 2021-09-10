@@ -1,6 +1,6 @@
 import { formatDistance } from "date-fns";
-import React, { ReactElement } from "react";
-import PostPreview, { CardProps } from "../card/PostPreview";
+import React, { ReactElement, useEffect, useState } from "react";
+import PostPreview, { CardProps, DeviceTypes } from "../card/PostPreview";
 
 export interface CardArrayProps {
   theme: CardProps["theme"];
@@ -8,8 +8,23 @@ export interface CardArrayProps {
 }
 
 function Cards({ data, theme }: CardArrayProps): ReactElement {
+  const [deviceType, setDeviceType] = useState<DeviceTypes>("mobile");
+  useEffect(() => {
+    const targetWidth = window.innerWidth;
+    if (targetWidth < 1024) {
+      setDeviceType("mobile");
+    } else if (targetWidth >= 1024 && targetWidth <= 1200) {
+      setDeviceType("ipad");
+    } else {
+      setDeviceType("regular");
+    }
+  }, []);
   return (
-    <div className="flex flex-wrap justify-between">
+    <div
+      className={`flex flex-wrap justify-between ${
+        deviceType === "mobile" ? "flex-col" : ""
+      }`}
+    >
       {data.map((blog, i) => (
         <PostPreview
           key={blog.content.time}

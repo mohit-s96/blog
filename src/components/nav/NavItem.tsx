@@ -27,7 +27,6 @@ function NavItem({
           : "text-primary-text-dark"
       } cursor-pointer`}
       onClick={() => callback()}
-      onFocus={() => callback()}
     >
       {Icon && <Icon color={theme} size={size} />}
       <span className="ml-2">{children}</span>

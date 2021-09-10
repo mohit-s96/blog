@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import NavItem from "../nav/NavItem";
 import { Clock } from "../svg/collection.svg";
 import PostExcerpt from "./PostExcerpt";
+import { DeviceTypes } from "./PostPreview";
 import PostTags from "./PostTags";
 import PostTitle from "./PostTitle";
 
@@ -14,6 +15,7 @@ interface Props {
     tags: Array<string>;
     time: number;
   };
+  device?: DeviceTypes;
 }
 
 function PostPreviewContent({

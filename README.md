@@ -18,6 +18,8 @@ Hi I am building this personal blog from scratch. I am not using any pre-existin
 
 - Storybook
 
+- Figma for design
+
 #### Roadmap and Target checklist
 
 - [x] Setup nextjs and typescript project
@@ -27,9 +29,9 @@ Hi I am building this personal blog from scratch. I am not using any pre-existin
 - [x] Create some mock data for testing
 - [x] Setup and configure storybook
 - [x] Create landing page components in storybook
-- [ ] Unit test storybook components for landing page
-- [ ] Make first design responsive
-- [ ] Fetch live data and test
+- [x] Unit test storybook components for landing page
+- [x] Make first design responsive
+- [x] Fetch live data and test
 - [ ] Create blog page design storybook
 - [ ] Make blog page design responsive
 - [ ] Fetch live data and test
