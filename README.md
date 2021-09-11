@@ -39,7 +39,7 @@ Hi I am building this personal blog from scratch. I am not using any pre-existin
 - [ ] Create admin panel for adding blog data [Seperate project with CRA]
 - [ ] Add comment components storybook and unit test.
 - [ ] Create oauth login with github
-- [ ] Test aunthentication
+- [ ] Test authentication
 - [ ] Fetch live data and test authentication
 - [ ] Post comment and test
 - [ ] Trigger a rebuild on new comment posted
