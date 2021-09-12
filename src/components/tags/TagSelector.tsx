@@ -1,13 +1,14 @@
 import React, { ReactElement, useState } from "react";
+import { SizeVariantType, ThemeType } from "../../../types/globalTypes";
 import SortMenu from "../dropdown/SortMenu";
 import { Solid } from "../svg/collection.svg";
 import TagList from "./TagList";
 import Tags from "./Tags";
 
 export interface Props {
-  theme: "dark" | "light";
+  theme: ThemeType;
   tags: Array<string>;
-  variant: "sm" | "md";
+  variant: SizeVariantType;
 }
 
 function TagSelector({ tags, theme, variant }: Props): ReactElement {

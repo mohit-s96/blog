@@ -1,8 +1,9 @@
 import React from "react";
+import { SizeVariantType, ThemeType } from "../../../types/globalTypes";
 
 export type SvgProps = {
-  color?: "light" | "dark";
-  size?: "xsm" | "sm" | "md";
+  color?: ThemeType;
+  size?: "xsm" | SizeVariantType;
   accent?: boolean;
 };
 

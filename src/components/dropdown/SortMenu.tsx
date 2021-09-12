@@ -3,7 +3,7 @@ import { Check } from "../svg/collection.svg";
 
 export interface Props {
   visible: boolean;
-  theme?: "light" | "dark";
+  theme?: ThemeType;
 }
 
 function SortMenu({ visible, theme }: Props): ReactElement {

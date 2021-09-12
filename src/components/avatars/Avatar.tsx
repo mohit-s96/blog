@@ -1,8 +1,9 @@
 import React, { ReactElement } from "react";
+import { SizeVariantType } from "../../../types/globalTypes";
 
 export interface Props {
   imageUri: string;
-  size: "sm" | "md" | "lg";
+  size: SizeVariantType | "lg";
   alt: string;
 }
 

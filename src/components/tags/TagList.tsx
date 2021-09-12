@@ -1,9 +1,10 @@
 import React, { ReactElement } from "react";
+import { ThemeType } from "../../../types/globalTypes";
 import Tags from "./Tags";
 
 interface Props {
   tags: Array<string>;
-  theme: "dark" | "light";
+  theme: ThemeType;
   variant: "md" | "sm";
 }
 

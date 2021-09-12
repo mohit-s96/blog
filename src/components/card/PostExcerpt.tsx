@@ -1,9 +1,10 @@
 import React, { ReactElement } from "react";
+import { LayoutType, ThemeType } from "../../../types/globalTypes";
 
 interface Props {
   text: string;
-  theme: "dark" | "light";
-  type: "horiz" | "vert";
+  theme: ThemeType;
+  type: LayoutType;
 }
 
 function PostExcerpt({ text, theme, type }: Props): ReactElement {

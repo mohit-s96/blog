@@ -1,8 +1,9 @@
 import React, { ReactElement } from "react";
+import { ThemeType } from "../../../types/globalTypes";
 
 interface Props {
   tag: string;
-  theme?: "dark" | "light";
+  theme?: ThemeType;
 }
 
 function SimpleTags({ tag, theme }: Props): ReactElement {

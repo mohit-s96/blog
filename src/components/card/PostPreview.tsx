@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
 import PostPreviewContent from "./PostPreviewContent";
 import PostPreviewImage from "./PostPreviewImage";
 
 export interface CardProps {
-  theme: "dark" | "light";
+  theme: ThemeType;
   blog: {
-    layoutType?: "horiz" | "vert";
+    layoutType?: LayoutType;
     imgUri: string;
     altText?: string;
     content: {
@@ -16,7 +17,6 @@ export interface CardProps {
     };
   };
 }
-export type DeviceTypes = "mobile" | "ipad" | "regular";
 function PostPreview({
   blog: { layoutType = "horiz", imgUri, content, altText = "" },
   theme,

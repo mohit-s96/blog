@@ -6,7 +6,7 @@ import { Search } from "../svg/collection.svg";
 import NavInput from "./NavInput";
 
 export interface Props {
-  theme: "light" | "dark";
+  theme: ThemeType;
 }
 
 function Navbar({ theme = "dark" }: Props): ReactElement {

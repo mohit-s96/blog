@@ -1,14 +1,14 @@
 import React, { ReactElement } from "react";
+import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
 import NavItem from "../nav/NavItem";
 import { Clock } from "../svg/collection.svg";
 import PostExcerpt from "./PostExcerpt";
-import { DeviceTypes } from "./PostPreview";
 import PostTags from "./PostTags";
 import PostTitle from "./PostTitle";
 
 interface Props {
-  theme: "dark" | "light";
-  type: "horiz" | "vert";
+  theme: ThemeType;
+  type: LayoutType;
   content: {
     title: string;
     excerpt: string;

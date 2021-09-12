@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import blogData from "../../../data.json";
 import {
   fetchBlogs,
   fetchSingleBlog,
@@ -10,10 +11,10 @@ import { addBlog, addComment } from "../../../lib/updateBlogData";
 import { BlogSlug } from "../../../types/blogtypes";
 
 type Props = {
-  slug: BlogSlug;
+  data: BlogSlug;
 };
 
-const Post = ({ slug: { author, excerpt, likes, commentCount } }: Props) => {
+const Post = ({ data: { author, excerpt, likes, commentCount } }: Props) => {
   const router = useRouter();
   // if (!router.isFallback /*&& !post?.slug*/) {
   //   return <ErrorPage statusCode={404} />;
@@ -44,15 +45,15 @@ export default Post;
 
 type Params = {
   params: {
-    slug: string;
+    data: string;
   };
 };
 
-export async function getStaticProps(x: Params) {
-  const data = await fetchSingleBlog("figma_design");
-  (data._id as any) = data._id.toHexString();
+export async function getStaticProps(_path: Params) {
+  const data = (blogData[1] as unknown) as BlogSlug;
+  // (data._id as any) = data._id.toHexString();
   return {
-    props: { slug: data },
+    props: { data: data },
   };
 }
 
@@ -61,12 +62,12 @@ export async function getStaticPaths() {
     paths: [
       {
         params: {
-          slug: "1",
+          data: "1",
         },
       },
       {
         params: {
-          slug: "2",
+          data: "2",
         },
       },
     ],

@@ -1,12 +1,12 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
 import SimpleTags from "../tags/SimpleTags";
 import Tags from "../tags/Tags";
-import { DeviceTypes } from "./PostPreview";
 
 interface Props {
   tags: Array<string>;
-  theme: "dark" | "light";
-  type: "horiz" | "vert";
+  theme: ThemeType;
+  type: LayoutType;
   device?: DeviceTypes;
 }
 

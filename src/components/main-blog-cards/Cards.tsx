@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns";
 import React, { ReactElement, useEffect, useState } from "react";
-import PostPreview, { CardProps, DeviceTypes } from "../card/PostPreview";
+import { DeviceTypes } from "../../../types/globalTypes";
+import PostPreview, { CardProps } from "../card/PostPreview";
 
 export interface CardArrayProps {
   theme: CardProps["theme"];

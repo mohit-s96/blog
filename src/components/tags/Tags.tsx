@@ -1,10 +1,11 @@
 import React, { ReactElement, ReactNode } from "react";
+import { SizeVariantType, ThemeType } from "../../../types/globalTypes";
 import { Solid } from "../svg/collection.svg";
 
 export interface TagProps {
   children: ReactNode;
-  variant?: "sm" | "md";
-  theme?: "light" | "dark";
+  variant?: SizeVariantType;
+  theme?: ThemeType;
   triangular?: boolean;
   accent?: boolean;
   classes?: string;

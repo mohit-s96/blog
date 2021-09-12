@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 
 interface Props {
-  type: "horiz" | "vert";
+  type: LayoutType;
   uri: string;
   alt: string;
 }

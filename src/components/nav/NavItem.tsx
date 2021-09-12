@@ -1,10 +1,11 @@
 import React, { ReactElement, ReactNode } from "react";
+import { SizeVariantType, ThemeType } from "../../../types/globalTypes";
 import { SvgProps } from "../svg/collection.svg";
 
 export interface Props {
   children: ReactNode;
-  size: "xsm" | "sm" | "md";
-  theme: "light" | "dark";
+  size: "xsm" | SizeVariantType;
+  theme: ThemeType;
   Icon?: ({ color, size }: SvgProps) => JSX.Element;
   callback?: () => any;
 }

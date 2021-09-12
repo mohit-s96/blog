@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 
 interface Props {
   active: boolean;
-  theme: "light" | "dark";
+  theme: ThemeType;
   callback?: () => any;
 }
 

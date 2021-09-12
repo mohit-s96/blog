@@ -1,8 +1,9 @@
+import { ThemeType } from "../../types/globalTypes";
 import Navbar from "./nav/Navbar";
 
 type Props = {
   children: React.ReactNode;
-  theme?: "dark" | "light";
+  theme?: ThemeType;
 };
 
 const Layout = ({ children, theme = "dark" }: Props) => {
