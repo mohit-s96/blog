@@ -13,6 +13,8 @@ const cors = initMiddleware(
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await cors(req, res);
+    console.log(req.cookies);
+
     const data = await fetchBlogList();
     res.status(200).json(data);
   } catch (err) {
