@@ -88,3 +88,24 @@ export function fetchPathData() {
     }
   });
 }
+type BlogList = Omit<BlogPathNames, "metadata" | "blogData">;
+export function fetchBlogList() {
+  return dbConnect<[BlogList]>(async (client) => {
+    try {
+      await client.connect();
+      const cursors = client
+        .db()
+        .collection(process.env.BLOG_COLLECTION as string)
+        .find({}, { projection: { blogData: 0, metadata: 0 } });
+      const blogs = (await cursors.toArray()) as [BlogList];
+      return blogs;
+    } catch (e) {
+      console.error(e);
+      return Promise.reject(
+        "Something went wrong. Error => " + JSON.stringify(e)
+      );
+    } finally {
+      await client.close();
+    }
+  });
+}
