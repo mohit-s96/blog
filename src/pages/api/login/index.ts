@@ -7,6 +7,8 @@ import initMiddleware from "../../../../lib/middleware";
 const cors = initMiddleware(
   Cors({
     methods: ["GET", "POST", "OPTIONS"],
+    origin: "http://localhost:3001",
+    credentials: true,
   })
 );
 
