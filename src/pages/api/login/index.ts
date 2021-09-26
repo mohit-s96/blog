@@ -7,7 +7,7 @@ import initMiddleware from "../../../../lib/middleware";
 const cors = initMiddleware(
   Cors({
     methods: ["GET", "POST", "OPTIONS"],
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -17,11 +17,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await cors(req, res);
     const uname = req.body.uname;
     const pass = req.body.pass;
-    console.log(uname, pass);
     const cookies = new Cookies(req, res);
-    console.log(cookies.get("token"));
+
     if (uname === process.env.UNAME && pass === process.env.PASS) {
-      //   res.setHeader("Set-Cookie", `token=${process.env.SECRET}; SameSite=None`);
       cookies.set("token", process.env.SECRET, {
         httpOnly: true,
       });

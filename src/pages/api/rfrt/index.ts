@@ -7,7 +7,7 @@ import initMiddleware from "../../../../lib/middleware";
 const cors = initMiddleware(
   Cors({
     methods: ["GET", "POST", "OPTIONS"],
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -17,7 +17,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await cors(req, res);
     const cookies = new Cookies(req, res);
     const str = cookies.get("token");
-    console.log(str);
     if (str === process.env.SECRET) {
       res.status(200).json({ message: "success" });
     } else {
