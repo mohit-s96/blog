@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Cors from "cors";
 import Cookies from "cookies";
+import Cors from "cors";
 import initMiddleware from "../../../../lib/middleware";
-import { fetchBlogList } from "../../../../lib/getBlogs";
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -16,17 +15,16 @@ const cors = initMiddleware(
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await cors(req, res);
-
     const cookies = new Cookies(req, res);
-
-    if (cookies.get("token") === process.env.SECRET) {
-      const data = await fetchBlogList();
-      res.status(200).json(data);
+    const str = cookies.get("token");
+    if (str === process.env.SECRET) {
+      cookies.set("token");
+      res.status(200).json({ message: "success" });
     } else {
       throw new Error("Unauthorized");
     }
   } catch (err) {
-    res.status(500).json({ statusCode: 500, message: (err as any).message });
+    res.status(400).json({ error: (err as any).message });
   }
 };
 
