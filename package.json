@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.24.0",
+    "busboy": "^0.3.1",
     "classnames": "2.3.1",
     "cookies": "^0.8.0",
     "cors": "^2.8.5",
@@ -31,6 +32,7 @@
     "@storybook/addon-links": "^6.3.8",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "^6.3.8",
+    "@types/busboy": "^0.2.4",
     "@types/cookies": "^0.7.7",
     "@types/cors": "^2.8.12",
     "@types/jest": "^27.0.1",

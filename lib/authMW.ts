@@ -17,6 +17,6 @@ export function useAuth(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<any> {
-  const cors = initMiddleware(authMW);
-  return cors(req, res);
+  const auth = initMiddleware(authMW);
+  return auth(req, res);
 }
