@@ -1,20 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Cookies from "cookies";
-import Cors from "cors";
-import initMiddleware from "../../../../lib/middleware";
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  Cors({
-    methods: ["POST"],
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+import { useCors } from "../../../../lib/corsMW";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await cors(req, res);
+    await useCors(req, res);
     const uname = req.body.uname;
     const pass = req.body.pass;
     const cookies = new Cookies(req, res);

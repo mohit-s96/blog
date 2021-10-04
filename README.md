@@ -32,11 +32,11 @@ Hi I am building this personal blog from scratch. I am not using any pre-existin
 - [x] Unit test storybook components for landing page
 - [x] Make first design responsive
 - [x] Fetch live data and test
-- [ ] Create blog page design storybook
-- [ ] Make blog page design responsive
+- [x] Create blog page design storybook
+- [x] Make blog page design responsive
 - [ ] Fetch live data and test
 - [ ] Error handling and 404 pages
-- [ ] Create admin panel for adding blog data [Seperate project with CRA]
+- [x] Create admin panel for adding blog data [Seperate project with CRA]
 - [ ] Add comment components storybook and unit test.
 - [ ] Create oauth login with github
 - [ ] Test authentication
