@@ -6,17 +6,20 @@ export async function uploadImage(buffer: Buffer, fileName: string) {
     process.env.SUPA_KEY as string
   );
 
-  try {
-    const fileExt = fileName?.split(".").pop();
-    const { data: _data, error } = await supabase.storage
-      .from(process.env.SUPA_BUCKET_NAME as string)
-      .upload(`public/${fileName}`, buffer, {
-        contentType: `image/${fileExt}`,
-      });
-    if (error) {
-      throw error;
+  return new Promise(async (resolve, reject) => {
+    try {
+      const fileExt = fileName?.split(".").pop();
+      const { data: _data, error } = await supabase.storage
+        .from(process.env.SUPA_BUCKET_NAME as string)
+        .upload(`public/${fileName}`, buffer, {
+          contentType: `image/${fileExt}`,
+        });
+      if (error) {
+        throw error;
+      }
+      resolve(_data);
+    } catch (err) {
+      reject(err);
     }
-  } catch (err) {
-    throw err;
-  }
+  });
 }

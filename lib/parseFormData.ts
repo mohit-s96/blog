@@ -1,8 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Busboy from "busboy";
-import fs from "fs";
-import os from "os";
-import path from "path";
 
 export function parseFormData(req: NextApiRequest, res: NextApiResponse) {
   return new Promise((resolve, reject) => {

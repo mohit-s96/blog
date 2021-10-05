@@ -18,9 +18,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { data, fileName } = (await parseFormData(req, res)) as any;
 
-    await uploadImage(data, fileName);
+    let uri = (await uploadImage(data, fileName)) as any;
 
-    res.status(201).json({ message: "uploaded successfully" });
+    uri = process.env.SUPA_URI_PREFIX + uri.Key;
+
+    res.status(201).json({ message: "uploaded successfully", uri });
   } catch (err) {
     res.status(400).json({ error: (err as any).message });
   }
