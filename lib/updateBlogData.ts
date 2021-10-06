@@ -2,9 +2,8 @@ import { dbConnect } from "./api";
 import fs from "fs";
 import { BlogSlug, CommentSlug } from "../types/blogtypes";
 import { ObjectId } from "mongodb";
-export function addBlog() {
-  const data = fs.readFileSync("data.json", "utf-8");
-  const json = JSON.parse(data) as BlogSlug;
+export function addBlog(reqData: BlogSlug) {
+  const json = reqData;
   return dbConnect(async (client) => {
     try {
       await client.connect();

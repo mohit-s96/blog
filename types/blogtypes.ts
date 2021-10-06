@@ -6,9 +6,9 @@ export type BlogPathNames = {
 };
 
 export interface BlogImages {
-  hero: string;
-  subImage1: string;
-  subImage2: string;
+  alt: string;
+  uri: string;
+  isHero?: boolean;
 }
 
 export interface BlogMetadata {
@@ -20,10 +20,10 @@ export interface BlogMetadata {
 export interface BlogSlug {
   _id: ObjectId;
   title: string;
-  url: string;
+  uri: string;
   tags: string[];
   createdAt: number;
-  images: BlogImages;
+  images: BlogImages[];
   blogData: string;
   shares: number;
   likes: number;
@@ -31,8 +31,8 @@ export interface BlogSlug {
   author: string;
   commentsAllowed: string;
   commentCount: number;
-  metadata: BlogMetadata;
   viewCount: number;
+  readingTime: string;
 }
 
 export interface CommentMetadata {

@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from "react";
+import { ThemeType } from "../../../types/globalTypes";
 import { Check } from "../svg/collection.svg";
 
 export interface Props {
