@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await addBlog(blogData);
 
-    res.status(201).json({ message: "published successfully" });
+    res.status(201).json({ message: "blog published successfully" });
   } catch (err) {
     res.status(400).json({ error: (err as any).message });
   }
