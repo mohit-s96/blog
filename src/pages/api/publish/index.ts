@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const blogData = req.body.data as BlogSlug;
 
     if (!blogData) {
-      throw new Error("bad payload");
+      throw new Error("bad payload, no data received");
     }
 
     await addBlog(blogData);
