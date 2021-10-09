@@ -13,7 +13,7 @@ import { BlogSlug } from "../../../types/blogtypes";
 type Props = {
   data: BlogSlug;
 };
-
+// gets blog from the api
 const Post = ({ data: { author, excerpt, likes, commentCount } }: Props) => {
   const router = useRouter();
   // if (!router.isFallback /*&& !post?.slug*/) {
