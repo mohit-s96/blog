@@ -1,7 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
 import SimpleTags from "../tags/SimpleTags";
-import Tags from "../tags/Tags";
 
 interface Props {
   tags: Array<string>;
@@ -29,7 +28,7 @@ function PostTags({ tags, type, theme, device }: Props): ReactElement {
       } flex flex-wrap`}
     >
       {filterIfSmallScreen().map((tag) => (
-        <SimpleTags tag={tag} theme={theme} />
+        <SimpleTags tag={tag} theme={theme} key={tag}/>
       ))}
     </div>
   );
