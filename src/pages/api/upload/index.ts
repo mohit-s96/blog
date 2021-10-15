@@ -3,6 +3,8 @@ import { useCors } from "../../../../lib/middleware/corsMW";
 import { useAuth } from "../../../../lib/middleware/authMW";
 import { uploadImage } from "../../../../lib/database/uploadImage";
 import { parseFormData } from "../../../../lib/utils/parseFormData";
+import { clearImages, resizeImages } from "../../../../lib/utils/imageResize";
+import { SupaUploadResponseType } from "../../../../types/globalTypes";
 
 export const config = {
   api: {
@@ -18,9 +20,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { data, fileName } = (await parseFormData(req, res)) as any;
 
-    let uri = (await uploadImage(data, fileName)) as any;
+    const fileNames = (await resizeImages(data, fileName)) as any[];
 
-    uri = process.env.SUPA_URI_PREFIX + uri.Key;
+    let uri = (await uploadImage(
+      fileNames,
+      fileName
+    )) as SupaUploadResponseType[];
+
+    await clearImages(fileNames);
+
+    uri.forEach((x) => {
+      if (x.data?.Key) {
+        x.data!.Key = process.env.SUPA_URI_PREFIX + x.data.Key;
+      }
+    });
 
     res.status(201).json({ message: "uploaded successfully", uri });
   } catch (err) {

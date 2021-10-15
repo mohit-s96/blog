@@ -1,4 +1,5 @@
 import sharp from "sharp";
+import fs from "fs/promises";
 import * as os from "os";
 import path from "path";
 
@@ -14,7 +15,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
       const pipeline = sharp(image) as sharp.Sharp;
       const promises: Promise<any>[] = [];
 
-      console.log("starting resize");
+      fileName = fileName.split(".").slice(0, -1).join("");
 
       deviceWidths.forEach((width, i) => {
         const promise = pipeline
@@ -23,14 +24,35 @@ export async function resizeImages(image: Buffer, fileName: string) {
             background: { r: 255, g: 255, b: 255, alpha: 0 },
           })
           .webp()
-          .toFile(path.join(os.tmpdir(), fileName + i + ".webp"));
+          .toFile(path.join(os.tmpdir(), fileName + "-" + width + ".webp"));
         promises.push(promise);
       });
 
-      const res = await Promise.all(promises);
-      resolve(res);
+      await Promise.all(promises);
+
+      const tmpFiles: any[] = [];
+
+      [...new Array(3)].forEach((_, i) => {
+        tmpFiles.push(
+          path.join(os.tmpdir(), fileName + "-" + [deviceWidths[i]] + ".webp")
+        );
+      });
+
+      resolve(tmpFiles);
     } catch (error) {
       reject((error as any).message);
     }
   });
+}
+
+export async function clearImages(paths: string[]) {
+  const promises: Promise<any>[] = [];
+  paths.forEach((path) => {
+    const promise = fs.unlink(path);
+    promises.push(promise);
+  });
+
+  await Promise.all(promises);
+
+  return;
 }
