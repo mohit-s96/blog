@@ -6,8 +6,8 @@ import {
   fetchSingleBlog,
   fetchComments,
   fetchPathData,
-} from "../../../lib/getBlogs";
-import { addBlog, addComment } from "../../../lib/updateBlogData";
+} from "../../../lib/database/getBlogs";
+import { addBlog, addComment } from "../../../lib/database/updateBlogData";
 import { BlogSlug } from "../../../types/blogtypes";
 
 type Props = {

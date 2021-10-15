@@ -9,7 +9,7 @@ export async function uploadImage(buffer: Buffer, fileName: string) {
   return new Promise(async (resolve, reject) => {
     try {
       const fileExt = fileName?.split(".").pop();
-      const { data: _data, error } = await supabase.storage
+      const { data: data, error } = await supabase.storage
         .from(process.env.SUPA_BUCKET_NAME as string)
         .upload(`public/${fileName}`, buffer, {
           contentType: `image/${fileExt}`,
@@ -17,7 +17,7 @@ export async function uploadImage(buffer: Buffer, fileName: string) {
       if (error) {
         throw error;
       }
-      resolve(_data);
+      resolve(data);
     } catch (err) {
       reject(err);
     }

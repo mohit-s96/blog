@@ -1,6 +1,6 @@
 import { dbConnect } from "./api";
 import fs from "fs";
-import { BlogSlug, CommentSlug } from "../types/blogtypes";
+import { BlogSlug, CommentSlug } from "../../types/blogtypes";
 import { ObjectId } from "mongodb";
 export function addBlog(reqData: BlogSlug) {
   const json = reqData;

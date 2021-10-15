@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Cookies from "cookies";
-import { useCors } from "../../../../lib/corsMW";
-import { useAuth } from "../../../../lib/authMW";
+import { useCors } from "../../../../lib/middleware/corsMW";
+import { useAuth } from "../../../../lib/middleware/authMW";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

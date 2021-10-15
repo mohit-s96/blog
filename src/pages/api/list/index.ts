@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchBlogList } from "../../../../lib/getBlogs";
-import { useAuth } from "../../../../lib/authMW";
-import { useCors } from "../../../../lib/corsMW";
+import { fetchBlogList } from "../../../../lib/database/getBlogs";
+import { useAuth } from "../../../../lib/middleware/authMW";
+import { useCors } from "../../../../lib/middleware/corsMW";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

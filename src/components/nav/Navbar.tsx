@@ -4,6 +4,7 @@ import uri from "../../../public/favicon/icon-512x512.png";
 import NavItem from "./NavItem";
 import { Search } from "../svg/collection.svg";
 import NavInput from "./NavInput";
+import { ThemeType } from "../../../types/globalTypes";
 
 export interface Props {
   theme: ThemeType;

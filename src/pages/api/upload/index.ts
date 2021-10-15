@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { useCors } from "../../../../lib/corsMW";
-import { useAuth } from "../../../../lib/authMW";
-import { uploadImage } from "../../../../lib/uploadImage";
-import { parseFormData } from "../../../../lib/parseFormData";
+import { useCors } from "../../../../lib/middleware/corsMW";
+import { useAuth } from "../../../../lib/middleware/authMW";
+import { uploadImage } from "../../../../lib/database/uploadImage";
+import { parseFormData } from "../../../../lib/utils/parseFormData";
 
 export const config = {
   api: {

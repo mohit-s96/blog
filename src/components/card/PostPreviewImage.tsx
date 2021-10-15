@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { LayoutType } from "../../../types/globalTypes";
 
 interface Props {
   type: LayoutType;

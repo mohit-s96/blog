@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { BlogPathNames, BlogSlug, CommentSlug } from "../types/blogtypes";
+import { BlogPathNames, BlogSlug, CommentSlug } from "../../types/blogtypes";
 import fs from "fs";
 import { dbConnect } from "./api";
 
