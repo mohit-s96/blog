@@ -17,10 +17,12 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       fileName = fileName.split(".").slice(0, -1).join("");
 
+      fileName = fileName.replaceAll(" ", "");
+
       deviceWidths.forEach((width, i) => {
         const promise = pipeline
           .resize(width, get16_9Height(width), {
-            fit: "contain",
+            fit: "cover",
             background: { r: 255, g: 255, b: 255, alpha: 0 },
           })
           .webp()
