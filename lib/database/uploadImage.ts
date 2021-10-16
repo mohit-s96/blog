@@ -9,6 +9,8 @@ export async function uploadImage(paths: string[], fileName: string) {
   return new Promise(async (resolve, reject) => {
     try {
       fileName = fileName.split(".").slice(0, -1).join("");
+      fileName = fileName.replaceAll(" ", "");
+
       const fileExt = "webp";
 
       let promises: Promise<any>[] = [];
