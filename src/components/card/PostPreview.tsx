@@ -33,21 +33,26 @@ function PostPreview({
     }
   }, []);
   function resolveLayouts() {
-    let str = "flex relative mb-6";
+    let str = "flex relative mb-4 mx-3";
     if (deviceType === "mobile" || deviceType === "ipad") {
       str += " w-full mt-8";
       str += deviceType === "mobile" ? " flex-col" : "";
     } else if (layoutType === "horiz") {
       str += " w-full";
     } else {
-      str += " w-card-lg-vert flex-col";
+      str += " responsive-card flex-col";
     }
 
     return str;
   }
   return (
     <>
-      <div className={resolveLayouts()}>
+      <div className={resolveLayouts()}
+      style={{
+        border: "2px solid #b04ed0",
+        borderRadius: "1.5rem"
+      }}
+      >
         {deviceType === "regular" ? (
           <>
             <PostPreviewImage type={layoutType} uri={imgUri} alt={altText} />

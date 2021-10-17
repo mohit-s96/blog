@@ -22,7 +22,7 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
   }, []);
   return (
     <div
-      className={`flex flex-wrap justify-between ${
+      className={`flex flex-wrap ${
         deviceType === "mobile" ? "flex-col" : ""
       }`}
     >
@@ -33,7 +33,7 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
           blog={{
             ...blog,
             altText: "Main blog image",
-            layoutType: i === 0 ? "horiz" : "vert",
+            layoutType: "vert",
             content: {
               ...blog.content,
               time: (formatDistance(blog.content.time, Date.now(), {
