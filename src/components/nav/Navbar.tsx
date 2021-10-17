@@ -16,7 +16,10 @@ function Navbar({ theme = "dark" }: Props): ReactElement {
     <div
       className={`w-full flex justify-between items-center p-2 overflow-hidden ${
         theme === "dark" ? "bg-primary-dark" : "bg-primary-light"
-      }`}
+      } sticky top-0 z-10`}
+      style={{
+        boxShadow: "2px 2px 2px #b04ed0"
+      }}
     >
       <Avatar
         imageUri={(uri.src as unknown) as string}

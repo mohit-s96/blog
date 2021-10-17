@@ -10,7 +10,7 @@ interface Props {
 
 function TagList({ tags, theme, variant }: Props): ReactElement {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center">
       {tags.map((tag) => (
         <Tags
           children={tag}

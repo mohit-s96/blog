@@ -9,11 +9,7 @@ interface Props {
 function SimpleTags({ tag, theme }: Props): ReactElement {
   return (
     <button
-      className={`p-1 m-1 rounded-sm ${
-        theme === "dark"
-          ? "bg-primary-accent-dark text-primary-text-dark"
-          : "bg-yellow-400"
-      }`}
+      className={`p-1 m-1 rounded-sm bg-primary-accent-dark text-primary-text-dark`}
     >
       {"#" + tag}
     </button>

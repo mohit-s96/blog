@@ -29,7 +29,9 @@ function NavItem({
       } cursor-pointer`}
       onClick={() => callback()}
     >
-      {Icon && <Icon color={theme} size={size} />}
+      {Icon && (
+        <Icon color={theme === "light" ? "#6a6666" : "#ffffff"} size={size} />
+      )}
       <span className="ml-2">{children}</span>
     </div>
   );
