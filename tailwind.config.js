@@ -13,11 +13,11 @@ module.exports = {
         "primary-accent-light": "#6A279F",
         "primary-bg-light": "#EBECF1",
         //dark theme
-        "primary-dark": "#0A0C14",
+        "primary-dark": "#1F2028",
         "primary-text-dark": "#FFFFFF",
         "secondary-text-dark": "#FFFFFF",
         "primary-accent-dark": "#6A279F",
-        "primary-bg-dark": "#0B0707",
+        "primary-bg-dark": "#1F2028",
       },
       borderRadius: {
         "brc-md": "20px",
@@ -50,7 +50,7 @@ module.exports = {
         "avat-img-sm": "1.5rem",
         "avat-img-md": "3.0rem",
         "avat-img-lg": "4.5rem",
-        "card-lg-vert": "29%",
+        "card-lg-vert": "23%",
         "card-lg-horiz": "71%",
       },
       minWidth: {
