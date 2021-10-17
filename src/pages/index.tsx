@@ -3,6 +3,7 @@ import data from "../../data.json";
 import Cards, { CardArrayProps } from "../components/main-blog-cards/Cards";
 import TagSelector from "../components/tags/TagSelector";
 import { useState, useEffect } from "react";
+import SearchBlogs from "../components/search-blogs/search";
 
 type Props = {
   posts: [number];
@@ -47,6 +48,7 @@ const Index = ({}: Props) => {
           variant="md"
         />
       ) : null}
+      <SearchBlogs theme={testData.theme} />
       <Cards {...testData} />
     </Layout>
   );

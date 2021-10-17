@@ -1,5 +1,15 @@
 @tailwind base;
-
+.responsive-card {
+  width: 29%;
+}
+@media screen and (min-width: 1500px) {
+  .responsive-card {
+    width: 23%;
+  }
+}
+.h-400 {
+  height: 400px !important;
+}
 /* Write your own custom base styles here */
 
 /* Start purging... */
