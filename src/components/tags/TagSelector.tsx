@@ -20,7 +20,7 @@ function TagSelector({ tags, theme, variant }: Props): ReactElement {
         <Tags
           variant={variant}
           accent={true}
-          classes="mx-2 font-bold"
+          className="mx-2 font-bold"
           callback={() => setMenuVisible(!menuVisible)}
         >
           Sort <Solid color="dark" />

@@ -17,7 +17,7 @@ function TagList({ tags, theme, variant }: Props): ReactElement {
           theme={theme}
           key={tag}
           variant={variant}
-          classes="mr-2 font-bold"
+          className="mr-2 font-bold"
         />
       ))}
     </div>

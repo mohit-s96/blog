@@ -8,7 +8,7 @@ export interface TagProps {
   theme?: ThemeType;
   triangular?: boolean;
   accent?: boolean;
-  classes?: string;
+  className?: string;
   callback?: () => void;
 }
 
@@ -18,13 +18,13 @@ function Tags({
   theme,
   triangular,
   accent,
-  classes,
+  className,
   callback,
 }: TagProps): ReactElement {
   return (
     <button
       onClick={() => callback && callback()}
-      className={`${classes ? classes : ""} ${
+      className={`${className ? className : ""} ${
         triangular
           ? `relative before:absolute before:h-0 before:w-0 ${
               variant === "sm" ? "before:left-sm" : "before:left-md"
@@ -45,7 +45,7 @@ function Tags({
       } ${
         !accent
           ? theme === "dark"
-            ? "bg-primary-dark text-primary-text-dark"
+            ? "bg-primary-accent-light text-primary-text-dark"
             : "bg-primary-light text-primary-text-light"
           : "bg-primary-accent-light flex items-center justify-center text-primary-text-dark"
       } ${variant === "md" ? "min-w-btn-md" : "min-w-btn-sm"} ${
