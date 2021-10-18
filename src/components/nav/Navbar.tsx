@@ -18,13 +18,13 @@ function Navbar({ theme = "dark" }: Props): ReactElement {
         theme === "dark" ? "bg-primary-dark" : "bg-primary-light"
       } sticky top-0 z-10`}
       style={{
-        boxShadow: "2px 2px 2px #b04ed0"
+        boxShadow: "2px 2px 2px #b04ed0",
       }}
     >
       <Avatar
         imageUri={(uri.src as unknown) as string}
         alt="Branding logo image of the letter m"
-        size="lg"
+        size="md"
       />
       <div className="flex justify-between items-center">
         <NavItem

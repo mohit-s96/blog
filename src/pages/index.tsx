@@ -24,13 +24,13 @@ const testData: CardArrayProps = {
   }),
 };
 const testTags = [
-  "#c++ 8",
-  "#css 5",
-  "#javascript 4",
-  "typescript 2",
-  "#v8 3",
-  "#design 4",
-  "#figma 5",
+  "#c++",
+  "#css",
+  "#javascript",
+  "#typescript",
+  "#v8",
+  "#design",
+  "#figma",
 ];
 const Index = ({}: Props) => {
   const [visible, setVisible] = useState(768);
@@ -39,6 +39,7 @@ const Index = ({}: Props) => {
   }, []);
   return (
     <Layout theme={testData.theme}>
+      <SearchBlogs theme={testData.theme} />
       {visible >= 1024 ? (
         <TagSelector
           tags={
@@ -48,7 +49,6 @@ const Index = ({}: Props) => {
           variant="md"
         />
       ) : null}
-      <SearchBlogs theme={testData.theme} />
       <Cards {...testData} />
     </Layout>
   );

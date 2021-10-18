@@ -18,6 +18,9 @@ module.exports = {
         "secondary-text-dark": "#FFFFFF",
         "primary-accent-dark": "#6A279F",
         "primary-bg-dark": "#1F2028",
+
+        //opacity low
+        "accent-low-opa": "rgba(106, 39, 159, 0.5)"
       },
       borderRadius: {
         "brc-md": "20px",

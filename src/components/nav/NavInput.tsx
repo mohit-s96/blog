@@ -20,7 +20,7 @@ function NavInput({ active, theme, callback = () => {} }: Props): ReactElement {
           active ? "w-60 p-2" : "w-0"
         } transition-all duration-200 rounded-lg outline-none focus-visible:outline-none ${
           theme === "light"
-            ? "text-primary-text-dark bg-secondary-text-light placeholder-white"
+            ? "text-primary-text-dark bg-accent-low-opa placeholder-white"
             : "text-secondary-text-light bg-primary-light"
         }`}
         placeholder="Search for something..."

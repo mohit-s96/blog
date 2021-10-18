@@ -21,27 +21,34 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
     }
   }, []);
   return (
-    <div
-      className={`flex flex-wrap ${deviceType === "mobile" ? "flex-col" : ""}`}
-    >
-      {data.map((blog, i) => (
-        <PostPreview
-          key={blog.content.time}
-          theme={theme}
-          blog={{
-            ...blog,
-            altText: "Main blog image",
-            layoutType: "vert",
-            content: {
-              ...blog.content,
-              time: (format(
-                blog.content.time,
-                "do MMM, yy"
-              ) as unknown) as number,
-            },
-          }}
-        />
-      ))}
+    <div className={`flex flex-col`}>
+      <div className="m-2 p-2 text-primary-accent-dark text-2xl">
+        latest blogs
+      </div>
+      <div
+        className={`flex flex-wrap ${
+          deviceType === "mobile" ? "flex-col" : ""
+        }`}
+      >
+        {data.map((blog) => (
+          <PostPreview
+            key={blog.content.time}
+            theme={theme}
+            blog={{
+              ...blog,
+              altText: "Main blog image",
+              layoutType: "vert",
+              content: {
+                ...blog.content,
+                time: (format(
+                  blog.content.time,
+                  "do MMM, yy"
+                ) as unknown) as number,
+              },
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 }

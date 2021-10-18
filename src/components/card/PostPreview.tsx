@@ -34,7 +34,7 @@ function PostPreview({
   }, []);
   function resolveLayouts() {
     let str =
-      "flex relative mb-4 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-5 hover:shadow-2xl";
+      "flex relative mb-4 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-2xl";
     if (deviceType === "mobile" || deviceType === "ipad") {
       str += " w-full mt-8";
       str += deviceType === "mobile" ? " flex-col" : "";

@@ -30,7 +30,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
   return (
     <div
       ref={searchRef}
-      className={`w-3/6 mx-auto mb-4 h-20 rounded-3xl ${
+      className={`w-3/6 mx-auto my-4 h-20 rounded-3xl ${
         value ? (theme === "light" ? "bg-white" : "bg-gray-700") : ""
       } transition-all duration-300 flex flex-col`}
     >
@@ -47,7 +47,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
           }`}
           id="search"
           type="text"
-          placeholder="Search"
+          placeholder="Search [Ctrl + K]"
           value={value}
           onChange={handleSearchChange}
         />
