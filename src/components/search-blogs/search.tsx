@@ -31,7 +31,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
       ref={searchRef}
       className={`w-3/6 mx-auto mb-4 h-20 rounded-3xl ${
         value ? (theme === "light" ? "bg-white" : "bg-gray-700") : ""
-      } transition-all duration-300`}
+      } transition-all duration-300 flex flex-col`}
     >
       <div
         className={`${
@@ -57,6 +57,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
           </button>
         </div>
       </div>
+      {value ? <div className="top-loader-line"></div> : null}
     </div>
   );
 }
