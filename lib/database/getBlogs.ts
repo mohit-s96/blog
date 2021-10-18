@@ -1,5 +1,10 @@
 import { ObjectId } from "mongodb";
-import { BlogPathNames, BlogSlug, CommentSlug } from "../../types/blogtypes";
+import {
+  BlogListType,
+  BlogPathNames,
+  BlogSlug,
+  CommentSlug,
+} from "../../types/blogtypes";
 import fs from "fs";
 import { dbConnect } from "./api";
 
@@ -88,21 +93,20 @@ export function fetchPathData() {
     }
   });
 }
-type BlogList = Omit<BlogPathNames, "metadata" | "blogData">;
 export function fetchBlogList() {
-  return dbConnect<[BlogList]>(async (client) => {
+  return dbConnect<[BlogListType]>(async (client) => {
     try {
       await client.connect();
       const cursors = client
         .db()
         .collection(process.env.BLOG_COLLECTION as string)
         .find({}, { projection: { blogData: 0, metadata: 0 } });
-      const blogs = (await cursors.toArray()) as [BlogList];
+      const blogs = (await cursors.toArray()) as [BlogListType];
       return blogs;
     } catch (e) {
       console.error(e);
       return Promise.reject(
-        "Something went wrong. Error => " + JSON.stringify(e)
+        "Something went wrong. Error => " + (e as any).message
       );
     } finally {
       await client.close();
