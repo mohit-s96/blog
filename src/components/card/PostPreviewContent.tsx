@@ -1,10 +1,12 @@
 import React, { ReactElement } from "react";
 import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
+import uri from "../../../public/favicon/icon-192x192.png";
 import NavItem from "../nav/NavItem";
 import { Clock } from "../svg/collection.svg";
 import PostExcerpt from "./PostExcerpt";
 import PostTags from "./PostTags";
 import PostTitle from "./PostTitle";
+import Avatar from "../avatars/Avatar";
 
 interface Props {
   theme: ThemeType;
@@ -34,12 +36,16 @@ function PostPreviewContent({
       }`}
     >
       <div className={`p-2 flex flex-col h-full justify-evenly`}>
+        <div className="flex items-center p-1 justify-between">
+          <Avatar alt="author avatar" imageUri={uri.src as any} size="sm" />
+          <NavItem size="sm" theme={theme} children={time} Icon={Clock} />
+        </div>
         <PostTitle text={title} theme={theme} type={type} />
         <PostExcerpt text={excerpt} theme={theme} type={type} />
         <PostTags tags={tags} theme={theme} type={type} />
-        <div className="inline-block absolute bottom-2 right-2">
+        {/* <div className="inline-block absolute bottom-[-0.5em] right-2">
           <NavItem size="xsm" theme={theme} children={time} Icon={Clock} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

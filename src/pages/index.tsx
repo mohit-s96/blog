@@ -9,7 +9,7 @@ type Props = {
   posts: [number];
 };
 const testData: CardArrayProps = {
-  theme: "dark",
+  theme: "light",
   data: data.map((x) => {
     const obj: CardArrayProps["data"][0] = {
       imgUri: x.images.hero,

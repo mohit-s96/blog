@@ -13,9 +13,9 @@ function PostTags({ tags, type, theme, device }: Props): ReactElement {
   const [loaded, setLoaded] = useState(false);
   const filterIfSmallScreen = useCallback(() => {
     if (typeof window === "undefined") return tags;
-    if (window.innerWidth > 1500) return tags;
+    if (window.innerWidth > 2600) return tags;
     else {
-      return tags.filter((_, i) => i < 4);
+      return tags.filter((_, i) => i < 3);
     }
   }, [loaded]);
   useEffect(() => {
@@ -28,7 +28,7 @@ function PostTags({ tags, type, theme, device }: Props): ReactElement {
       } flex flex-wrap`}
     >
       {filterIfSmallScreen().map((tag) => (
-        <SimpleTags tag={tag} theme={theme} key={tag}/>
+        <SimpleTags tag={tag} theme={theme} key={tag} />
       ))}
     </div>
   );
