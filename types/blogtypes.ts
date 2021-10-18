@@ -1,38 +1,42 @@
 import { ObjectId } from "bson";
+import { SupaUploadResponseType } from "./globalTypes";
 
 export type BlogPathNames = {
   _id: ObjectId;
   pathNames: Array<string>;
 };
 
-export interface BlogImages {
-  alt: string;
-  uri: string;
-  isHero?: boolean;
-}
-
 export interface BlogMetadata {
   links: string[];
   atMentions: string[];
   hashTags: string[];
 }
+export interface NewImageData {
+  permUri: SupaUploadResponseType[];
+  alt: string;
+  uri?: string;
+  isHero?: boolean | undefined;
+}
+export type SlugType = "html" | "md" | "nm";
 
 export interface BlogSlug {
-  _id: ObjectId;
+  _id?: ObjectId;
+  rawBody?: string;
   title: string;
   uri: string;
   tags: string[];
   createdAt: number;
-  images: BlogImages[];
+  images: NewImageData[];
   blogData: string;
   shares: number;
   likes: number;
   excerpt: string;
   author: string;
-  commentsAllowed: string;
+  commentsAllowed: boolean;
   commentCount: number;
+  metadata?: BlogMetadata;
   viewCount: number;
-  readingTime: string;
+  slugType: SlugType;
 }
 
 export interface CommentMetadata {
@@ -55,3 +59,5 @@ export interface CommentSlug {
   inReplyToComment: ObjectId | "";
   body: string;
 }
+
+export type BlogListType = Omit<BlogSlug, "metadata" | "blogData">;
