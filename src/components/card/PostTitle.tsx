@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ReactElement } from "react";
 import { LayoutType, ThemeType } from "../../../types/globalTypes";
 
@@ -5,19 +6,22 @@ interface Props {
   text: string;
   theme: ThemeType;
   type: LayoutType;
+  slug?: string;
 }
 
-function PostTitle({ text, theme, type }: Props): ReactElement {
+function PostTitle({ text, type, slug }: Props): ReactElement {
   return (
-    <div
-      className={`p-2 ${
-        type === "horiz"
-          ? "w-8/12 text-4xl leading-"
-          : "w-full text-2xl font-bold"
-      } text-primary-accent-dark`}
-    >
-      {text}
-    </div>
+    <Link href={`/${slug}`}>
+      <div
+        className={`p-2 ${
+          type === "horiz"
+            ? "w-8/12 text-4xl leading-"
+            : "w-full text-2xl font-bold"
+        } text-primary-accent-dark hover:underline transition-all duration-300`}
+      >
+        {text}
+      </div>
+    </Link>
   );
 }
 
