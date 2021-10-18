@@ -11,19 +11,22 @@ import Avatar from "../avatars/Avatar";
 interface Props {
   theme: ThemeType;
   type: LayoutType;
-  content: {
-    title: string;
-    excerpt: string;
-    tags: Array<string>;
-    time: number;
-  };
+  title: string;
+  excerpt: string;
+  tags: Array<string>;
+  time: number;
   device?: DeviceTypes;
+  slug?: string;
 }
 
 function PostPreviewContent({
-  content: { excerpt, time, title, tags },
+  excerpt,
+  time,
+  title,
+  tags,
   type,
   theme,
+  slug,
 }: Props): ReactElement {
   return (
     <div
@@ -40,7 +43,7 @@ function PostPreviewContent({
           <Avatar alt="author avatar" imageUri={uri.src as any} size="sm" />
           <NavItem size="sm" theme={theme} children={time} Icon={Clock} />
         </div>
-        <PostTitle text={title} theme={theme} type={type} />
+        <PostTitle text={title} theme={theme} type={type} slug={slug} />
         <PostExcerpt text={excerpt} theme={theme} type={type} />
         <PostTags tags={tags} theme={theme} type={type} />
       </div>

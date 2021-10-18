@@ -1,79 +1,61 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { BlogListType } from "../../../types/blogtypes";
 import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
 import PostPreviewContent from "./PostPreviewContent";
 import PostPreviewImage from "./PostPreviewImage";
+import Link from "next/link";
+import { resolveLayouts } from "../../../util/misc";
 
 export interface CardProps {
   theme: ThemeType;
-  blog: {
-    layoutType?: LayoutType;
-    imgUri: string;
-    altText?: string;
-    content: {
-      title: string;
-      excerpt: string;
-      tags: Array<string>;
-      time: number;
-    };
-  };
+  layoutType?: LayoutType;
+  blog: BlogListType;
 }
 function PostPreview({
-  blog: { layoutType = "horiz", imgUri, content, altText = "" },
   theme,
+  layoutType = "vert",
+  blog: { images, title, tags, createdAt, excerpt, uri },
 }: CardProps): ReactElement {
-  const [deviceType, setDeviceType] = useState<DeviceTypes>("ipad");
-  useEffect(() => {
-    const targetWidth = window.innerWidth;
-    if (targetWidth < 1024) {
-      setDeviceType("mobile");
-    } else if (targetWidth >= 1024 && targetWidth <= 1200) {
-      setDeviceType("ipad");
-    } else {
-      setDeviceType("regular");
-    }
-  }, []);
-  function resolveLayouts() {
-    let str =
-      "flex relative mb-4 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-2xl";
-    if (deviceType === "mobile" || deviceType === "ipad") {
-      str += " w-full mt-8";
-      str += deviceType === "mobile" ? " flex-col" : "";
-    } else if (layoutType === "horiz") {
-      str += " w-full";
-    } else {
-      str += " responsive-card flex-col";
-    }
+  const [deviceType, setDeviceType] = useState<DeviceTypes>("regular");
 
-    return str;
-  }
+  useEffect(() => {
+    // const targetWidth = window.innerWidth;
+    // if (targetWidth < 1024) {
+    //   setDeviceType("mobile");
+    // } else if (targetWidth >= 1024 && targetWidth <= 1200) {
+    //   setDeviceType("ipad");
+    // } else {
+    //   setDeviceType("regular");
+    // }
+  }, []);
+
   return (
     <>
       <div
-        className={resolveLayouts()}
+        className={resolveLayouts(deviceType, layoutType)}
         style={{
           borderRadius: "1.5rem",
         }}
       >
-        {deviceType === "regular" ? (
-          <>
-            <PostPreviewImage type={layoutType} uri={imgUri} alt={altText} />
-            <PostPreviewContent
-              content={content}
-              type={layoutType}
-              theme={theme}
-            />
-          </>
-        ) : deviceType === "mobile" ? (
-          <>
-            <PostPreviewImage type="vert" uri={imgUri} alt={altText} />
-            <PostPreviewContent content={content} type="vert" theme={theme} />
-          </>
-        ) : (
-          <>
-            <PostPreviewImage type="horiz" uri={imgUri} alt={altText} />
-            <PostPreviewContent content={content} type="horiz" theme={theme} />
-          </>
-        )}
+        {" "}
+        <>
+          <PostPreviewImage type={layoutType} images={images[0]} />
+          <PostPreviewContent
+            time={createdAt}
+            title={title}
+            excerpt={excerpt}
+            tags={tags}
+            slug={uri}
+            type={
+              deviceType === "regular"
+                ? layoutType
+                : deviceType === "mobile"
+                ? "vert"
+                : "horiz"
+            }
+            theme={theme}
+          />
+        </>
       </div>
     </>
   );

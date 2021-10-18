@@ -1,4 +1,4 @@
-import { format, formatDistance } from "date-fns";
+import { format } from "date-fns";
 import React, { ReactElement, useEffect, useState } from "react";
 import { DeviceTypes } from "../../../types/globalTypes";
 import PostPreview, { CardProps } from "../card/PostPreview";
@@ -9,7 +9,7 @@ export interface CardArrayProps {
 }
 
 function Cards({ data, theme }: CardArrayProps): ReactElement {
-  const [deviceType, setDeviceType] = useState<DeviceTypes>("mobile");
+  const [deviceType, setDeviceType] = useState<DeviceTypes>("regular");
   useEffect(() => {
     const targetWidth = window.innerWidth;
     if (targetWidth < 1024) {
@@ -32,19 +32,15 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
       >
         {data.map((blog) => (
           <PostPreview
-            key={blog.content.time}
+            key={blog.createdAt}
             theme={theme}
+            layoutType="vert"
             blog={{
               ...blog,
-              altText: "Main blog image",
-              layoutType: "vert",
-              content: {
-                ...blog.content,
-                time: (format(
-                  blog.content.time,
-                  "do MMM, yy"
-                ) as unknown) as number,
-              },
+              createdAt: (format(
+                blog.createdAt,
+                "do MMM, yy"
+              ) as unknown) as number,
             }}
           />
         ))}
