@@ -43,9 +43,6 @@ function PostPreviewContent({
         <PostTitle text={title} theme={theme} type={type} />
         <PostExcerpt text={excerpt} theme={theme} type={type} />
         <PostTags tags={tags} theme={theme} type={type} />
-        {/* <div className="inline-block absolute bottom-[-0.5em] right-2">
-          <NavItem size="xsm" theme={theme} children={time} Icon={Clock} />
-        </div> */}
       </div>
     </div>
   );

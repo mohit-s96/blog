@@ -24,13 +24,13 @@ function NavItem({
         size === "sm" ? "text-sm" : size === "xsm" ? "text-xsm" : "text-base"
       } ${
         theme === "light"
-          ? "text-secondary-text-light"
+          ? "text-primary-accent-dark"
           : "text-primary-text-dark"
       } cursor-pointer`}
       onClick={() => callback()}
     >
       {Icon && (
-        <Icon color={theme === "light" ? "#6a6666" : "#ffffff"} size={size} />
+        <Icon color={theme === "light" ? "#6A279F" : "#ffffff"} size={size} />
       )}
       <span className="ml-2">{children}</span>
     </div>

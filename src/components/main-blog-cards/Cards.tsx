@@ -1,4 +1,4 @@
-import { formatDistance } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import React, { ReactElement, useEffect, useState } from "react";
 import { DeviceTypes } from "../../../types/globalTypes";
 import PostPreview, { CardProps } from "../card/PostPreview";
@@ -22,9 +22,7 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
   }, []);
   return (
     <div
-      className={`flex flex-wrap ${
-        deviceType === "mobile" ? "flex-col" : ""
-      }`}
+      className={`flex flex-wrap ${deviceType === "mobile" ? "flex-col" : ""}`}
     >
       {data.map((blog, i) => (
         <PostPreview
@@ -36,9 +34,10 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
             layoutType: "vert",
             content: {
               ...blog.content,
-              time: (formatDistance(blog.content.time, Date.now(), {
-                addSuffix: true,
-              }) as unknown) as number,
+              time: (format(
+                blog.content.time,
+                "do MMM, yy"
+              ) as unknown) as number,
             },
           }}
         />

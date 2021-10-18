@@ -14,11 +14,7 @@ function PostTitle({ text, theme, type }: Props): ReactElement {
         type === "horiz"
           ? "w-8/12 text-4xl leading-"
           : "w-full text-2xl font-bold"
-      } ${
-        theme === "dark"
-          ? "text-primary-accent-dark"
-          : "text-primary-text-light"
-      }`}
+      } text-primary-accent-dark`}
     >
       {text}
     </div>

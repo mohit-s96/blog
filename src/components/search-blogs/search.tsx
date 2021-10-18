@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
 import { Search } from "../svg/collection.svg";
+import SearchResults from "./searchResults";
 
 interface Props {
   theme: ThemeType;
@@ -58,6 +59,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
         </div>
       </div>
       {value ? <div className="top-loader-line"></div> : null}
+      {value ? <SearchResults theme={theme} /> : null}
     </div>
   );
 }
