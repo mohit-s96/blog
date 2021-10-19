@@ -29,6 +29,9 @@ const Index = ({ posts }: Props) => {
       <SearchBlogs theme={theme} />
       <TagSelector tags={testTags} theme={theme} variant="md" />
       <Cards data={posts} theme={theme} />
+      <div
+        style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
+      ></div>
     </Layout>
   );
 };
