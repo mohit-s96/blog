@@ -3,6 +3,8 @@ import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
 import { Search } from "../svg/collection.svg";
 import SearchResults from "./searchResults";
+import useGlobalKeyBind from "../../hooks/useGlobalKeyBind";
+import { BindOptions } from "../../../types/keyTypes";
 
 interface Props {
   theme: ThemeType;
@@ -10,6 +12,28 @@ interface Props {
 
 function SearchBlogs({ theme }: Props): ReactElement {
   const [value, setValue] = useState("");
+
+  const inpRef = useRef(null);
+
+  const options: BindOptions = {
+    options: [
+      {
+        keys: ["k"],
+        specialKey: "Control",
+        callback: () => {
+          ((inpRef.current as unknown) as HTMLInputElement).focus();
+        },
+      },
+      {
+        keys: ["escape"],
+        callback: () => {
+          setValue("");
+          ((inpRef.current as unknown) as HTMLInputElement).blur();
+        },
+      },
+    ],
+  };
+  useGlobalKeyBind(options);
 
   const searchRef = useRef(null);
 
@@ -38,6 +62,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
         } flex items-center rounded-full shadow-xl`}
       >
         <input
+          ref={inpRef}
           className={`rounded-l-full w-full py-4 px-6 text-2xl text-gray-700 leading-tight focus:outline-none ${
             theme === "dark"
               ? "bg-gray-700 text-white"
