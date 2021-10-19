@@ -1,10 +1,8 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import { BlogListType } from "../../../types/blogtypes";
-import { DeviceTypes, LayoutType, ThemeType } from "../../../types/globalTypes";
+import { LayoutType, ThemeType } from "../../../types/globalTypes";
 import PostPreviewContent from "./PostPreviewContent";
 import PostPreviewImage from "./PostPreviewImage";
-import Link from "next/link";
-import { resolveLayouts } from "../../../util/misc";
 
 export interface CardProps {
   theme: ThemeType;
@@ -16,23 +14,10 @@ function PostPreview({
   layoutType = "vert",
   blog: { images, title, tags, createdAt, excerpt, uri },
 }: CardProps): ReactElement {
-  const [deviceType, setDeviceType] = useState<DeviceTypes>("regular");
-
-  useEffect(() => {
-    // const targetWidth = window.innerWidth;
-    // if (targetWidth < 1024) {
-    //   setDeviceType("mobile");
-    // } else if (targetWidth >= 1024 && targetWidth <= 1200) {
-    //   setDeviceType("ipad");
-    // } else {
-    //   setDeviceType("regular");
-    // }
-  }, []);
-
   return (
     <>
       <div
-        className={resolveLayouts(deviceType, layoutType)}
+        className="flex relative mb-4 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-2xl w-full-sm responsive-card flex-col mx-res"
         style={{
           borderRadius: "1.5rem",
         }}
@@ -46,13 +31,7 @@ function PostPreview({
             excerpt={excerpt}
             tags={tags}
             slug={uri}
-            type={
-              deviceType === "regular"
-                ? layoutType
-                : deviceType === "mobile"
-                ? "vert"
-                : "horiz"
-            }
+            type="vert"
             theme={theme}
           />
         </>

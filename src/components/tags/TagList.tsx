@@ -10,14 +10,14 @@ interface Props {
 
 function TagList({ tags, theme, variant }: Props): ReactElement {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center flex-wrap">
       {tags.map((tag) => (
         <Tags
           children={tag}
           theme={theme}
           key={tag}
           variant={variant}
-          className="mr-2 font-bold"
+          className="m-2 font-bold"
         />
       ))}
     </div>

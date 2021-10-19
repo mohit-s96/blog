@@ -1,6 +1,5 @@
 import { format } from "date-fns";
-import React, { ReactElement, useEffect, useState } from "react";
-import { DeviceTypes } from "../../../types/globalTypes";
+import React, { ReactElement } from "react";
 import PostPreview, { CardProps } from "../card/PostPreview";
 
 export interface CardArrayProps {
@@ -9,27 +8,12 @@ export interface CardArrayProps {
 }
 
 function Cards({ data, theme }: CardArrayProps): ReactElement {
-  const [deviceType, setDeviceType] = useState<DeviceTypes>("regular");
-  useEffect(() => {
-    const targetWidth = window.innerWidth;
-    if (targetWidth < 1024) {
-      setDeviceType("mobile");
-    } else if (targetWidth >= 1024 && targetWidth <= 1200) {
-      setDeviceType("ipad");
-    } else {
-      setDeviceType("regular");
-    }
-  }, []);
   return (
     <div className={`flex flex-col`}>
       <div className="m-2 p-2 text-primary-accent-dark text-2xl">
         latest blogs
       </div>
-      <div
-        className={`flex flex-wrap ${
-          deviceType === "mobile" ? "flex-col" : ""
-        }`}
-      >
+      <div className={`flex flex-wrap flex-col-res`}>
         {data.map((blog) => (
           <PostPreview
             key={blog.createdAt}

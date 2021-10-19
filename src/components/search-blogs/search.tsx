@@ -17,8 +17,6 @@ function SearchBlogs({ theme }: Props): ReactElement {
     setValue(e.target.value);
   };
   useEffect(() => {
-    console.log(value);
-
     if (value) {
       ((searchRef.current as unknown) as HTMLDivElement).classList.add("h-400");
     } else {
@@ -32,7 +30,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
       ref={searchRef}
       className={`w-3/6 mx-auto my-4 h-20 rounded-3xl ${
         value ? (theme === "light" ? "bg-white" : "bg-gray-700") : ""
-      } transition-all duration-300 flex flex-col`}
+      } transition-all duration-300 flex flex-col w-full-sm`}
     >
       <div
         className={`${
@@ -44,7 +42,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
             theme === "dark"
               ? "bg-gray-700 text-white"
               : "bg-white text-gray-700"
-          }`}
+          } padding-sm`}
           id="search"
           type="text"
           placeholder="Search [Ctrl + K]"
@@ -52,7 +50,7 @@ function SearchBlogs({ theme }: Props): ReactElement {
           onChange={handleSearchChange}
         />
 
-        <div className="p-4">
+        <div className="p-4 padding-sm">
           <button className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center">
             <Search color="#fff" />
           </button>

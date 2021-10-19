@@ -11,21 +11,7 @@ import { ThemeType } from "../../types/globalTypes";
 type Props = {
   posts: BlogListType[];
 };
-// const testData: CardArrayProps = {
-//   theme: "light",
-//   data: data.map((x) => {
-//     const obj: CardArrayProps["data"][0] = {
-//       imgUri: x.images.hero,
-//       content: {
-//         excerpt: x.excerpt,
-//         tags: x.tags,
-//         time: x.createdAt,
-//         title: x.title,
-//       },
-//     };
-//     return obj;
-//   }),
-// };
+
 const testTags = [
   "#c++",
   "#css",
@@ -35,24 +21,13 @@ const testTags = [
   "#design",
   "#figma",
 ];
+
 const Index = ({ posts }: Props) => {
-  const [visible, setVisible] = useState(1920);
   const [theme, setTheme] = useState<ThemeType>("light");
-  useEffect(() => {
-    setVisible(window.innerWidth);
-  }, []);
   return (
     <Layout theme={theme}>
       <SearchBlogs theme={theme} />
-      {visible >= 1024 ? (
-        <TagSelector
-          tags={
-            visible >= 1024 && visible < 1200 ? testTags.slice(0, 5) : testTags
-          }
-          theme={theme}
-          variant="md"
-        />
-      ) : null}
+      <TagSelector tags={testTags} theme={theme} variant="md" />
       <Cards data={posts} theme={theme} />
     </Layout>
   );

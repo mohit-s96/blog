@@ -14,23 +14,25 @@ function SearchResults({ theme }: Props): ReactElement {
       } w-[98%] mx-auto rounded-2xl`}
     >
       <div className="flex justify-between">
-        <p className="p-2 text-xl text-primary-accent-dark">
+        <p className="p-2 text-xl text-primary-accent-dark text-sm-res padding-0-res">
           designing in figma
         </p>
-        <p className="p-2 text-xl text-primary-accent-dark">5 minute read</p>
+        <p className="p-2 text-xl text-primary-accent-dark text-sm-res padding-0-res">
+          5 minute read
+        </p>
       </div>
       <div className="flex">
         <Tags
           children="#css"
           accent
           variant="sm"
-          className="mx-2 font-bold p-4"
+          className="mr-2 font-bold p-4 padding-0-res"
         />
         <Tags
           children="#figma"
           accent
           variant="sm"
-          className="mx-2 font-bold p-4"
+          className="mr-2 font-bold p-4 padding-0-res"
         />
       </div>
     </div>

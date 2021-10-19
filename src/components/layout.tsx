@@ -15,7 +15,7 @@ const Layout = ({ children, theme = "dark" }: Props) => {
         }`}
       >
         <Navbar theme={theme} />
-        <main className="w-10/12 mx-auto">{children}</main>
+        <main className="w-10/12 mx-auto w-95-res">{children}</main>
       </div>
     </>
   );

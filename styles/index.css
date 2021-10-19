@@ -1,6 +1,6 @@
 @tailwind base;
 .responsive-card {
-  width: 29%;
+  width: 47%;
 }
 @media screen and (min-width: 1500px) {
   .responsive-card {
@@ -16,6 +16,36 @@
   background-size: 400% 400%;
   animation: gradient 2s ease infinite;
   height: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .tag-selector {
+    display: none !important;
+  }
+  .w-full-sm {
+    width: 100% !important;
+  }
+  .padding-sm {
+    padding: 6px !important;
+    font-size: 18px !important;
+  }
+  .flex-col-res {
+    flex-direction: column !important;
+  }
+  .mx-res {
+    margin: 0 !important;
+    margin-bottom: 8px !important;
+  }
+  .w-95-res {
+    width: 95% !important;
+    padding: 8px;
+  }
+  .text-sm-res {
+    font-size: 16px !important;
+  }
+  .padding-0-res {
+    padding: 0 !important;
+  }
 }
 
 @keyframes gradient {

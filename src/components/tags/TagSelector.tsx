@@ -14,7 +14,7 @@ export interface Props {
 function TagSelector({ tags, theme, variant }: Props): ReactElement {
   const [menuVisible, setMenuVisible] = useState(false);
   return (
-    <div className="flex justify-between p-4">
+    <div className="flex justify-between p-4 tag-selector">
       <TagList theme={theme} tags={tags} variant={variant} />
       <div className="flex flex-col p-2 relative">
         <Tags
