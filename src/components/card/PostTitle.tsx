@@ -11,7 +11,7 @@ interface Props {
 
 function PostTitle({ text, type, slug }: Props): ReactElement {
   return (
-    <Link href={`/${slug}`}>
+    <Link href={`/blog/${slug}`}>
       <div
         className={`p-2 ${
           type === "horiz"

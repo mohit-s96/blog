@@ -1,10 +1,5 @@
 import { ObjectId } from "mongodb";
-import {
-  BlogListType,
-  BlogPathNames,
-  BlogSlug,
-  CommentSlug,
-} from "../../types/blogtypes";
+import { BlogListType, BlogSlug, CommentSlug } from "../../types/blogtypes";
 import fs from "fs";
 import { dbConnect } from "./api";
 
@@ -36,7 +31,7 @@ export function fetchSingleBlog(str: string) {
       const cursors = client
         .db()
         .collection(process.env.BLOG_COLLECTION as string)
-        .findOne({ url: str }, {});
+        .findOne({ uri: str }, {});
       const blogs = (await cursors) as BlogSlug;
       return blogs;
     } catch (e) {
@@ -74,15 +69,17 @@ export function fetchComments(idString: string) {
 }
 
 export function fetchPathData() {
-  return dbConnect<BlogPathNames>(async (client) => {
+  return dbConnect<string[]>(async (client) => {
     try {
       await client.connect();
       const cursors = client
         .db()
-        .collection(process.env.BLOG_PATHS as string)
-        .findOne();
-      const blogs = (await cursors) as BlogPathNames;
-      return blogs;
+        .collection(process.env.BLOG_COLLECTION as string)
+        .find({}, { projection: { uri: 1, _id: 0 } });
+      const paths = ((await cursors.toArray()) as unknown) as Array<{
+        uri: string;
+      }>;
+      return paths.map((path) => path.uri);
     } catch (e) {
       console.error(e);
       return Promise.reject(

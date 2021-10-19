@@ -1,26 +1,23 @@
-import { useRouter } from "next/router";
-import ErrorPage from "next/error";
-import blogData from "../../../data.json";
-import {
-  fetchBlogs,
-  fetchSingleBlog,
-  fetchComments,
-  fetchPathData,
-} from "../../../lib/database/getBlogs";
-import { addBlog, addComment } from "../../../lib/database/updateBlogData";
+import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
 import { BlogSlug } from "../../../types/blogtypes";
 
 type Props = {
   data: BlogSlug;
 };
-// gets blog from the api
-const Post = ({ data: { author, excerpt, likes, commentCount } }: Props) => {
-  const router = useRouter();
+
+const Post = ({
+  data: { author, excerpt, likes, commentCount, title },
+}: Props) => {
+  // const router = useRouter();
   // if (!router.isFallback /*&& !post?.slug*/) {
   //   return <ErrorPage statusCode={404} />;
   // }
   return (
     <div className="text-center grid place-items-center p-4">
+      <h1 className="p-3">
+        <b>Title:</b>
+      </h1>
+      <p className="p-3 mb-2 text-blue-700">{title}</p>
       <h1 className="p-3">
         <b>Author:</b>
       </h1>
@@ -49,28 +46,22 @@ type Params = {
   };
 };
 
-export async function getStaticProps(_path: Params) {
-  const data = (blogData[1] as unknown) as BlogSlug;
-  // (data._id as any) = data._id.toHexString();
+export async function getStaticProps(path: Params) {
+  const data = await fetchSingleBlog(path.params.data);
+  data._id = data._id?.toHexString() as any;
   return {
     props: { data: data },
   };
 }
 
 export async function getStaticPaths() {
+  const pathData = await fetchPathData();
   return {
-    paths: [
-      {
-        params: {
-          data: "1",
-        },
+    paths: pathData.map((path) => ({
+      params: {
+        data: path,
       },
-      {
-        params: {
-          data: "2",
-        },
-      },
-    ],
+    })),
     fallback: false,
   };
 }
