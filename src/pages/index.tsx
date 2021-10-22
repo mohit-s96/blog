@@ -23,16 +23,21 @@ const testTags = [
 ];
 
 const Index = ({ posts }: Props) => {
-  const [theme, setTheme] = useState<ThemeType>("light");
   return (
-    <Layout theme={theme}>
-      <SearchBlogs theme={theme} />
-      <TagSelector tags={testTags} theme={theme} variant="md" />
-      <Cards data={posts} theme={theme} />
-      <div
-        style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
-      ></div>
-    </Layout>
+    <Layout
+      render={(theme) => {
+        return (
+          <>
+            <SearchBlogs theme={theme} />
+            <TagSelector tags={testTags} theme={theme} variant="md" />
+            <Cards data={posts} theme={theme} />
+            <div
+              style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
+            ></div>
+          </>
+        );
+      }}
+    />
   );
 };
 

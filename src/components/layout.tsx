@@ -1,12 +1,14 @@
+import { ReactNode, useState } from "react";
 import { ThemeType } from "../../types/globalTypes";
 import Navbar from "./nav/Navbar";
 
 type Props = {
-  children: React.ReactNode;
-  theme?: ThemeType;
+  // children: React.ReactNode;
+  render: (theme: ThemeType) => ReactNode;
 };
 
-const Layout = ({ children, theme = "dark" }: Props) => {
+const Layout = ({ render }: Props) => {
+  const [theme, setTheme] = useState<ThemeType>("light");
   return (
     <>
       <div
@@ -14,8 +16,8 @@ const Layout = ({ children, theme = "dark" }: Props) => {
           theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
         }`}
       >
-        <Navbar theme={theme} />
-        <main className="w-10/12 mx-auto w-95-res">{children}</main>
+        <Navbar theme={theme} setTheme={setTheme} />
+        <main className="w-10/12 mx-auto w-95-res">{render(theme)}</main>
       </div>
     </>
   );

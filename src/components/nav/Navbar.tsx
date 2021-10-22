@@ -1,16 +1,18 @@
-import React, { ReactElement, useState } from "react";
+import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import Avatar from "../avatars/Avatar";
 import uri from "../../../public/favicon/icon-512x512.png";
 import NavItem from "./NavItem";
 import { Search } from "../svg/collection.svg";
 import NavInput from "./NavInput";
 import { ThemeType } from "../../../types/globalTypes";
+import ToggleTheme from "../util-components/toggle";
 
 export interface Props {
   theme: ThemeType;
+  setTheme: Dispatch<SetStateAction<ThemeType>>;
 }
 
-function Navbar({ theme = "dark" }: Props): ReactElement {
+function Navbar({ theme = "dark", setTheme }: Props): ReactElement {
   const [active, setActive] = useState(false);
   return (
     <div
@@ -27,6 +29,7 @@ function Navbar({ theme = "dark" }: Props): ReactElement {
         size="md"
       />
       <div className="flex justify-between items-center">
+        <ToggleTheme setTheme={setTheme} />
         <NavItem
           theme={theme}
           size="md"
