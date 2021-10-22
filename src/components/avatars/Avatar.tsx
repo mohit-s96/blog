@@ -11,6 +11,8 @@ export default function Avatar({ imageUri, size, alt }: Props): ReactElement {
   return (
     <div className="inline-block">
       <img
+        width={200}
+        height={200}
         src={imageUri}
         alt={alt}
         className={`rounded ${

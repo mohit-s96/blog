@@ -76,7 +76,10 @@ function SearchBlogs({ theme }: Props): ReactElement {
         />
 
         <div className="p-4 padding-sm">
-          <button className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center">
+          <button
+            className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center"
+            aria-label="search blogs"
+          >
             <Search color="#fff" />
           </button>
         </div>
