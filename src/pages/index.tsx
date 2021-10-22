@@ -27,14 +27,14 @@ const Index = ({ posts }: Props) => {
     <Layout
       render={(theme) => {
         return (
-          <>
+          <div className="w-10/12 w-95-res mx-auto">
             <SearchBlogs theme={theme} />
             <TagSelector tags={testTags} theme={theme} variant="md" />
             <Cards data={posts} theme={theme} />
             <div
               style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
             ></div>
-          </>
+          </div>
         );
       }}
     />

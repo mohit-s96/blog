@@ -1,40 +1,54 @@
 import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
 import { BlogSlug } from "../../../types/blogtypes";
+import Layout from "../../components/layout";
+import MainBlog from "../../components/main-blog/mainBlog";
+import RelatedBlogs from "../../components/related-bar/relatedBlogs";
+import StatsBar from "../../components/statsbar/statsBar";
 
 type Props = {
   data: BlogSlug;
 };
 
 const Post = ({
-  data: { author, excerpt, likes, commentCount, title },
+  data: {
+    author,
+    excerpt,
+    blogData,
+    commentCount,
+    tags,
+    slugType,
+    shares,
+    images,
+    createdAt,
+    commentsAllowed,
+    likes,
+    title,
+    uri,
+    viewCount,
+    _id,
+    metadata,
+    rawBody,
+  },
 }: Props) => {
-  // const router = useRouter();
-  // if (!router.isFallback /*&& !post?.slug*/) {
-  //   return <ErrorPage statusCode={404} />;
-  // }
   return (
-    <div className="text-center grid place-items-center p-4">
-      <h1 className="p-3">
-        <b>Title:</b>
-      </h1>
-      <p className="p-3 mb-2 text-blue-700">{title}</p>
-      <h1 className="p-3">
-        <b>Author:</b>
-      </h1>
-      <p className="p-3 mb-2 text-blue-700">{author}</p>
-      <h1 className="p-3">
-        <b>Excerpt:</b>
-      </h1>
-      <p className="p-3 mb-2 text-blue-700 w-7/12">{excerpt}</p>
-      <h1 className="p-3">
-        <b>Likes:</b>
-      </h1>
-      <p className="p-3 mb-2 text-blue-700">{likes}</p>
-      <h1 className="p-3">
-        <b>Comments:</b>
-      </h1>
-      <p className="p-3 mb-2 text-blue-700">{commentCount}</p>
-    </div>
+    <Layout
+      render={(theme) => {
+        return (
+          <main
+            className={`${
+              theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
+            } grid grid-cols-12`}
+          >
+            <StatsBar
+              stats={{ commentCount, likes, viewCount, uri, title }}
+              theme={theme}
+            />
+            <MainBlog />
+            <RelatedBlogs />
+          </main>
+        );
+      }}
+    />
   );
 };
 
