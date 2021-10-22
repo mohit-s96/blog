@@ -1,7 +1,6 @@
 import React from "react";
 import Cards, { CardArrayProps } from "./Cards";
 import { Story, Meta } from "@storybook/react";
-import data from "../../../data.json";
 
 export default {
   title: "Cards",
@@ -14,18 +13,30 @@ export const Small = Template.bind({});
 
 const testData: CardArrayProps = {
   theme: "dark",
-  data: data.map((x) => {
-    const obj: CardArrayProps["data"][0] = {
-      imgUri: x.images.hero,
-      content: {
-        excerpt: x.excerpt,
-        tags: x.tags,
-        time: x.createdAt,
-        title: x.title,
-      },
-    };
-    return obj;
-  }),
+  data: [
+    {
+      author: "msx47",
+      commentCount: 14,
+      commentsAllowed: false,
+      createdAt: 10153486431,
+      excerpt:
+        "vwk wfnpowjg[w wnvpqwfn qf nqwkfnqpwnhfg;w gk;w/q fpq[fjiwngv wv pwofjnwomvejbn.mv[wekgw[jgn  vopowjepismv b d,bowejgs,v[pwb s",
+      images: [
+        {
+          alt: "scs",
+          isHero: true,
+          permUri: [{ data: { Key: "https://picusm.com/400" }, error: null }],
+        },
+      ],
+      likes: 25,
+      shares: 3,
+      slugType: "md",
+      tags: ["vwvw", "vwvw", "fqpfjq"],
+      title: "some post",
+      uri: "some_fin_post",
+      viewCount: 45,
+    },
+  ],
 };
 
 Small.args = {

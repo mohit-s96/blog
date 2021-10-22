@@ -14,16 +14,27 @@ export const Small = Template.bind({});
 
 Small.args = {
   blog: {
-    imgUri: (uri as unknown) as string,
-    altText: "Blog poster image of a scenery",
-    content: {
-      excerpt:
-        "perspiciatis molestias ab voluptates deleniti nostrum aliquid perferendis accusantium culpa quoddolorem eius facilis reiciendis.Aliquid deserunt illum fuga non explicabo qui a. Impedit perspiciatis molestias ab voluptates deleniti nostrum aliquid perferendis accusantium culpa quoddolorem eius facilis reiciendis.Aliquid deserunt illum fuga non explicabo qui a. Impedit perspiciatis molestias ab voluptates deleniti nostrum aliquid perferendis accusantium culpa quoddolorem eius facilis reiciendis.Aliquid deserunt illum fuga non explicabo qui a. Impedit",
-      tags: ["#design & mockup", "#figma design", "#css"],
-      time: 2,
-      title: "Designing a blog in figma, Step by step tutorial",
-    },
-    layoutType: "horiz",
+    author: "msx47",
+    commentCount: 14,
+    commentsAllowed: false,
+    createdAt: 10153486431,
+    excerpt:
+      "vwk wfnpowjg[w wnvpqwfn qf nqwkfnqpwnhfg;w gk;w/q fpq[fjiwngv wv pwofjnwomvejbn.mv[wekgw[jgn  vopowjepismv b d,bowejgs,v[pwb s",
+    images: [
+      {
+        alt: "scs",
+        isHero: true,
+        permUri: [{ data: { Key: "https://picusm.com/400" }, error: null }],
+      },
+    ],
+    likes: 25,
+    shares: 3,
+    slugType: "md",
+    tags: ["vwvw", "vwvw", "fqpfjq"],
+    title: "some post",
+    uri: "some_fin_post",
+    viewCount: 45,
   },
   theme: "dark",
+  layoutType: "vert",
 };
