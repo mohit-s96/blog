@@ -15,7 +15,7 @@ export interface Props {
 function Navbar({ theme = "dark", setTheme }: Props): ReactElement {
   const [active, setActive] = useState(false);
   return (
-    <div
+    <nav
       className={`w-full flex justify-between items-center p-2 overflow-hidden ${
         theme === "dark" ? "bg-primary-dark" : "bg-primary-light"
       } sticky top-0 z-10`}
@@ -44,7 +44,7 @@ function Navbar({ theme = "dark", setTheme }: Props): ReactElement {
         />
         <NavItem theme={theme} size="md" children="About me" />
       </div>
-    </div>
+    </nav>
   );
 }
 

@@ -17,7 +17,7 @@ const Layout = ({ render }: Props) => {
         }`}
       >
         <Navbar theme={theme} setTheme={setTheme} />
-        <main className="w-10/12 mx-auto w-95-res">{render(theme)}</main>
+        <main className="">{render(theme)}</main>
       </div>
     </>
   );

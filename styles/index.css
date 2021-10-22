@@ -60,6 +60,92 @@
   }
 }
 
+.svg-container path {
+  fill: transparent;
+  stroke-width: 2;
+  stroke: gray;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 0;
+  transition: transform 0.3s linear;
+}
+.svg-container:hover > path {
+  stroke: crimson;
+  animation: animate-svg 0.3s linear forwards;
+}
+
+.svg-container:hover {
+  transform: scale(1.2);
+}
+
+@keyframes animate-svg {
+  0% {
+    stroke-dashoffset: 250;
+    stroke-width: 3;
+  }
+  40% {
+    stroke-dashoffset: 375;
+  }
+  80% {
+    stroke-dashoffset: 500;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 500;
+    fill: crimson;
+  }
+}
+
+.svg-container-blue:hover > path {
+  stroke: #23a6d5;
+  animation: animate-svg-blue 0.3s linear forwards;
+}
+.svg-container-blue:hover {
+  transform: scale(1.2);
+}
+@keyframes animate-svg-blue {
+  0% {
+    stroke-dashoffset: 250;
+    stroke-width: 3;
+  }
+  40% {
+    stroke-dashoffset: 375;
+  }
+  80% {
+    stroke-dashoffset: 500;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 500;
+    fill: #23a6d5;
+  }
+}
+
+.svg-container-green:hover {
+  transform: scale(1.2);
+}
+.svg-container-green:hover > path {
+  stroke: rgb(6, 105, 122);
+  animation: animate-svg-green 0.3s linear forwards;
+}
+
+@keyframes animate-svg-green {
+  0% {
+    stroke-dashoffset: 250;
+    stroke-width: 3;
+  }
+  40% {
+    stroke-dashoffset: 375;
+  }
+  80% {
+    stroke-dashoffset: 500;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 500;
+    fill: rgb(6, 105, 122);
+  }
+}
+
 /* Write your own custom base styles here */
 
 /* Start purging... */
