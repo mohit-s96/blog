@@ -1,5 +1,5 @@
 import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
-import { BlogSlug } from "../../../types/blogtypes";
+import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
 import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
@@ -8,6 +8,33 @@ import StatsBar from "../../components/statsbar/statsBar";
 type Props = {
   data: BlogSlug;
 };
+
+const dummyRelatedBlogsData: RelatedBlogsType = [
+  {
+    tags: ["react", "typescript", "nextjs"],
+    title: "react next js setup with typescript",
+    uri: "react_typescript_next",
+    _id: "ek bfwe bfelfnwen" as any,
+  },
+  {
+    tags: ["typescript", "compiler", "languages"],
+    title: "simple compiler in typescript",
+    uri: "typescript_compiler",
+    _id: "Vsdvsvsfelfnwen" as any,
+  },
+  {
+    tags: ["nodejs", "authentication", "express"],
+    title: "set up express authentication middleware in nextjs",
+    uri: "node_express_auth",
+    _id: "ek bfwe bfelfnwen dcewf" as any,
+  },
+  {
+    tags: ["sharp", "images", "javascript"],
+    title: "image processing pipeline with sharp",
+    uri: "havascrripr_sharp_images",
+    _id: "cbpegjmwe; v vw;ene" as any,
+  },
+];
 
 const Post = ({
   data: {
@@ -44,7 +71,7 @@ const Post = ({
               theme={theme}
             />
             <MainBlog />
-            <RelatedBlogs />
+            <RelatedBlogs theme={theme} list={dummyRelatedBlogsData} />
           </main>
         );
       }}

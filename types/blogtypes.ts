@@ -39,6 +39,10 @@ export interface BlogSlug {
   slugType: SlugType;
 }
 
+export type RelatedBlogsType = Array<
+  Pick<BlogSlug, "uri" | "tags" | "title" | "_id">
+>;
+
 export interface CommentMetadata {
   links: string[];
   markdown: string;
