@@ -17,8 +17,6 @@ export interface Props {
 function DropDown({ visible, children, theme, fref }: Props): ReactElement {
   useEffect(() => {
     if (visible) {
-      console.log("hcgcghcd", fref);
-
       fref.current?.focus();
     }
   }, [visible]);
@@ -26,8 +24,12 @@ function DropDown({ visible, children, theme, fref }: Props): ReactElement {
     <button
       ref={fref}
       className={`${visible ? "h-auto p-2 border" : "h-0"} ${
-        visible ? (theme === "light" ? "shadow-md border-b-2" : "") : ""
-      } transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-48 absolute z-10 shadow-2xl border-accent-low-opa`}
+        visible
+          ? theme === "light"
+            ? "shadow-md border-b-2 bg-primary-light"
+            : "bg-primary-dark"
+          : ""
+      } transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-48 absolute shadow-2xl border-accent-low-opa translate-x-2/4`}
     >
       {visible ? children : null}
     </button>

@@ -13,8 +13,8 @@ interface Props {
 
 function StatsBar({ stats, theme }: Props): ReactElement {
   return (
-    <div className="col-span-3 h-[92vh] relative">
-      <div className="absolute top-1/4 left-2/4 -translate-x-2/4 -translate-y-2/4 flex flex-col justify-center items-center">
+    <div className="col-span-3 min-h-[93vh] relative flex justify-center items-center border-r-4 border-gray-300">
+      <div className="absolute flex flex-col justify-center items-center">
         <StatsIcon stats={stats} theme={theme} />
       </div>
     </div>

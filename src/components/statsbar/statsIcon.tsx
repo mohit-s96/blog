@@ -37,24 +37,6 @@ function StatsIcon({ stats, theme }: Props): ReactElement {
 
   return (
     <>
-      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
-        <HeartIcon color="gray" />
-        <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.likes} likes
-        </span>
-      </button>
-      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
-        <CommentIcon color="gray" />
-        <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.commentCount} comments
-        </span>
-      </button>
-      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
-        <EyeIcon color="gray" />
-        <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.viewCount} views
-        </span>
-      </button>
       <button
         className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer"
         aria-label="more-options"
@@ -131,6 +113,24 @@ function StatsIcon({ stats, theme }: Props): ReactElement {
           </DropDown>
         </div>
       }
+      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
+        <HeartIcon color="gray" />
+        <span className="font-bold p-2 text-gray-500 text-sm">
+          {stats.likes} likes
+        </span>
+      </button>
+      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
+        <CommentIcon color="gray" />
+        <span className="font-bold p-2 text-gray-500 text-sm">
+          {stats.commentCount} comments
+        </span>
+      </button>
+      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
+        <EyeIcon color="gray" />
+        <span className="font-bold p-2 text-gray-500 text-sm">
+          {stats.viewCount} views
+        </span>
+      </button>
     </>
   );
 }
