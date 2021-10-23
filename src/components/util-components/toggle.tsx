@@ -40,7 +40,7 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
               style={{
                 height: "100%",
                 width: "100%",
-                transform: "translateY(-25%)",
+                transform: "translateY(-30%)",
                 marginBottom: "2px",
               }}
             >
