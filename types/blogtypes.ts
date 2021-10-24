@@ -37,6 +37,7 @@ export interface BlogSlug {
   metadata?: BlogMetadata;
   viewCount: number;
   slugType: SlugType;
+  readingTime: string;
 }
 
 export type RelatedBlogsType = Array<
