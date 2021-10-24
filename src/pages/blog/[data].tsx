@@ -65,7 +65,7 @@ const Post = ({
           <main
             className={`${
               theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
-            } grid grid-cols-12 w-10/12 mx-auto`}
+            } grid grid-cols-12 2xl:w-10/12 w-full mx-auto`}
           >
             <StatsBar
               stats={{ commentCount, likes, viewCount, uri, title }}

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { ThemeType } from "../../types/globalTypes";
 import Navbar from "./nav/Navbar";
 import Prism from "prismjs";

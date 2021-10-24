@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useLayoutEffect, useRef } from "react";
 import { BlogSlug } from "../../../types/blogtypes";
 import uri from "../../../public/favicon/icon-192x192.png";
 import { ThemeType } from "../../../types/globalTypes";
@@ -6,13 +6,13 @@ import ResImage from "../card/resImages";
 import Avatar from "../avatars/Avatar";
 import NavItem from "../nav/NavItem";
 import {
-  Clock,
   FacebookIcon,
   LinkIcon,
   RedditIcon,
   TwitterIcon,
 } from "../svg/collection.svg";
 import format from "date-fns/format";
+import SimpleTags from "../tags/SimpleTags";
 
 interface Props {
   theme: ThemeType;
@@ -20,6 +20,17 @@ interface Props {
 }
 
 function BlogContents({ data, theme }: Props): ReactElement {
+  const divRef = useRef<HTMLDivElement>(null);
+  const moveUpRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (window.innerWidth > 768) {
+      const height = divRef.current?.getBoundingClientRect().height;
+      if (height) {
+        moveUpRef.current!.style.transform = `translateY(-${height}px)`;
+      }
+    }
+  }, []);
+
   const copyLink = () => {
     window.navigator.clipboard.writeText("https://mohits.dev/blog/" + data.uri);
   };
@@ -30,11 +41,12 @@ function BlogContents({ data, theme }: Props): ReactElement {
         <ResImage
           alt={data.images[0].alt}
           uris={data.images[0].permUri}
-          className="w-full h-[30rem]"
+          className="w-full hero-img-res"
         />
       </div>
       <div
-        className={`translate-y-[-100%] w-full ${
+        ref={divRef}
+        className={`xl:translate-y-[-100%] w-full ${
           theme === "dark"
             ? "bg-[rgba(0,0,0,0.5)]"
             : "bg-[rgba(255,255,255,0.5)]"
@@ -56,20 +68,22 @@ function BlogContents({ data, theme }: Props): ReactElement {
                   theme === "dark" ? "text-gray-500" : "text-gray-800"
                 } font-bold text-sm`}
                 children={
-                  (format(data.createdAt, "do MMM, yy") as unknown) as number
+                  ((format(data.createdAt, "do MMM, yy") +
+                    " by " +
+                    data.author) as unknown) as number
                 }
               />
             </div>
-            <div className="w-1/4 text-right">
-              <span
-                className={`${
-                  theme === "dark" ? "text-gray-500" : "text-gray-800"
-                } w-full font-bold text-sm`}
-              >
-                {data.readingTime} read
-              </span>
-            </div>
           </div>
+        </div>
+        <div className="w-full ml-2">
+          <span
+            className={`${
+              theme === "dark" ? "text-gray-500" : "text-gray-800"
+            } w-full font-bold text-sm italic`}
+          >
+            {data.readingTime} read
+          </span>
         </div>
         <div className="items-center flex w-full p-2">
           <a
@@ -105,10 +119,32 @@ function BlogContents({ data, theme }: Props): ReactElement {
           </button>
         </div>
       </div>
-      <div
-        className="flex flex-column p-2"
-        dangerouslySetInnerHTML={{ __html: data.blogData }}
-      ></div>
+      <div ref={moveUpRef}>
+        <div className="flex p-2">
+          <p
+            className={`text-4xl font-bold pt-4 px-0 ${
+              theme === "dark"
+                ? "text-primary-accent-light"
+                : "text-primary-accent-light"
+            }`}
+          >
+            {data.title}
+          </p>
+        </div>
+        <div className="flex p-2">
+          {data.tags.map((tag) => (
+            <SimpleTags
+              key={tag}
+              tag={tag}
+              className="p-[2px] my-0 text-sm tracking-widest"
+            />
+          ))}
+        </div>
+        <div
+          className="flex flex-column p-2"
+          dangerouslySetInnerHTML={{ __html: data.blogData }}
+        ></div>
+      </div>
     </div>
   );
 }
