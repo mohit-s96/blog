@@ -1,6 +1,7 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { ThemeType } from "../../types/globalTypes";
 import Navbar from "./nav/Navbar";
+import Prism from "prismjs";
 
 type Props = {
   // children: React.ReactNode;
@@ -9,6 +10,11 @@ type Props = {
 
 const Layout = ({ render }: Props) => {
   const [theme, setTheme] = useState<ThemeType>("light");
+  useEffect(() => {
+    //@ts-ignore
+    Prism.manual = true;
+    Prism.highlightAll();
+  }, []);
   return (
     <>
       <div
