@@ -14,6 +14,7 @@ export const Small = Template.bind({});
 
 Small.args = {
   blog: {
+    readingTime: "5",
     author: "msx47",
     commentCount: 14,
     commentsAllowed: false,
