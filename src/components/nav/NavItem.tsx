@@ -8,9 +8,11 @@ export interface Props {
   theme: ThemeType;
   Icon?: ({ color, size }: SvgProps) => JSX.Element;
   callback?: () => any;
+  className?: string;
 }
 
 function NavItem({
+  className = "",
   children,
   size,
   theme,
@@ -32,7 +34,7 @@ function NavItem({
       {Icon && (
         <Icon color={theme === "light" ? "#6A279F" : "#ffffff"} size={size} />
       )}
-      <span className="ml-2">{children}</span>
+      <span className={`ml-2 ${className}`}>{children}</span>
     </div>
   );
 }

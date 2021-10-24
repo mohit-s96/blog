@@ -5,9 +5,15 @@ export interface Props {
   imageUri: string;
   size: SizeVariantType | "lg";
   alt: string;
+  className?: string;
 }
 
-export default function Avatar({ imageUri, size, alt }: Props): ReactElement {
+export default function Avatar({
+  imageUri,
+  size,
+  alt,
+  className = "",
+}: Props): ReactElement {
   return (
     <div className="inline-block">
       <img
@@ -23,7 +29,7 @@ export default function Avatar({ imageUri, size, alt }: Props): ReactElement {
             : size === "lg"
             ? "w-avat-img-lg"
             : "w-avat-img-sm"
-        }`}
+        } ${className}`}
       />
     </div>
   );
