@@ -90,9 +90,9 @@ function StatsIcon({ stats, theme }: Props): ReactElement {
               <div className="flex justify-between p-2 items-center w-full hover:bg-gray-300">
                 <a
                   href={`http://www.reddit.com/submit?url=https://mohits.dev/blog/${stats.uri}}&title=${stats.title}`}
-                  className="p-2 text-gray-600 text-sm font-bold"
                   target="_blank"
                   rel="noopener"
+                  className="p-2 text-gray-600 text-sm font-bold"
                 >
                   Share on reddit
                 </a>

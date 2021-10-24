@@ -10,11 +10,11 @@ interface Props {
 
 function RelatedBlogs({ list, theme }: Props): ReactElement {
   return (
-    <div className="col-span-3 min-h-[93vh] relative overflow-hidden flex justify-center items-center border-l-4 border-gray-300">
-      <div className="absolute flex flex-col w-10/12 justify-center items-center">
+    <aside className="col-span-3 relative flex justify-center items-start border-l-4 border-gray-300">
+      <div className="fixed flex flex-col justify-center items-center translate-x-[15%] mt-3">
         <ReadingList theme={theme} list={list} />
       </div>
-    </div>
+    </aside>
   );
 }
 

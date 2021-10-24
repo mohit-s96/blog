@@ -56,6 +56,7 @@ const Post = ({
     metadata,
     rawBody,
   },
+  data,
 }: Props) => {
   return (
     <Layout
@@ -64,13 +65,13 @@ const Post = ({
           <main
             className={`${
               theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
-            } grid grid-cols-12`}
+            } grid grid-cols-12 w-10/12 mx-auto`}
           >
             <StatsBar
               stats={{ commentCount, likes, viewCount, uri, title }}
               theme={theme}
             />
-            <MainBlog />
+            <MainBlog theme={theme} data={data} />
             <RelatedBlogs theme={theme} list={dummyRelatedBlogsData} />
           </main>
         );
