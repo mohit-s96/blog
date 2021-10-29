@@ -18,9 +18,12 @@ export async function resizeImages(image: Buffer, fileName: string) {
       const pipeline = sharp(image) as sharp.Sharp;
       const promises: Promise<any>[] = [];
 
+      console.log("pipeline done");
+
       fileName = fileName.split(".").slice(0, -1).join("");
 
       fileName = fileName.replaceAll(" ", "");
+      console.log("failenameeesc");
       console.log(fileName);
 
       deviceWidths.forEach((width, i) => {
@@ -33,6 +36,8 @@ export async function resizeImages(image: Buffer, fileName: string) {
           .toFile(path.join(os.tmpdir(), fileName + "-" + width + ".webp"));
         promises.push(promise);
       });
+
+      console.log("loop done");
 
       await Promise.all(promises);
 
