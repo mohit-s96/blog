@@ -18,6 +18,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
       fileName = fileName.split(".").slice(0, -1).join("");
 
       fileName = fileName.replaceAll(" ", "");
+      console.log(fileName);
 
       deviceWidths.forEach((width, i) => {
         const promise = pipeline
@@ -39,6 +40,8 @@ export async function resizeImages(image: Buffer, fileName: string) {
           path.join(os.tmpdir(), fileName + "-" + [deviceWidths[i]] + ".webp")
         );
       });
+
+      console.log(tmpFiles);
 
       resolve(tmpFiles);
     } catch (error) {
