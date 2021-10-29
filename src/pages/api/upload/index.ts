@@ -21,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { data, fileName } = (await parseFormData(req, res)) as any;
 
-    logToFile({ data, fileName });
+    logToFile({ fileName });
 
     const fileNames = (await resizeImages(data, fileName)) as any[];
 
