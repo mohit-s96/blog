@@ -7,7 +7,7 @@ export async function logToFile(data: any) {
     let prefix = `\n${Date.now()}\n----------------------------------\n`;
     let postfix = "----------------------------------";
     str = `${prefix}${str}${postfix}`;
-    await fs.writeFile("logs/upload.log", str, { flag: "a" });
+    await fs.writeFile("debugLogs/upload.log", str, { flag: "a" });
     retries = 0;
   } catch (error) {
     if (retries < 5) {
