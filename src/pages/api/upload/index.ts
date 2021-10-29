@@ -5,7 +5,6 @@ import { uploadImage } from "../../../../lib/database/uploadImage";
 import { parseFormData } from "../../../../lib/utils/parseFormData";
 import { clearImages, resizeImages } from "../../../../lib/utils/imageResize";
 import { SupaUploadResponseType } from "../../../../types/globalTypes";
-import { logToFile } from "../../../../util/file-logger";
 
 export const config = {
   api: {
@@ -23,14 +22,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const fileNames = (await resizeImages(data, fileName)) as any[];
 
-    console.log(fileNames);
-
     let uri = (await uploadImage(
       fileNames,
       fileName
     )) as SupaUploadResponseType[];
-
-    console.log(uri);
 
     await clearImages(fileNames);
 

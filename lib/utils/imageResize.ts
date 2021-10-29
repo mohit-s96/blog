@@ -10,29 +10,14 @@ const get16_9Height = (width: number) => {
 };
 
 export async function resizeImages(image: Buffer, fileName: string) {
-  console.log("entereddddddddddddddddddd");
   return new Promise(async (resolve, reject) => {
     try {
-      console.log("tryyyyyyyyyyyyyyyyyy");
-
       const pipeline = sharp(image) as sharp.Sharp;
       const promises: Promise<any>[] = [];
 
-      console.log("pipeline done");
-
-      console.log(fileName);
-
       fileName = fileName.split(".").slice(0, -1).join("");
 
-      console.log("splittedddddddddddd");
-
-      console.log(fileName);
-
       fileName = fileName.replace(/ /g, "");
-
-      console.log("failenameeesc");
-
-      console.log(fileName);
 
       deviceWidths.forEach((width, i) => {
         const promise = pipeline
@@ -44,8 +29,6 @@ export async function resizeImages(image: Buffer, fileName: string) {
           .toFile(path.join(os.tmpdir(), fileName + "-" + width + ".webp"));
         promises.push(promise);
       });
-
-      console.log("loop done");
 
       await Promise.all(promises);
 
