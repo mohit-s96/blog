@@ -10,8 +10,11 @@ const get16_9Height = (width: number) => {
 };
 
 export async function resizeImages(image: Buffer, fileName: string) {
+  console.log("entereddddddddddddddddddd");
   return new Promise(async (resolve, reject) => {
     try {
+      console.log("tryyyyyyyyyyyyyyyyyy");
+
       const pipeline = sharp(image) as sharp.Sharp;
       const promises: Promise<any>[] = [];
 
