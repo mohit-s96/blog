@@ -28,7 +28,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       console.log(fileName);
 
-      fileName = fileName.replaceAll(" ", "");
+      fileName = fileName.replace(/ /g, "");
 
       console.log("failenameeesc");
 
