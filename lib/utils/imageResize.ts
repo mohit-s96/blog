@@ -57,8 +57,6 @@ export async function resizeImages(image: Buffer, fileName: string) {
         );
       });
 
-      console.log(tmpFiles);
-
       resolve(tmpFiles);
     } catch (error) {
       reject((error as any).message);
