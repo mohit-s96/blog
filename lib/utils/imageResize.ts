@@ -20,10 +20,18 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       console.log("pipeline done");
 
+      console.log(fileName);
+
       fileName = fileName.split(".").slice(0, -1).join("");
 
+      console.log("splittedddddddddddd");
+
+      console.log(fileName);
+
       fileName = fileName.replaceAll(" ", "");
+
       console.log("failenameeesc");
+
       console.log(fileName);
 
       deviceWidths.forEach((width, i) => {
