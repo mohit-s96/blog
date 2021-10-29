@@ -22,10 +22,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { data, fileName } = (await parseFormData(req, res)) as any;
 
     logToFile({ fileName });
+    console.log({ fileName });
 
     const fileNames = (await resizeImages(data, fileName)) as any[];
 
     logToFile(fileNames);
+    console.log(fileNames);
 
     let uri = (await uploadImage(
       fileNames,
@@ -33,6 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     )) as SupaUploadResponseType[];
 
     logToFile(uri);
+    console.log(uri);
 
     await clearImages(fileNames);
 
