@@ -141,7 +141,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           ))}
         </div>
         <div
-          className="flex flex-column p-2"
+          className="p-2 md-render-parent"
           dangerouslySetInnerHTML={{ __html: data.blogData }}
         ></div>
       </div>
