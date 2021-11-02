@@ -42,7 +42,9 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       resolve(tmpFiles);
     } catch (error) {
-      reject((error as any).message);
+      reject(
+        "something went wrong. it's likely a problem with the server. please try again after sometime"
+      );
     }
   });
 }
