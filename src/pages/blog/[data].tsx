@@ -1,5 +1,6 @@
 import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
 import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
+import CustomHead from "../../components/head";
 import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
@@ -59,24 +60,32 @@ const Post = ({
   data,
 }: Props) => {
   return (
-    <Layout
-      render={(theme) => {
-        return (
-          <main
-            className={`${
-              theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
-            } grid grid-cols-12 2xl:w-10/12 w-full mx-auto`}
-          >
-            <StatsBar
-              stats={{ commentCount, likes, viewCount, uri, title }}
-              theme={theme}
-            />
-            <MainBlog theme={theme} data={data} />
-            <RelatedBlogs theme={theme} list={dummyRelatedBlogsData} />
-          </main>
-        );
-      }}
-    />
+    <>
+      <CustomHead
+        uri={`https://mohits.dev/blog/${uri}`}
+        description={excerpt}
+        title={title}
+        image={images[0].permUri[0].data!.Key}
+      />
+      <Layout
+        render={(theme) => {
+          return (
+            <main
+              className={`${
+                theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
+              } grid grid-cols-12 2xl:w-10/12 w-full mx-auto`}
+            >
+              <StatsBar
+                stats={{ commentCount, likes, viewCount, uri, title }}
+                theme={theme}
+              />
+              <MainBlog theme={theme} data={data} />
+              <RelatedBlogs theme={theme} list={dummyRelatedBlogsData} />
+            </main>
+          );
+        }}
+      />
+    </>
   );
 };
 

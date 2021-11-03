@@ -7,6 +7,7 @@ import SearchBlogs from "../components/search-blogs/search";
 import { BlogListType } from "../../types/blogtypes";
 import { fetchBlogList } from "../../lib/database/getBlogs";
 import { ThemeType } from "../../types/globalTypes";
+import CustomHead from "../components/head";
 
 type Props = {
   posts: BlogListType[];
@@ -24,20 +25,28 @@ const testTags = [
 
 const Index = ({ posts }: Props) => {
   return (
-    <Layout
-      render={(theme) => {
-        return (
-          <div className="w-10/12 w-95-res mx-auto">
-            <SearchBlogs theme={theme} />
-            <TagSelector tags={testTags} theme={theme} variant="md" />
-            <Cards data={posts} theme={theme} />
-            <div
-              style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
-            ></div>
-          </div>
-        );
-      }}
-    />
+    <>
+      <CustomHead
+        uri="https://mohits.dev/"
+        description="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and C++"
+        title="Mohit's Blog"
+        image="https://avatars.githubusercontent.com/u/17087942?v=4"
+      />
+      <Layout
+        render={(theme) => {
+          return (
+            <div className="w-10/12 w-95-res mx-auto">
+              <SearchBlogs theme={theme} />
+              <TagSelector tags={testTags} theme={theme} variant="md" />
+              <Cards data={posts} theme={theme} />
+              <div
+                style={{ width: "100%", height: "50vh", backgroundClip: "red" }}
+              ></div>
+            </div>
+          );
+        }}
+      />
+    </>
   );
 };
 
