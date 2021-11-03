@@ -12,39 +12,23 @@ function SortMenu({ visible, theme }: Props): ReactElement {
   return (
     <div
       className={`${visible ? "h-auto p-2" : "h-0"} ${
-        visible ? (theme === "light" ? "shadow-md border-b-2" : "") : ""
+        visible ? (theme === "dark" ? "" : "shadow-md border-b-2") : ""
       } transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-36 absolute z-10 top-12`}
     >
       <div
-        className={`${
-          theme === "light" ? "bg-primary-light" : "bg-primary-dark"
-        } p-2 flex justify-between cursor-pointer`}
+        className={`p-2 flex justify-between cursor-pointer dark:bg-primary-dark bg-primary-light`}
         onClick={() => setActive("date")}
       >
-        <span
-          className={`${
-            theme === "light"
-              ? "text-primary-text-light"
-              : "text-primary-text-dark"
-          }`}
-        >
+        <span className={`dark:text-primary-text-dark text-primary-text-light`}>
           Date
         </span>
         {active === "date" && <Check accent={true} />}
       </div>
       <div
-        className={`${
-          theme === "light" ? "bg-primary-light" : "bg-primary-dark"
-        } p-2 flex justify-between cursor-pointer`}
+        className={`p-2 flex justify-between cursor-pointer dark:bg-primary-dark bg-primary-light`}
         onClick={() => setActive("pop")}
       >
-        <span
-          className={`${
-            theme === "light"
-              ? "text-primary-text-light"
-              : "text-primary-text-dark"
-          }`}
-        >
+        <span className={`dark:text-primary-text-dark text-primary-text-light`}>
           Popularity
         </span>
         {active === "pop" && <Check accent={true} />}

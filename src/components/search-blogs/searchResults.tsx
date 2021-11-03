@@ -9,9 +9,7 @@ interface Props {
 function SearchResults({ theme }: Props): ReactElement {
   return (
     <div
-      className={`p-2 m-2 flex flex-col ${
-        theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
-      } w-[98%] mx-auto rounded-2xl`}
+      className={`p-2 m-2 flex flex-col w-[98%] mx-auto rounded-2xl dark:bg-primary-bg-dark bg-primary-bg-light`}
     >
       <div className="flex justify-between">
         <p className="p-2 text-xl text-primary-accent-dark text-sm-res padding-0-res">

@@ -46,11 +46,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
       </div>
       <div
         ref={divRef}
-        className={`xl:translate-y-[-100%] w-full ${
-          theme === "dark"
-            ? "bg-[rgba(0,0,0,0.5)]"
-            : "bg-[rgba(255,255,255,0.5)]"
-        }`}
+        className={`xl:translate-y-[-100%] w-full dark:bg-[rgba(0,0,0,0.5)] bg-[rgba(255,255,255,0.5)]`}
       >
         <div className={`flex w-full justify-center`}>
           <div className="items-center flex w-full p-2">
@@ -64,9 +60,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
               <NavItem
                 size="sm"
                 theme={theme}
-                className={`mx-2 ${
-                  theme === "dark" ? "text-gray-500" : "text-gray-800"
-                } font-bold text-sm`}
+                className={`mx-2 font-bold text-sm dark:text-gray-500 text-gray-800`}
                 children={
                   ((format(data.createdAt, "do MMM, yy") +
                     " by " +
@@ -78,9 +72,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
         </div>
         <div className="w-full ml-2">
           <span
-            className={`${
-              theme === "dark" ? "text-gray-500" : "text-gray-800"
-            } w-full font-bold text-sm italic`}
+            className={`w-full font-bold text-sm italic dark:text-gray-500 text-gray-800`}
           >
             {data.readingTime} read
           </span>
@@ -122,11 +114,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
       <div ref={moveUpRef}>
         <div className="flex p-2">
           <p
-            className={`text-4xl font-bold pt-4 px-0 ${
-              theme === "dark"
-                ? "text-primary-accent-light"
-                : "text-primary-accent-light"
-            }`}
+            className={`text-4xl font-bold pt-4 px-0 text-primary-accent-light`}
           >
             {data.title}
           </p>

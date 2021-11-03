@@ -1,4 +1,10 @@
-import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useState,
+  useEffect,
+} from "react";
 import { ThemeType } from "../../../types/globalTypes";
 import { NightIcon, SunIcon } from "../svg/collection.svg";
 
@@ -17,6 +23,12 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
     }
     setDark(!dark);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") === "dark") {
+      setDark(true);
+    }
+  }, []);
 
   return (
     <div className="mr-8">

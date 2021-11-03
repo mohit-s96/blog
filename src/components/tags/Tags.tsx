@@ -36,17 +36,13 @@ function Tags({
               variant === "sm" ? "before:border-b-sm-2" : "before:border-b-md-2"
             } before:border-l-0 before:border-t-transparent before:border-b-transparent ${
               !accent
-                ? theme === "light"
-                  ? "before:border-r-primary-light"
-                  : "before:border-r-primary-dark"
+                ? "before:border-r-primary-light dark:before:border-r-primary-dark"
                 : "before:border-r-primary-accent-light flex items-center justify-center"
             }`
           : ""
       } ${
         !accent
-          ? theme === "dark"
-            ? "bg-primary-accent-light text-primary-text-dark"
-            : "bg-primary-light text-primary-text-light"
+          ? "dark:bg-primary-accent-light dark:text-primary-text-dark bg-primary-light text-primary-text-light"
           : "bg-primary-accent-light flex items-center justify-center text-primary-text-dark"
       } ${variant === "md" ? "min-w-btn-md" : "min-w-btn-sm"} ${
         variant === "md" ? "h-btn-md" : "h-btn-sm"

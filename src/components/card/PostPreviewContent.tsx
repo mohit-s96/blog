@@ -32,11 +32,11 @@ function PostPreviewContent({
     <div
       className={`${
         type === "horiz" ? "w-card-lg-horiz" : "w-full min-h-[50%]"
-      } ${theme === "dark" ? "bg-primary-dark" : "bg-primary-light"} ${
+      } ${
         type === "horiz"
           ? "rounded-br-3xl rounded-tr-3xl"
           : "rounded-br-3xl rounded-bl-3xl"
-      }`}
+      } dark:bg-primary-dark bg-primary-light`}
     >
       <div className={`p-2 flex flex-col h-full justify-evenly`}>
         <div className="flex items-center p-1 justify-between">

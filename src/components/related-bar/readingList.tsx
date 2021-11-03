@@ -19,9 +19,7 @@ function ReadingList({ theme, list }: Props): ReactElement {
           key={blog._id as any}
         >
           <p
-            className={`${
-              theme === "dark" ? "text-primary-bg-light" : "text-gray-800"
-            } hover:underline p-2 text-sm 2xl:text-lg cursor-pointer font-bold`}
+            className={`hover:underline p-2 text-sm 2xl:text-lg cursor-pointer font-bold dark:text-primary-bg-light text-gray-800`}
           >
             {blog.title}
           </p>

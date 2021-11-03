@@ -10,9 +10,9 @@ interface Props {
 function PostExcerpt({ text, theme, type }: Props): ReactElement {
   return (
     <div
-      className={`p-2 leading-7 ${type === "horiz" ? "w-8/12" : "w-full"} ${
-        theme === "dark" ? "text-gray-300" : "text-primary-text-light"
-      }`}
+      className={`p-2 leading-7 ${
+        type === "horiz" ? "w-8/12" : "w-full"
+      } text-primary-text-light dark:text-gray-300`}
     >
       {type === "horiz"
         ? text

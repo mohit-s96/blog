@@ -71,9 +71,7 @@ const Post = ({
         render={(theme) => {
           return (
             <main
-              className={`${
-                theme === "dark" ? "bg-primary-bg-dark" : "bg-primary-bg-light"
-              } grid grid-cols-12 2xl:w-10/12 w-full mx-auto`}
+              className={`grid grid-cols-12 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-primary-bg-light`}
             >
               <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}

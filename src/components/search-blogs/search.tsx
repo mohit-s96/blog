@@ -53,21 +53,15 @@ function SearchBlogs({ theme }: Props): ReactElement {
     <div
       ref={searchRef}
       className={`w-3/6 mx-auto my-4 h-20 rounded-3xl ${
-        value ? (theme === "light" ? "bg-white" : "bg-gray-700") : ""
+        value ? "dark:bg-gray-700 bg-white" : ""
       } transition-all duration-300 flex flex-col w-full-sm`}
     >
       <div
-        className={`${
-          theme === "light" ? "bg-white" : "bg-gray-700"
-        } flex items-center rounded-full shadow-xl`}
+        className={`flex items-center rounded-full shadow-xl dark:bg-gray-700 bg-white`}
       >
         <input
           ref={inpRef}
-          className={`rounded-l-full w-full py-4 px-6 text-2xl text-gray-700 leading-tight focus:outline-none ${
-            theme === "dark"
-              ? "bg-gray-700 text-white"
-              : "bg-white text-gray-700"
-          } padding-sm`}
+          className={`rounded-l-full w-full py-4 px-6 text-2xl leading-tight focus:outline-none padding-sm dark:bg-gray-700 dark:text-white bg-white text-gray-700`}
           id="search"
           type="text"
           placeholder="Search [Ctrl + K]"

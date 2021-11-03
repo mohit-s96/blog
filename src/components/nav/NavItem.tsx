@@ -24,15 +24,11 @@ function NavItem({
       tabIndex={1}
       className={`focus:outline-black p-2 flex justify-center items-center font-bold ${
         size === "sm" ? "text-sm" : size === "xsm" ? "text-xsm" : "text-base"
-      } ${
-        theme === "light"
-          ? "text-primary-accent-dark"
-          : "text-primary-text-dark"
-      } cursor-pointer`}
+      } cursor-pointer dark:text-primary-text-dark text-primary-accent-dark`}
       onClick={() => callback()}
     >
       {Icon && (
-        <Icon color={theme === "light" ? "#6A279F" : "#ffffff"} size={size} />
+        <Icon color={theme === "dark" ? "#ffffff" : "#6A279F"} size={size} />
       )}
       <span className={`ml-2 ${className}`}>{children}</span>
     </div>

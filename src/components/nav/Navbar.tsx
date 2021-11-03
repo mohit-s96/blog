@@ -12,13 +12,11 @@ export interface Props {
   setTheme: Dispatch<SetStateAction<ThemeType>>;
 }
 
-function Navbar({ theme = "dark", setTheme }: Props): ReactElement {
+function Navbar({ theme, setTheme }: Props): ReactElement {
   const [active, setActive] = useState(false);
   return (
     <nav
-      className={`w-full flex justify-between items-center p-2 overflow-hidden ${
-        theme === "dark" ? "bg-primary-dark" : "bg-primary-bg-light"
-      } sticky top-0 z-10 border-b-2 border-gray-300 shadow-sm`}
+      className={`w-full flex justify-between items-center p-2 overflow-hidden bg-primary-bg-light dark:bg-primary-dark sticky top-0 z-10 border-b-2 border-gray-300 shadow-sm`}
     >
       <Avatar
         imageUri={(uri.src as unknown) as string}
