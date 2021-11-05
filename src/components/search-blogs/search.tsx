@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
-import { Search } from "../svg/collection.svg";
+import { Close, Search } from "../svg/collection.svg";
 import SearchResults from "./searchResults";
 import useGlobalKeyBind from "../../hooks/useGlobalKeyBind";
 import { BindOptions } from "../../../types/keyTypes";
@@ -69,12 +69,17 @@ function SearchBlogs({ theme }: Props): ReactElement {
           onChange={handleSearchChange}
         />
 
-        <div className="p-4 padding-sm">
+        <div className="p-4 padding-sm flex">
+          <span className="text-gray-400 p-1 text-xl mx-2">[Esc]</span>
           <button
-            className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center"
-            aria-label="search blogs"
+            className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-10 h-10 flex items-center justify-center"
+            aria-label="close search"
+            onClick={() => {
+              setValue("");
+              ((inpRef.current as unknown) as HTMLInputElement).blur();
+            }}
           >
-            <Search color="#fff" />
+            <Close color="#fff" />
           </button>
         </div>
       </div>
