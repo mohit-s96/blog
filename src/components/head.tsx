@@ -12,8 +12,35 @@ function CustomHead({ uri, description, image, title }: Props): ReactElement {
   return (
     <Head>
       <title>Mohit's Blog</title>
+      <link
+        rel="apple-touch-icon"
+        sizes="192x192"
+        href="/favicon/icon-192x192.png"
+      />
+      <link
+        rel="icon"
+        type="image/svg"
+        sizes="32x32"
+        href="/favicon/favicon.svg"
+      />
+      <link
+        rel="icon"
+        type="image/svg"
+        sizes="16x16"
+        href="/favicon/favicon.svg"
+      />
+      <link rel="manifest" href="/favicon/manifest.webmanifest" />
+      <link
+        rel="mask-icon"
+        href="/favicon/icon-192x192.png"
+        color="#000000rgb(106, 39, 159)"
+      />
+      <link rel="shortcut icon" href="/favicon/favicon.svg" />
+      <meta name="msapplication-TileColor" content="rgb(106, 39, 159)" />
+      <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+      <meta name="theme-color" content="rgb(106, 39, 159)" />
       <link rel="canonical" href={uri} />
-      <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="/favicon/favicon.svg" type="image/svg" />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta property="og:type" content="website" />
