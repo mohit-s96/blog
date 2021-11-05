@@ -31,36 +31,17 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
   }, []);
 
   return (
-    <div className="mr-8">
-      <label htmlFor="toggleB" className="flex items-center cursor-pointer">
-        <div className="relative">
-          <input
-            type="checkbox"
-            id="toggleB"
-            className="sr-only"
-            onChange={handleChange}
-            aria-label="toggle theme"
+    <div>
+      <div onClick={handleChange} className="cursor-pointer">
+        {dark ? (
+          <NightIcon className="w-6 mx-2 hover:scale-150 transition-all duration-500" />
+        ) : (
+          <SunIcon
+            className="w-6 mx-2 hover:scale-150 transition-all duration-500"
+            color="#FFDD25"
           />
-          <div className="block bg-gray-300 w-14 h-6 rounded-full"></div>
-          <div
-            className="dot absolute left-1 top-1 w-8 h-6 rounded-full transition flex justify-center items-center"
-            style={{
-              transform: dark ? "translateX(80%)" : "translateX(-25%)",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: "100%",
-                transform: "translateY(-30%)",
-                marginBottom: "2px",
-              }}
-            >
-              {dark ? <NightIcon /> : <SunIcon />}
-            </div>
-          </div>
-        </div>
-      </label>
+        )}
+      </div>
     </div>
   );
 }
