@@ -14,7 +14,7 @@ interface Props {
 function StatsBar({ stats, theme }: Props): ReactElement {
   return (
     <aside
-      className={`2xl:col-span-3 hidden xl:col-span-3 relative xl:flex justify-center items-start border-r-4 dark:border-gray-500 border-gray-300`}
+      className={`2xl:col-span-3 hidden xl:col-span-3 relative xl:flex justify-center items-start`}
     >
       <div className="fixed flex flex-col justify-center items-center mt-3">
         <StatsIcon stats={stats} theme={theme} />

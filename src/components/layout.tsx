@@ -29,7 +29,7 @@ const Layout = ({ render }: Props) => {
   }, []);
   return (
     <>
-      <div className={`dark:bg-primary-bg-dark bg-primary-bg-light`}>
+      <div className={`dark:bg-primary-bg-dark bg-white`}>
         <Navbar
           theme={theme as ThemeType}
           setTheme={setTheme as Dispatch<SetStateAction<ThemeType>>}

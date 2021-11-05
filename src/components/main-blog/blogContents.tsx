@@ -129,7 +129,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           ))}
         </div>
         <div
-          className="p-2 md-render-parent"
+          className="p-10 md-render-parent"
           dangerouslySetInnerHTML={{ __html: data.blogData }}
         ></div>
       </div>
