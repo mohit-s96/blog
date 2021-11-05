@@ -1,11 +1,11 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import Avatar from "../avatars/Avatar";
-import uri from "../../../public/favicon/icon-512x512.png";
 import NavItem from "./NavItem";
-import { Search } from "../svg/collection.svg";
+import { BrandingImage, Search } from "../svg/collection.svg";
 import NavInput from "./NavInput";
 import { ThemeType } from "../../../types/globalTypes";
 import ToggleTheme from "../util-components/toggle";
+import Link from "next/link";
 
 export interface Props {
   theme: ThemeType;
@@ -16,28 +16,30 @@ function Navbar({ theme, setTheme }: Props): ReactElement {
   const [active, setActive] = useState(false);
   return (
     <nav
-      className={`w-full flex justify-between items-center p-2 overflow-hidden bg-primary-bg-light dark:bg-primary-dark sticky top-0 z-10 border-b-2 border-gray-300 shadow-sm`}
+      className={`w-full flex justify-between items-center p-2 overflow-hidden bg-white dark:bg-primary-dark sticky top-0 z-10 border-b-2 border-gray-300 shadow-sm`}
     >
-      <Avatar
-        imageUri={(uri.src as unknown) as string}
-        alt="Branding logo image of the letter m"
-        size="md"
-      />
+      <Avatar alt="Branding logo image of the letter m" size="md">
+        <Link href="/" passHref>
+          <a>
+            <BrandingImage color={"rgb(106, 39, 159)"} />
+          </a>
+        </Link>
+      </Avatar>
       <div className="flex justify-between items-center">
         <ToggleTheme setTheme={setTheme} />
-        <NavItem
+        {/* <NavItem
           theme={theme}
           size="md"
           children="Search"
           Icon={Search}
           callback={() => setActive(!active)}
-        />
+        /> */}
         <NavInput
           active={active}
           theme={theme}
           callback={() => setActive(false)}
         />
-        <NavItem theme={theme} size="md" children="About me" />
+        <NavItem theme={theme} size="md" children="about me" />
       </div>
     </nav>
   );
