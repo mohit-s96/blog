@@ -51,16 +51,17 @@ function BlogContents({ data, theme }: Props): ReactElement {
         <div className={`flex w-full justify-center`}>
           <div className="items-center flex w-full p-2">
             <div className="flex items-center w-full justify-start">
-              <Avatar
+              {/* <Avatar
                 alt="author avatar"
                 imageUri={uri.src as any}
                 size="sm"
                 className="mx-2"
-              />
+              /> */}
               <NavItem
                 size="sm"
                 theme={theme}
-                className={`mx-2 font-bold text-sm dark:text-gray-500 text-gray-800`}
+                wrapperClassname="p-0"
+                className={`mx-2 font-bold text-sm dark:text-white text-gray-800`}
                 children={
                   ((format(data.createdAt, "do MMM, yy") +
                     " by " +
@@ -72,7 +73,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
         </div>
         <div className="w-full ml-2">
           <span
-            className={`w-full font-bold text-sm italic dark:text-gray-500 text-gray-800`}
+            className={`w-full font-bold text-sm dark:text-white text-gray-800`}
           >
             {data.readingTime} read
           </span>

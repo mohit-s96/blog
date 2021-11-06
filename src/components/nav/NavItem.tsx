@@ -9,6 +9,7 @@ export interface Props {
   Icon?: ({ color, size }: SvgProps) => JSX.Element;
   callback?: () => any;
   className?: string;
+  wrapperClassname?: string;
 }
 
 function NavItem({
@@ -16,15 +17,15 @@ function NavItem({
   children,
   size,
   theme,
+  wrapperClassname,
   Icon,
   callback = () => {},
 }: Props): ReactElement {
   return (
     <div
-      tabIndex={1}
       className={`focus:outline-black p-2 flex justify-center items-center font-bold ${
         size === "sm" ? "text-sm" : size === "xsm" ? "text-xsm" : "text-base"
-      } cursor-pointer dark:text-primary-text-dark text-primary-accent-dark`}
+      } cursor-pointer dark:text-primary-text-dark text-primary-accent-dark ${wrapperClassname}`}
       onClick={() => callback()}
     >
       {Icon && (
