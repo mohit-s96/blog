@@ -33,6 +33,7 @@ export async function uploadImage(paths: string[], fileName: string) {
           .from(process.env.SUPA_BUCKET_NAME as string)
           .upload(`public/${fileName}/${fileName}-${sizes[i]}.webp`, buf, {
             contentType: `image/${fileExt}`,
+            cacheControl: "15780000", // 6 months cache time for images
           });
 
         promises.push(res);
