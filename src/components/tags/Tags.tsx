@@ -24,7 +24,7 @@ function Tags({
   return (
     <button
       onClick={() => callback && callback()}
-      className={`${className ? className : ""} ${
+      className={`shadow-md ${className ? className : ""} ${
         triangular
           ? `relative before:absolute before:h-0 before:w-0 ${
               variant === "sm" ? "before:left-sm" : "before:left-md"
