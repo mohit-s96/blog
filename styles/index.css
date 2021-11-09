@@ -166,7 +166,8 @@ body::-webkit-scrollbar-thumb {
   color: #004ad4 !important;
 }
 pre {
-  width: 98vw;
+  margin: 8px auto !important;
+  width: 95vw;
   overflow: auto !important;
   word-wrap: normal !important;
   white-space: pre !important;
@@ -193,7 +194,7 @@ pre {
 }
 .md-render-parent > h2 {
   font-weight: 600;
-  margin: 12px 0;
+  margin: 8px 12px;
   font-size: xx-large;
   transition: all 0.4s ease-out;
   color: #36a3ff;
@@ -205,7 +206,7 @@ ol > li {
   cursor: pointer;
   color: #36a3ff;
   font-weight: 600;
-  margin-left: 14px;
+  margin-left: 28px;
   padding: 4px;
   transition: all 0.25s ease-out;
 }
@@ -220,7 +221,7 @@ ol > li:hover {
 .md-render-parent > p {
   font-size: large;
   line-height: 1.8em;
-  padding: 8px 0;
+  padding: 8px 12px;
   letter-spacing: 0.024em;
 }
 

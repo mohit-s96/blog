@@ -31,7 +31,7 @@ function NavItem({
       {Icon && (
         <Icon color={theme === "dark" ? "#ffffff" : "#6A279F"} size={size} />
       )}
-      <span className={`ml-2 ${className}`}>{children}</span>
+      <span className={`${className}`}>{children}</span>
     </div>
   );
 }

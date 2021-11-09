@@ -44,24 +44,35 @@ function BlogContents({ data, theme }: Props): ReactElement {
           className="w-full hero-img-res"
         />
       </div>
+
       <div
         ref={divRef}
-        className={`xl:translate-y-[-100%] w-full dark:bg-[rgba(0,0,0,0.5)] bg-[rgba(255,255,255,0.5)]`}
+        className={`xl:translate-y-[-100%] w-full dark:bg-primary-bg-dark shadow-md bg-white`}
       >
+        <div className="flex p-2">
+          <p
+            className={`text-4xl font-bold pt-4 px-0 text-primary-accent-light`}
+          >
+            {data.title}
+          </p>
+        </div>
+        <div className="flex p-2">
+          {data.tags.map((tag) => (
+            <SimpleTags
+              key={tag}
+              tag={tag}
+              className="p-[2px] my-0 text-sm tracking-widest"
+            />
+          ))}
+        </div>
         <div className={`flex w-full justify-center`}>
           <div className="items-center flex w-full p-2">
             <div className="flex items-center w-full justify-start">
-              {/* <Avatar
-                alt="author avatar"
-                imageUri={uri.src as any}
-                size="sm"
-                className="mx-2"
-              /> */}
               <NavItem
                 size="sm"
                 theme={theme}
                 wrapperClassname="p-0"
-                className={`mx-2 font-bold text-sm dark:text-white text-gray-800`}
+                className={`font-bold text-sm dark:text-white text-gray-800 ml-0`}
                 children={
                   ((format(data.createdAt, "do MMM, yy") +
                     " by " +
@@ -83,7 +94,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             target="_blank"
             rel="noopener"
             href={`https://twitter.com/intent/tweet?text=check out this blog on ${data.title}. https://mohits.dev/blog/${data.uri}`}
-            className="w-10 h-10 rounded-full bg-[#1D9BF0] p-2 mr-2"
+            className="w-10 h-10 rounded-full bg-primary-accent-light p-2 mr-2"
           >
             <TwitterIcon color="#fff" />
           </a>
@@ -91,7 +102,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             href={`https://www.facebook.com/sharer/sharer.php?u=https://mohits.dev/blog/${data.uri}`}
             target="_blank"
             rel="noopener"
-            className="w-10 h-10 rounded-full bg-blue-600 p-2 mr-2"
+            className="w-10 h-10 rounded-full bg-primary-accent-light p-2 mr-2"
           >
             <FacebookIcon color="#fff" />
           </a>
@@ -99,38 +110,22 @@ function BlogContents({ data, theme }: Props): ReactElement {
             href={`http://ww.reddit.com/submit?url=https://mohits.dev/blog/${data.uri}}&title=${data.title}`}
             target="_blank"
             rel="noopener"
-            className="w-10 h-10 rounded-full bg-[#FF4500] p-2 mr-2"
+            className="w-10 h-10 rounded-full bg-primary-accent-light p-2 mr-2"
           >
             <RedditIcon color="#fff" />
           </a>
           <button
             onClick={copyLink}
             aria-label="copy blog link"
-            className="w-10 h-10 rounded-full bg-purple-600 p-2 mr-2"
+            className="w-10 h-10 rounded-full bg-primary-accent-light p-2 mr-2"
           >
             <LinkIcon color="#fff" />
           </button>
         </div>
       </div>
       <div ref={moveUpRef}>
-        <div className="flex p-2">
-          <p
-            className={`text-4xl font-bold pt-4 px-0 text-primary-accent-light`}
-          >
-            {data.title}
-          </p>
-        </div>
-        <div className="flex p-2">
-          {data.tags.map((tag) => (
-            <SimpleTags
-              key={tag}
-              tag={tag}
-              className="p-[2px] my-0 text-sm tracking-widest"
-            />
-          ))}
-        </div>
         <div
-          className="p-10 md-render-parent"
+          className="lg:p-10 md-render-parent"
           dangerouslySetInnerHTML={{ __html: data.blogData }}
         ></div>
       </div>
