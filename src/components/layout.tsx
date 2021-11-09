@@ -1,15 +1,9 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 import { ThemeType } from "../../types/globalTypes";
 import { useTheme } from "next-themes";
 import Navbar from "./nav/Navbar";
 import Prism from "prismjs";
+import "prismjs/components/prism-bash";
 
 type Props = {
   // children: React.ReactNode;
