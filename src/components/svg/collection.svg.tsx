@@ -299,8 +299,8 @@ export const BrandingImage = ({ color }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={150.333}
-      height={40.667}
+      width={100.333}
+      height={30.667}
       viewBox="0 0 232 65"
     >
       <path
