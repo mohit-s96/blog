@@ -42,7 +42,13 @@ function PostPreviewContent({
           <Avatar alt="author avatar" size="md">
             <MIcon color="rgb(106, 39, 159)" className="w-9 h-9" />
           </Avatar>
-          <NavItem size="sm" theme={theme} children={time} Icon={Clock} />
+          <NavItem
+            size="sm"
+            theme={theme}
+            children={time}
+            Icon={Clock}
+            className="mx-2"
+          />
         </div>
         <PostTitle text={title} theme={theme} type={type} slug={slug} />
         <PostExcerpt text={excerpt} theme={theme} type={type} />
