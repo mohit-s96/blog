@@ -10,10 +10,16 @@ import Link from "next/link";
 export interface Props {
   theme: ThemeType;
   setTheme: Dispatch<SetStateAction<ThemeType>>;
+  setSearchVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-function Navbar({ theme, setTheme }: Props): ReactElement {
+function Navbar({ theme, setTheme, setSearchVisible }: Props): ReactElement {
   const [active, setActive] = useState(false);
+
+  const changeSearchVisible = () => {
+    setSearchVisible((visible) => !visible);
+  };
+
   return (
     <nav
       className={`w-full flex justify-between items-center p-2 overflow-hidden bg-white dark:bg-primary-dark sticky top-0 z-10 border-b-2 border-gray-300 shadow-sm`}
@@ -27,19 +33,20 @@ function Navbar({ theme, setTheme }: Props): ReactElement {
       </Avatar>
       <div className="flex justify-between items-center">
         <ToggleTheme setTheme={setTheme} />
-        {/* <NavItem
+        <NavItem
           theme={theme}
           size="md"
-          children="Search"
-          Icon={Search}
-          callback={() => setActive(!active)}
-        /> */}
-        <NavInput
+          children="search [ctrl + k]"
+          callback={changeSearchVisible}
+          // Icon={Search}
+          //    callback={() => setActive(!active)}
+        />
+        {/* <NavInput
           active={active}
           theme={theme}
           callback={() => setActive(false)}
-        />
-        <NavItem theme={theme} size="md" children="about me" />
+        /> */}
+        {/* <NavItem theme={theme} size="md" children="about me" /> */}
       </div>
     </nav>
   );

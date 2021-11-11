@@ -1,34 +1,62 @@
-import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { ThemeType } from "../../types/globalTypes";
 import { useTheme } from "next-themes";
 import Navbar from "./nav/Navbar";
 import Prism from "prismjs";
 import "prismjs/components/prism-bash";
+import useGlobalKeyBind from "../hooks/useGlobalKeyBind";
+import { BindOptions } from "../../types/keyTypes";
 
 type Props = {
   // children: React.ReactNode;
-  render: (theme: ThemeType) => ReactNode;
+  render: (
+    theme: ThemeType,
+    searhcVisible: boolean,
+    setSearchVisible: Dispatch<SetStateAction<boolean>>
+  ) => ReactNode;
 };
-
-function getTheme(): ThemeType {
-  return (localStorage?.getItem("theme") as ThemeType) || "light";
-}
 
 const Layout = ({ render }: Props) => {
   const { theme, setTheme } = useTheme();
+  const [searchVisible, setSearchVisible] = useState(false);
   useEffect(() => {
     //@ts-ignore
     Prism.manual = true;
     Prism.highlightAll();
   }, []);
+  const options: BindOptions = {
+    options: [
+      {
+        keys: ["k"],
+        specialKey: "Control",
+        callback: () => {
+          setSearchVisible(true);
+        },
+      },
+      {
+        keys: ["escape"],
+        callback: () => {
+          setSearchVisible(false);
+        },
+      },
+    ],
+  };
+  useGlobalKeyBind(options);
   return (
     <>
       <div className={`dark:bg-primary-bg-dark bg-white`}>
         <Navbar
           theme={theme as ThemeType}
+          setSearchVisible={setSearchVisible}
           setTheme={setTheme as Dispatch<SetStateAction<ThemeType>>}
         />
-        {render(theme as ThemeType)}
+        {render(theme as ThemeType, searchVisible, setSearchVisible)}
       </div>
     </>
   );

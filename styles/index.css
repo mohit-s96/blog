@@ -165,6 +165,12 @@ body::-webkit-scrollbar-thumb {
 .text-blue {
   color: #004ad4 !important;
 }
+.scale-norm {
+  transform: scale(1) !important;
+}
+.opacity-norm {
+  opacity: 1 !important;
+}
 pre {
   margin: 8px auto !important;
   width: 95vw;

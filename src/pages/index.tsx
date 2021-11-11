@@ -33,10 +33,12 @@ const Index = ({ posts }: Props) => {
         image="https://avatars.githubusercontent.com/u/17087942?v=4"
       />
       <Layout
-        render={(theme) => {
+        render={(theme, searchVisible, setSearchVisible) => {
           return (
             <div className="w-10/12 w-95-res mx-auto">
-              <SearchBlogs theme={theme} />
+              {searchVisible ? (
+                <SearchBlogs theme={theme} visible={searchVisible} />
+              ) : null}
               <TagSelector tags={testTags} theme={theme} variant="md" />
               <Cards data={posts} theme={theme} />
               <div
