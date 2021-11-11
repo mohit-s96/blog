@@ -17,7 +17,7 @@ function PostTitle({ text, type, slug }: Props): ReactElement {
           type === "horiz"
             ? "w-8/12 text-4xl leading-"
             : "w-full text-2xl font-bold"
-        } text-primary-accent-dark hover:underline transition-all duration-300`}
+        } text-purple-700 hover:underline transition-all duration-300`}
       >
         {text}
       </div>
