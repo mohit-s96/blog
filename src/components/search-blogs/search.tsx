@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
 import { Close, Search } from "../svg/collection.svg";
@@ -10,9 +10,10 @@ import useAnimateOnMount from "../../hooks/useAnimateOnMount";
 interface Props {
   theme: ThemeType;
   visible: boolean;
+  setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-function SearchBlogs({ theme, visible }: Props): ReactElement {
+function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
   const [value, setValue] = useState("");
 
   const inpRef = useRef(null);
@@ -40,7 +41,7 @@ function SearchBlogs({ theme, visible }: Props): ReactElement {
     }
   }, [value]);
   return (
-    <div className="absolute top-2 z-10 left-0 flex justify-between bg-[rgba(0,0,0,0.8)] w-full h-screen">
+    <div className="absolute top-0 z-10 left-0 flex justify-between bg-[rgba(0,0,0,0.8)] w-full h-screen">
       <div
         ref={searchRef}
         className={`w-3/6 mx-auto my-4 h-20 rounded-3xl ${
@@ -48,11 +49,11 @@ function SearchBlogs({ theme, visible }: Props): ReactElement {
         } transition-all duration-300 flex flex-col w-full-sm scale-0 opacity-0 mt-[5%] shadow-2xl`}
       >
         <div
-          className={`flex items-center rounded-full shadow-xl dark:bg-gray-700 bg-gray-100`}
+          className={`flex items-center rounded-[42px] shadow-xl dark:bg-gray-700 bg-gray-100`}
         >
           <input
             ref={inpRef}
-            className={`rounded-l-full w-full py-4 px-6 text-2xl leading-tight focus:outline-none padding-sm dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-700`}
+            className={`rounded-l-full w-full py-4 px-6 res-inp-h text-2xl leading-tight focus:outline-none padding-sm dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-700`}
             id="search"
             type="text"
             placeholder="search blogs"
@@ -66,8 +67,7 @@ function SearchBlogs({ theme, visible }: Props): ReactElement {
               className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-10 h-10 flex items-center justify-center"
               aria-label="close search"
               onClick={() => {
-                setValue("");
-                ((inpRef.current as unknown) as HTMLInputElement).blur();
+                setVisible(false);
               }}
             >
               <Close color="#fff" />
