@@ -1,4 +1,5 @@
 import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
+import SearchBlogs from "../../components/search-blogs/search";
 import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
 import CustomHead from "../../components/head";
 import Layout from "../../components/layout";
@@ -68,11 +69,18 @@ const Post = ({
         image={images[0].permUri[0].data!.Key}
       />
       <Layout
-        render={(theme) => {
+        render={(theme, searchVisible, setSearchVisible) => {
           return (
             <main
               className={`grid grid-cols-12 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
             >
+              {searchVisible ? (
+                <SearchBlogs
+                  theme={theme}
+                  visible={searchVisible}
+                  setVisible={setSearchVisible}
+                />
+              ) : null}
               <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}
                 theme={theme}
