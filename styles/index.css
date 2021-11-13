@@ -15,9 +15,15 @@ body::-webkit-scrollbar-thumb {
 .responsive-card {
   width: 47%;
 }
+.res-inp-h {
+  height: 4rem;
+}
 @media screen and (min-width: 1500px) {
   .responsive-card {
-    width: 23%;
+    width: 30%;
+  }
+  .res-inp-h {
+    height: 6rem;
   }
 }
 .h-400 {
@@ -203,14 +209,15 @@ pre {
   margin: 8px 12px;
   font-size: xx-large;
   transition: all 0.4s ease-out;
-  color: #36a3ff;
+  color: #6a279f;
+  text-decoration: underline;
 }
 
 .md-render-parent > ul > li,
 ol > li {
   list-style-type: circle;
   cursor: pointer;
-  color: #36a3ff;
+  color: #6a279f;
   font-weight: 600;
   margin-left: 28px;
   padding: 4px;
@@ -228,7 +235,7 @@ ol > li:hover {
   font-size: large;
   line-height: 1.8em;
   padding: 8px 12px;
-  letter-spacing: 0.024em;
+  letter-spacing: 0.015em;
 }
 
 .md-render-parent > blockquote {

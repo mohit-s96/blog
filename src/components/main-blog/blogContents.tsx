@@ -72,7 +72,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
                 size="sm"
                 theme={theme}
                 wrapperClassname="p-0"
-                className={`font-bold text-sm dark:text-white text-gray-800 ml-0`}
+                className={`font-bold text-sm text-primary-accent-dark ml-0`}
                 children={
                   ((format(data.createdAt, "do MMM, yy") +
                     " by " +
@@ -83,9 +83,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           </div>
         </div>
         <div className="w-full ml-2">
-          <span
-            className={`w-full font-bold text-sm dark:text-white text-gray-800`}
-          >
+          <span className={`w-full font-bold text-sm text-primary-accent-dark`}>
             {data.readingTime} read
           </span>
         </div>

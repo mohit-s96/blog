@@ -37,7 +37,11 @@ const Index = ({ posts }: Props) => {
           return (
             <div className="w-10/12 w-95-res mx-auto">
               {searchVisible ? (
-                <SearchBlogs theme={theme} visible={searchVisible} />
+                <SearchBlogs
+                  theme={theme}
+                  visible={searchVisible}
+                  setVisible={setSearchVisible}
+                />
               ) : null}
               <TagSelector tags={testTags} theme={theme} variant="md" />
               <Cards data={posts} theme={theme} />
