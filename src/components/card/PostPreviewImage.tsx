@@ -10,7 +10,7 @@ interface Props {
 
 function PostPreviewImage({ type, images }: Props): ReactElement {
   return (
-    <div className={`${type === "horiz" ? "w-card-lg-vert" : "w-full h-3/6"}`}>
+    <div className={`${type === "horiz" ? "w-card-lg-vert" : "w-full"}`}>
       <ResImage
         className={`w-full ${
           type === "horiz"
