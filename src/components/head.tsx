@@ -11,7 +11,7 @@ interface Props {
 function CustomHead({ uri, description, image, title }: Props): ReactElement {
   return (
     <Head>
-      <title>Mohit's Blog</title>
+      <title>{title}</title>
       <link
         rel="apple-touch-icon"
         sizes="192x192"
