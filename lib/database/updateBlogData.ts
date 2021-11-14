@@ -44,3 +44,29 @@ export function addComment() {
     }
   });
 }
+
+export function updateBlog(editData: Partial<BlogSlug>) {
+  const json = editData;
+  return dbConnect(async (client) => {
+    try {
+      await client.connect();
+      const cursor = client
+        .db()
+        .collection(process.env.BLOG_COLLECTION as string);
+      await cursor.updateOne(
+        { _id: json._id },
+        {
+          $set: {
+            ...json,
+          },
+        }
+      );
+      return "success";
+    } catch (error) {
+      console.log(error);
+      return Promise.reject("Server error");
+    } finally {
+      await client.close();
+    }
+  });
+}
