@@ -82,10 +82,16 @@ body::-webkit-scrollbar-thumb {
 .svg-container path {
   fill: transparent;
   stroke-width: 2;
-  stroke: gray;
+  stroke: #d3d3d3;
   stroke-dasharray: 250;
   stroke-dashoffset: 0;
   transition: transform 0.3s linear;
+}
+.svg-container-blue path {
+  stroke-dasharray: 250;
+  stroke-dashoffset: 0;
+
+  stroke: #d3d3d3;
 }
 .svg-container:hover > path {
   stroke: crimson;
@@ -143,7 +149,7 @@ body::-webkit-scrollbar-thumb {
   transform: scale(1.2);
 }
 .svg-container-green:hover > path {
-  stroke: rgb(6, 105, 122);
+  stroke: #6a279f;
   animation: animate-svg-green 0.3s linear forwards;
 }
 
@@ -161,7 +167,7 @@ body::-webkit-scrollbar-thumb {
   }
   100% {
     stroke-dashoffset: 500;
-    fill: rgb(6, 105, 122);
+    fill: #6a279f;
   }
 }
 
