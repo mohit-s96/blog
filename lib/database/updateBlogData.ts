@@ -47,6 +47,8 @@ export function addComment() {
 
 export function updateBlog(editData: Partial<BlogSlug>) {
   const json = editData;
+  const blogId = new ObjectId(json._id);
+  delete json._id;
   return dbConnect(async (client) => {
     try {
       await client.connect();
@@ -54,7 +56,7 @@ export function updateBlog(editData: Partial<BlogSlug>) {
         .db()
         .collection(process.env.BLOG_COLLECTION as string);
       await cursor.updateOne(
-        { _id: json._id },
+        { _id: blogId },
         {
           $set: {
             ...json,
