@@ -38,6 +38,7 @@ export interface BlogSlug {
   viewCount: number;
   slugType: SlugType;
   readingTime: string;
+  lastEdited: number | null;
 }
 
 export type RelatedBlogsType = Array<
