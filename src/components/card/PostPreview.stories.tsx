@@ -1,7 +1,6 @@
 import React from "react";
 import PostPreview, { CardProps } from "./PostPreview";
 import { Story, Meta } from "@storybook/react";
-import uri from "../../../public/assets/blog/278-400x400.jpg";
 
 export default {
   title: "PostPreview",
@@ -14,6 +13,7 @@ export const Small = Template.bind({});
 
 Small.args = {
   blog: {
+    lastEdited: null,
     readingTime: "5",
     author: "msx47",
     commentCount: 14,

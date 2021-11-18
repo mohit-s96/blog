@@ -15,6 +15,7 @@ const testData: CardArrayProps = {
   theme: "dark",
   data: [
     {
+      lastEdited: null,
       author: "msx47",
       readingTime: "5",
       commentCount: 14,
