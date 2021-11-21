@@ -1,16 +1,32 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
-import { Close, Search } from "../svg/collection.svg";
+import { Close } from "../svg/collection.svg";
 import SearchResults from "./searchResults";
-import useGlobalKeyBind from "../../hooks/useGlobalKeyBind";
-import { BindOptions } from "../../../types/keyTypes";
 import useAnimateOnMount from "../../hooks/useAnimateOnMount";
+import { BlogSlug } from "../../../types/blogtypes";
+import { useFetch } from "../../hooks/useFetch";
 
 interface Props {
   theme: ThemeType;
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+async function fetcher(uri: string, body?: string) {
+  const json = await fetch(uri + `/${body}`, {
+    credentials: "include",
+    method: "POST",
+  });
+  let data;
+
+  if (json.ok) {
+    data = await json.json();
+  } else {
+    throw new Error("internal server error");
+  }
+
+  return data as [Partial<BlogSlug>];
 }
 
 function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
@@ -19,6 +35,13 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
   const inpRef = useRef(null);
 
   const searchRef = useRef(null);
+
+  const { fetchResource, data, error, loading } = useFetch(
+    "/api/search",
+    fetcher,
+    true,
+    86400
+  );
 
   useAnimateOnMount(searchRef, "scale-norm opacity-norm", { value }); //scale-norm is a css class i made to scale to 1 and made it important because tailwinf scale-100 wan't working go figure
 
@@ -34,6 +57,9 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
   useEffect(() => {
     if (value) {
       ((searchRef.current as unknown) as HTMLDivElement).classList.add("h-400");
+      if (value.length > 3) {
+        fetchResource(value);
+      }
     } else {
       ((searchRef.current as unknown) as HTMLDivElement).classList.remove(
         "h-400"
@@ -74,8 +100,12 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
             </button>
           </div>
         </div>
-        {value ? <div className="top-loader-line"></div> : null}
-        {value ? <SearchResults theme={theme} /> : null}
+        {loading ? <div className="top-loader-line"></div> : null}
+        {data?.length && value.length > 3
+          ? data.map((res) => (
+              <SearchResults data={res} key={(res._id as any) as string} />
+            ))
+          : null}
       </div>
     </div>
   );
