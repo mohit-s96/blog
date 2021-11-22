@@ -3,10 +3,20 @@ import { fetchSearchQuery } from "../../../../lib/database/getBlogs";
 import { useCors } from "../../../../lib/middleware/corsMW";
 import { createClient } from "redis";
 import { transformRedisKey } from "../../../../util/misc";
+import { useLimit } from "../../../../lib/middleware/limitMW";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await useCors(req, res);
+
+    const forwarded = req.headers["x-forwarded-for"];
+    const ip = forwarded
+      ? (forwarded as string).split(/, /)[0]
+      : req.connection.remoteAddress;
+    //@ts-ignore
+    req.ip = ip;
+
+    await useLimit(req, res);
 
     const client = createClient({
       url: process.env.REDIS_ENDPOINT_URI as string,
