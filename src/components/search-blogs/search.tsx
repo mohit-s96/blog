@@ -57,8 +57,8 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
   useEffect(() => {
     if (value) {
       ((searchRef.current as unknown) as HTMLDivElement).classList.add("h-400");
-      if (value.length > 3) {
-        fetchResource(value);
+      if (value.trim().length > 3) {
+        fetchResource(value.trim());
       }
     } else {
       ((searchRef.current as unknown) as HTMLDivElement).classList.remove(
@@ -103,7 +103,11 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
         {loading ? <div className="top-loader-line"></div> : null}
         {data?.length && value.length > 3
           ? data.map((res) => (
-              <SearchResults data={res} key={(res._id as any) as string} />
+              <SearchResults
+                data={res}
+                key={(res._id as any) as string}
+                setVisible={setVisible}
+              />
             ))
           : null}
       </div>
