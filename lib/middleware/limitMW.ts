@@ -1,22 +1,32 @@
-import Cors, { CorsOptions } from "cors";
-import { NextApiRequest, NextApiResponse } from "next";
-import initMiddleware from "./middleware";
-import rateLimit from "express-rate-limit";
+import { NextApiResponse } from "next";
+import LRU from "lru-cache";
 
-export function useLimit(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  options?: CorsOptions
-): Promise<any> {
-  //@ts-ignore
-  console.log(req.ip);
-
-  const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // limit each IP to 100 requests per windowMs
+const rateLimit = (options: any) => {
+  const tokenCache = new LRU({
+    max: parseInt(options.uniqueTokenPerInterval || 500, 10),
+    maxAge: parseInt(options.interval || 60000, 10),
   });
 
-  const limit = initMiddleware(limiter);
+  return {
+    check: (res: NextApiResponse, limit: any, token: any) =>
+      new Promise<void>((resolve, reject) => {
+        const tokenCount = tokenCache.get(token) || [0];
+        if ((tokenCount as any)[0] === 0) {
+          tokenCache.set(token, tokenCount);
+        }
+        (tokenCount as any)[0] += 1;
 
-  return limit(req, res);
-}
+        const currentUsage = (tokenCount as any)[0];
+        const isRateLimited = currentUsage >= parseInt(limit, 10);
+        res.setHeader("X-RateLimit-Limit", limit);
+        res.setHeader(
+          "X-RateLimit-Remaining",
+          isRateLimited ? 0 : limit - currentUsage
+        );
+
+        return isRateLimited ? reject("limit reached") : resolve();
+      }),
+  };
+};
+
+export default rateLimit;
