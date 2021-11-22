@@ -52,6 +52,7 @@ export function useFetch<F extends Fetch>(
   const [loading, setLoading] = useState(false);
 
   const executeFetch = useCallback((body?: string) => {
+    setData(undefined);
     const url = baseURL + path;
     setLoading(true);
     fetcher(url, body)
