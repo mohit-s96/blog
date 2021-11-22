@@ -2,7 +2,11 @@ import { useCallback } from "react";
 import { useEffect, useState, useRef } from "react";
 import { getUri } from "../../util/misc";
 
-type Fetch = (uri: string, body?: string) => Promise<any>;
+type Fetch = (
+  uri: string,
+  body?: string,
+  abort?: AbortController
+) => Promise<any>;
 type Await<T> = T extends {
   then(onfulfilled?: (value: infer U) => unknown): unknown;
 }
@@ -17,7 +21,7 @@ function cacheToLocalStorage(path: string, data: any, params?: string) {
     data,
     timestamp: Date.now(),
   };
-  localStorage.setItem(path + `/${params}`, JSON.stringify(withTimestamp));
+  localStorage.setItem(path + params, JSON.stringify(withTimestamp));
 }
 
 /**
@@ -51,11 +55,14 @@ export function useFetch<F extends Fetch>(
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const currentAbortRef = useRef<AbortController | null>(null);
+
   const executeFetch = useCallback((body?: string) => {
+    currentAbortRef.current = new AbortController();
     setData(undefined);
     const url = baseURL + path;
     setLoading(true);
-    fetcher(url, body)
+    fetcher(url, body, currentAbortRef.current)
       .then((res) => {
         if (isMounted.current) {
           setLoading(false);
@@ -65,6 +72,7 @@ export function useFetch<F extends Fetch>(
         cacheToLocalStorage(path, res, body);
       })
       .catch(() => {
+        console.log("aborted req for ", url);
         if (isMounted.current) {
           setLoading(false);
           setError(true);
@@ -80,7 +88,7 @@ export function useFetch<F extends Fetch>(
       try {
         setLoading(true);
 
-        const staleData = localStorage.getItem(path + `/${body}`);
+        const staleData = localStorage.getItem(path + body);
 
         if (!staleData) {
           executeFetch(body);
@@ -123,5 +131,6 @@ export function useFetch<F extends Fetch>(
     data,
     error,
     loading,
+    currentAbortRef,
   };
 }

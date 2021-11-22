@@ -13,16 +13,19 @@ interface Props {
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-async function fetcher(uri: string, body?: string) {
-  const json = await fetch(uri + `/${body}`, {
-    credentials: "include",
-    method: "POST",
-  });
+async function fetcher(uri: string, body?: string, abort?: AbortController) {
   let data;
+  try {
+    const json = await fetch(uri + body, {
+      credentials: "include",
+      method: "POST",
+      signal: abort?.signal,
+    });
 
-  if (json.ok) {
-    data = await json.json();
-  } else {
+    if (json.ok) {
+      data = await json.json();
+    }
+  } catch (error) {
     throw new Error("internal server error");
   }
 
@@ -36,7 +39,7 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
 
   const searchRef = useRef(null);
 
-  const { fetchResource, data, error, loading } = useFetch(
+  const { fetchResource, data, error, loading, currentAbortRef } = useFetch(
     "/api/search",
     fetcher,
     true,
@@ -58,7 +61,10 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
     if (value) {
       ((searchRef.current as unknown) as HTMLDivElement).classList.add("h-400");
       if (value.trim().length > 3) {
-        fetchResource(value.trim());
+        if (currentAbortRef.current) {
+          currentAbortRef.current.abort();
+        }
+        fetchResource(`?query=${value.trim()}`);
       }
     } else {
       ((searchRef.current as unknown) as HTMLDivElement).classList.remove(
