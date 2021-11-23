@@ -72,7 +72,6 @@ export function useFetch<F extends Fetch>(
         cacheToLocalStorage(path, res, body);
       })
       .catch(() => {
-        console.log("aborted req for ", url);
         if (isMounted.current) {
           setLoading(false);
           setError(true);
