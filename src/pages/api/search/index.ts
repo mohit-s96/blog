@@ -11,17 +11,16 @@ const limiter = rateLimit({
 });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const client = createClient({
+    url: process.env.REDIS_ENDPOINT_URI as string,
+    password: process.env.REDIS_PASSWORD,
+  });
+
+  await client.connect();
   try {
     await useCors(req, res);
 
     await limiter.check(res, 60, "CACHE_TOKEN"); // 60 requests per minute
-
-    const client = createClient({
-      url: process.env.REDIS_ENDPOINT_URI as string,
-      password: process.env.REDIS_PASSWORD,
-    });
-
-    await client.connect();
 
     const key = req.query.query as string;
 
@@ -34,11 +33,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         345600, // 4 days
         JSON.stringify(response)
       );
-      await client.quit();
       res.status(200).json(response);
     } else {
-      await client.quit();
-
       res.status(200).json(cached);
     }
   } catch (err) {
@@ -55,6 +51,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     res.status(code).json({ statusCode: code, message });
+  } finally {
+    await client.quit();
   }
 };
 
