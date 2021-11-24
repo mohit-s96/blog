@@ -98,6 +98,10 @@ body::-webkit-scrollbar-thumb {
   animation: animate-svg 0.3s linear forwards;
 }
 
+.like-click-anim {
+  animation: scale-up-down 0.4s linear forwards;
+}
+
 .svg-container:hover {
   transform: scale(1.2);
 }
@@ -117,6 +121,22 @@ body::-webkit-scrollbar-thumb {
   100% {
     stroke-dashoffset: 500;
     fill: crimson;
+  }
+}
+svg.blog-liked path {
+  stroke: crimson !important;
+  stroke-dashoffset: 500 !important;
+  fill: crimson !important;
+}
+@keyframes scale-up-down {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.8);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
