@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
-import { RelatedBlogsType } from "../../../types/blogtypes";
+import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
 import { ThemeType } from "../../../types/globalTypes";
 
 interface Props {
   theme: ThemeType;
-  list: RelatedBlogsType;
+  list: Partial<BlogSlug>[];
 }
 
 function ReadingList({ theme, list }: Props): ReactElement {
@@ -24,7 +24,7 @@ function ReadingList({ theme, list }: Props): ReactElement {
             {blog.title}
           </p>
           <div className="flex mt-2">
-            {blog.tags.map((tag) => (
+            {(blog as BlogSlug).tags.map((tag) => (
               <span
                 key={tag}
                 className="mx-1 text-sm bg-gray-600 text-white cursor-pointer"

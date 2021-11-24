@@ -140,6 +140,8 @@ export const SunIcon = ({ className, color }: Props) => (
 type Props = {
   color?: string;
   className?: string;
+  fill?: string;
+  sdoffset?: number;
 };
 export const EyeIcon = ({ color }: Props) => {
   return (
@@ -158,19 +160,20 @@ export const EyeIcon = ({ color }: Props) => {
     </svg>
   );
 };
-export const HeartIcon = ({ color }: Props) => {
+export const HeartIcon = ({ color, fill, sdoffset }: Props) => {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       className="svg-container"
     >
       <path
         d="M20.16 5C19.1 3.93721 17.6948 3.28854 16.1983 3.17117C14.7019 3.0538 13.2128 3.47546 12 4.36C10.7277 3.41364 9.14399 2.98451 7.56792 3.15903C5.99185 3.33356 4.54044 4.09878 3.50597 5.30058C2.47151 6.50239 1.93082 8.05152 1.9928 9.63601C2.05478 11.2205 2.71482 12.7227 3.84 13.84L10.05 20.06C10.57 20.5718 11.2704 20.8586 12 20.8586C12.7296 20.8586 13.43 20.5718 13.95 20.06L20.16 13.84C21.3276 12.6653 21.9829 11.0763 21.9829 9.42C21.9829 7.76372 21.3276 6.17473 20.16 5Z"
         fill={color}
+        strokeDashoffset={sdoffset}
       />
     </svg>
   );

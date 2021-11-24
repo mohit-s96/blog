@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
-import { RelatedBlogsType } from "../../../types/blogtypes";
+import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
 import { ThemeType } from "../../../types/globalTypes";
 import ReadingList from "./readingList";
 
 interface Props {
-  list: RelatedBlogsType;
+  list: Partial<BlogSlug>[];
   theme: ThemeType;
 }
 
