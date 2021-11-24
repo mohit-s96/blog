@@ -72,3 +72,27 @@ export function updateBlog(editData: Partial<BlogSlug>) {
     }
   });
 }
+export function updateLikes(count: number, uri: string) {
+  return dbConnect(async (client) => {
+    try {
+      await client.connect();
+      const cursor = client
+        .db()
+        .collection(process.env.BLOG_COLLECTION as string);
+      await cursor.updateOne(
+        { uri },
+        {
+          $set: {
+            likes: count + 1,
+          },
+        }
+      );
+      return "success";
+    } catch (error) {
+      console.log(error);
+      return Promise.reject("Server error");
+    } finally {
+      await client.close();
+    }
+  });
+}
