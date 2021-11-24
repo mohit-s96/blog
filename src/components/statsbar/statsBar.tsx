@@ -3,6 +3,7 @@ import { BlogSlug } from "../../../types/blogtypes";
 import { ThemeType } from "../../../types/globalTypes";
 import { getUri } from "../../../util/misc";
 import StatsIcon from "./statsIcon";
+import { useRouter } from "next/router";
 
 interface Props {
   stats: Pick<
@@ -14,6 +15,7 @@ interface Props {
 
 function StatsBar({ stats, theme }: Props): ReactElement {
   const [state, setState] = useState({ views: 0, likes: 0, commentCount: 0 });
+  const router = useRouter();
 
   useEffect(() => {
     let promises: Array<Promise<any>> = [];
@@ -44,7 +46,7 @@ function StatsBar({ stats, theme }: Props): ReactElement {
           views: res[0].pageViews,
         });
       });
-  }, []);
+  }, [router]);
 
   return (
     <aside

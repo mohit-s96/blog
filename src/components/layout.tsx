@@ -8,8 +8,6 @@ import {
 import { ThemeType } from "../../types/globalTypes";
 import { useTheme } from "next-themes";
 import Navbar from "./nav/Navbar";
-import Prism from "prismjs";
-import "prismjs/components/prism-bash";
 import useGlobalKeyBind from "../hooks/useGlobalKeyBind";
 import { BindOptions } from "../../types/keyTypes";
 
@@ -25,11 +23,7 @@ type Props = {
 const Layout = ({ render }: Props) => {
   const { theme, setTheme } = useTheme();
   const [searchVisible, setSearchVisible] = useState(false);
-  useEffect(() => {
-    //@ts-ignore
-    Prism.manual = true;
-    Prism.highlightAll();
-  }, []);
+
   const options: BindOptions = {
     options: [
       {

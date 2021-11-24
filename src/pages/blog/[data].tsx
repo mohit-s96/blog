@@ -10,6 +10,10 @@ import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
 import StatsBar from "../../components/statsbar/statsBar";
+import Prism from "prismjs";
+import "prismjs/components/prism-bash";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 type Props = {
   data: BlogSlug;
@@ -39,6 +43,15 @@ const Post = ({
   data,
   relatedBlogs,
 }: Props) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof Prism !== undefined) {
+      //@ts-ignore
+      Prism.manual = true;
+      Prism.highlightAll();
+    }
+  }, [router]);
   return (
     <>
       <CustomHead

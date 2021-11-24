@@ -14,6 +14,7 @@ import {
   ReportIcon,
   TwitterIcon,
 } from "../svg/collection.svg";
+import { useRouter } from "next/router";
 
 interface Props {
   stats: Pick<BlogSlug, "uri" | "title">;
@@ -45,6 +46,7 @@ function StatsIcon({
   const showMoreOptions = () => {
     setShow(!show);
   };
+  const router = useRouter();
 
   const copyLink = () => {
     window.navigator.clipboard.writeText(
@@ -59,8 +61,10 @@ function StatsIcon({
     if (data.indexOf(stats.uri) > -1) {
       setLiked(true);
       likeRef.current?.firstElementChild?.classList.add("blog-liked");
+    } else {
+      likeRef.current?.firstElementChild?.classList.remove("blog-liked");
     }
-  }, []);
+  }, [router]);
 
   const handleLikeClick = () => {
     if (!liked) {
