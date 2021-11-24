@@ -1,6 +1,7 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef, useState, useEffect } from "react";
 import { BlogSlug } from "../../../types/blogtypes";
 import { ThemeType } from "../../../types/globalTypes";
+import { debounce, getUri } from "../../../util/misc";
 import DropDown from "../dropdown/dropdown";
 import {
   CommentIcon,
@@ -15,16 +16,32 @@ import {
 } from "../svg/collection.svg";
 
 interface Props {
-  stats: Pick<
-    BlogSlug,
-    "commentCount" | "likes" | "viewCount" | "uri" | "title"
-  >;
+  stats: Pick<BlogSlug, "uri" | "title">;
+  views: number;
+  likes: number;
+  commentCount: number;
   theme: ThemeType;
+  setStats: React.Dispatch<
+    React.SetStateAction<{
+      views: number;
+      likes: number;
+      commentCount: number;
+    }>
+  >;
 }
 
-function StatsIcon({ stats, theme }: Props): ReactElement {
+function StatsIcon({
+  stats,
+  theme,
+  views,
+  likes,
+  commentCount,
+  setStats,
+}: Props): ReactElement {
   const [show, setShow] = useState(false);
+  const [liked, setLiked] = useState(false);
   const focusRef = useRef<HTMLButtonElement>(null);
+  const likeRef = useRef<HTMLSpanElement>(null);
   const showMoreOptions = () => {
     setShow(!show);
   };
@@ -33,6 +50,57 @@ function StatsIcon({ stats, theme }: Props): ReactElement {
     window.navigator.clipboard.writeText(
       "https://mohits.dev/blog/" + stats.uri
     );
+  };
+
+  useEffect(() => {
+    const data = JSON.parse(
+      localStorage.getItem("likes") || "[]"
+    ) as Array<string>;
+    if (data.indexOf(stats.uri) > -1) {
+      setLiked(true);
+      likeRef.current?.firstElementChild?.classList.add("blog-liked");
+    }
+  }, []);
+
+  const handleLikeClick = () => {
+    if (!liked) {
+      setLiked(true);
+      likeRef.current?.firstElementChild?.classList.add("blog-liked");
+      let items = localStorage.getItem("likes") as string | null;
+      let likedBlogs = items ? (JSON.parse(items) as Array<string>) : [];
+
+      likedBlogs.push(stats.uri);
+
+      localStorage.setItem("likes", JSON.stringify(likedBlogs));
+    }
+
+    fetch(`${getUri()}/api/likes`, {
+      credentials: "include",
+      method: "POST",
+      body: JSON.stringify({ uri: `/${stats.uri}` }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setStats((prev) => ({
+            ...prev,
+            likes: prev.likes + 1,
+          }));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setTimeout(() => {
+      likeRef.current?.classList.add("like-click-anim");
+      setTimeout(() => {
+        likeRef.current?.classList.remove("like-click-anim");
+      }, 400);
+    }, 10);
   };
 
   return (
@@ -114,21 +182,23 @@ function StatsIcon({ stats, theme }: Props): ReactElement {
         </div>
       }
       <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
-        <HeartIcon color="gray" />
+        <span onClick={debounce(handleLikeClick, 500, false)} ref={likeRef}>
+          <HeartIcon color="gray" />
+        </span>
         <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.likes} likes
+          {likes} likes
         </span>
       </button>
       <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
         <CommentIcon color="gray" />
         <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.commentCount} comments
+          {commentCount} comments
         </span>
       </button>
       <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
         <EyeIcon color="gray" />
         <span className="font-bold p-2 text-gray-500 text-sm">
-          {stats.viewCount} views
+          {views} views
         </span>
       </button>
     </>
