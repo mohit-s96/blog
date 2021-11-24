@@ -1,4 +1,8 @@
-import { fetchPathData, fetchSingleBlog } from "../../../lib/database/getBlogs";
+import {
+  fetchPathData,
+  fetchSearchQuery,
+  fetchSingleBlog,
+} from "../../../lib/database/getBlogs";
 import SearchBlogs from "../../components/search-blogs/search";
 import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
 import CustomHead from "../../components/head";
@@ -9,34 +13,8 @@ import StatsBar from "../../components/statsbar/statsBar";
 
 type Props = {
   data: BlogSlug;
+  relatedBlogs: Partial<BlogSlug>[];
 };
-
-const dummyRelatedBlogsData: RelatedBlogsType = [
-  {
-    tags: ["react", "typescript", "nextjs"],
-    title: "react next js setup with typescript",
-    uri: "react_typescript_next",
-    _id: "ek bfwe bfelfnwen" as any,
-  },
-  {
-    tags: ["typescript", "compiler", "languages"],
-    title: "simple compiler in typescript",
-    uri: "typescript_compiler",
-    _id: "Vsdvsvsfelfnwen" as any,
-  },
-  {
-    tags: ["nodejs", "authentication", "express"],
-    title: "set up express authentication middleware in nextjs",
-    uri: "node_express_auth",
-    _id: "ek bfwe bfelfnwen dcewf" as any,
-  },
-  {
-    tags: ["sharp", "images", "javascript"],
-    title: "image processing pipeline with sharp",
-    uri: "havascrripr_sharp_images",
-    _id: "cbpegjmwe; v vw;ene" as any,
-  },
-];
 
 const Post = ({
   data: {
@@ -59,6 +37,7 @@ const Post = ({
     rawBody,
   },
   data,
+  relatedBlogs,
 }: Props) => {
   return (
     <>
@@ -86,7 +65,7 @@ const Post = ({
                 theme={theme}
               />
               <MainBlog theme={theme} data={data} />
-              <RelatedBlogs theme={theme} list={dummyRelatedBlogsData} />
+              <RelatedBlogs theme={theme} list={relatedBlogs} />
             </main>
           );
         }}
@@ -105,9 +84,21 @@ type Params = {
 
 export async function getStaticProps(path: Params) {
   const data = await fetchSingleBlog(path.params.data);
+  const relatedSearchQuery = data.tags.join(" ");
+  let relatedBlogs = await fetchSearchQuery(relatedSearchQuery);
+  relatedBlogs.forEach((blog) => {
+    blog._id = blog._id?.toHexString() as any;
+  });
+
   data._id = data._id?.toHexString() as any;
+
+  relatedBlogs = relatedBlogs.filter((blog) => blog._id !== data._id);
+  const props = {
+    data,
+    relatedBlogs,
+  };
   return {
-    props: { data: data },
+    props,
   };
 }
 
