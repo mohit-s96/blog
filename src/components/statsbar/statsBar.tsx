@@ -21,7 +21,7 @@ function StatsBar({ stats, theme }: Props): ReactElement {
     let promises: Array<Promise<any>> = [];
     const queryParams = `?slug=/blog/${stats.uri}`;
     promises.push(
-      fetch(`${getUri()}/api/analytics${queryParams}`, {
+      fetch(`${getUri()}/api/stats${queryParams}`, {
         credentials: "include",
         method: "POST",
       })
