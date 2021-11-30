@@ -3,7 +3,7 @@ import { createClient } from "redis";
 import { updateLikes } from "../../../../lib/database/updateBlogData";
 import { useCors } from "../../../../lib/middleware/corsMW";
 import rateLimit from "../../../../lib/middleware/limitMW";
-import { transformRedisKey } from "../../../../util/misc";
+import { RedisClientType, transformRedisKey } from "../../../../util/misc";
 
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
@@ -11,23 +11,30 @@ const limiter = rateLimit({
 });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const client = createClient({
-    url: process.env.REDIS_ENDPOINT_URI as string,
-    password: process.env.REDIS_PASSWORD,
-  });
+  let client: RedisClientType;
+  try {
+    client = createClient({
+      url: process.env.REDIS_ENDPOINT_URI as string,
+      password: process.env.REDIS_PASSWORD,
+    });
 
-  await client.connect();
+    await client.connect();
+  } catch (error: any) {
+    return res.status(400).json({ error: "internal server error" });
+  }
   try {
     await useCors(req, res);
 
     if (req.method === "post" || req.method === "POST") {
       await limiter.check(res, 5, "CACHE_TOKEN"); // 5 likes per minute
 
-      const uri = req.body.uri as string;
+      let uri = req.body.uri as string;
 
       if (!uri) {
         throw Error("invalid request");
       }
+
+      uri = uri.replace("/", ""); // trim the /
 
       let cachedLikes = (await client.get(
         transformRedisKey("likes-" + uri)
@@ -37,20 +44,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const response = await updateLikes(cachedLikes, uri);
 
-      await client.setEx(
+      await client.set(
         transformRedisKey("likes-" + uri),
-        345600,
         "" + (cachedLikes + 1)
       );
 
       res.status(200).json({ message: response });
     } else if (req.method === "GET" || req.method === "get") {
-      const uri = req.query.uri as string;
+      await limiter.check(res, 60, "CACHE_TOKEN"); // 5 likes per minute
+      let uri = req.query.uri as string;
+      uri = uri.replace("/", ""); // trim the /
 
       let cachedLikes = (await client.get(
         transformRedisKey("likes-" + uri)
       )) as number | string;
 
+      console.log(cachedLikes);
       cachedLikes = cachedLikes ? +cachedLikes : 0;
 
       res.status(200).json({ likes: cachedLikes });
