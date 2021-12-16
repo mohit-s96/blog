@@ -13,6 +13,7 @@ export const Small = Template.bind({});
 
 Small.args = {
   blog: {
+    isArchived: false,
     lastEdited: null,
     readingTime: "5",
     author: "msx47",

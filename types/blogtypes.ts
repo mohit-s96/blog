@@ -39,6 +39,7 @@ export interface BlogSlug {
   slugType: SlugType;
   readingTime: string;
   lastEdited: number | null;
+  isArchived: boolean;
 }
 
 export type RelatedBlogsType = Array<

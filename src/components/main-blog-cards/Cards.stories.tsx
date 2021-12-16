@@ -16,6 +16,7 @@ const testData: CardArrayProps = {
   data: [
     {
       lastEdited: null,
+      isArchived: false,
       author: "msx47",
       readingTime: "5",
       commentCount: 14,
