@@ -9,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await useAuth(req, res);
 
-    const data = await fetchBlogList();
+    const data = await fetchBlogList(true);
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ statusCode: 500, message: (err as any).message });
