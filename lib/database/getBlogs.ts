@@ -75,7 +75,7 @@ export function fetchPathData() {
       const cursors = client
         .db()
         .collection(process.env.BLOG_COLLECTION as string)
-        .find({}, { projection: { uri: 1, _id: 0 } });
+        .find({ isArchived: false }, { projection: { uri: 1, _id: 0 } });
       const paths = ((await cursors.toArray()) as unknown) as Array<{
         uri: string;
       }>;
@@ -90,14 +90,15 @@ export function fetchPathData() {
     }
   });
 }
-export function fetchBlogList() {
+export function fetchBlogList(admin?: boolean) {
+  const find = admin ? {} : { isArchived: false };
   return dbConnect<[BlogListType]>(async (client) => {
     try {
       await client.connect();
       const cursors = client
         .db()
         .collection(process.env.BLOG_COLLECTION as string)
-        .find({}, { projection: { blogData: 0, metadata: 0 } });
+        .find({ ...find }, { projection: { blogData: 0, metadata: 0 } });
       const blogs = (await cursors.toArray()) as [BlogListType];
       return blogs;
     } catch (e) {
@@ -119,7 +120,7 @@ export function fetchSearchQuery(key: string) {
         .db()
         .collection(process.env.BLOG_COLLECTION as string)
         .find(
-          { $text: { $search: key } },
+          { isArchived: false, $text: { $search: key } },
           { projection: { title: 1, uri: 1, tags: 1, createdAt: 1 } }
         );
       const blogs = (await cursors.toArray()) as Array<Partial<BlogSlug>>;
