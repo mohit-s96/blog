@@ -35,7 +35,7 @@ function SearchResults({ data, setVisible }: Props): ReactElement {
             children={`#${tag}`}
             accent
             variant="sm"
-            className="mr-2 font-bold p-4 padding-0-res"
+            className="mr-2 font-bold p-2 padding-0-res rounded-none"
           />
         ))}
       </div>

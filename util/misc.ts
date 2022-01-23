@@ -5,10 +5,16 @@ export type RedisClientType = typeof redis.createClient extends () => infer Resu
   : never;
 
 export function transformRedisKey(key: string) {
+  console.log("got here with", key);
+
+  debugger;
   return key.split(" ").join("-");
 }
 
-export function getUri(): string {
+export function getUri(option?: string): string {
+  if (option === "query") {
+    return "http://localhost:5001";
+  }
   let uri: string;
   if (process.env.NODE_ENV === "development") uri = "http://localhost:5000";
   else uri = "https://mohits.dev";

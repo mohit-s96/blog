@@ -13,7 +13,7 @@ type Await<T> = T extends {
   ? U
   : T;
 
-const baseURL = getUri();
+const baseURL = getUri("query");
 
 function cacheToLocalStorage(path: string, data: any, params?: string) {
   params = params || "";
@@ -56,8 +56,10 @@ export function useFetch<F extends Fetch>(
   const [loading, setLoading] = useState(false);
 
   const currentAbortRef = useRef<AbortController | null>(null);
+  const lastAbortRef = useRef<AbortController | null>(null);
 
   const executeFetch = useCallback((body?: string) => {
+    lastAbortRef.current = currentAbortRef.current;
     currentAbortRef.current = new AbortController();
     setData(undefined);
     const url = baseURL + path;
@@ -68,12 +70,13 @@ export function useFetch<F extends Fetch>(
           setLoading(false);
           setData(res);
         }
-
-        cacheToLocalStorage(path, res, body);
+        if (cache) cacheToLocalStorage(path, res, body);
       })
       .catch(() => {
         if (isMounted.current) {
-          setLoading(false);
+          if (!lastAbortRef.current?.signal.aborted) {
+            setLoading(false);
+          }
           setError(true);
         }
       });

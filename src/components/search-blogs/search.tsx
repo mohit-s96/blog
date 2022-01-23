@@ -17,8 +17,7 @@ async function fetcher(uri: string, body?: string, abort?: AbortController) {
   let data;
   try {
     const json = await fetch(uri + body, {
-      credentials: "include",
-      method: "POST",
+      method: "GET",
       signal: abort?.signal,
     });
 
@@ -32,18 +31,16 @@ async function fetcher(uri: string, body?: string, abort?: AbortController) {
   return data as [Partial<BlogSlug>];
 }
 
-function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
+function SearchBlogs({ visible, setVisible }: Props): ReactElement {
   const [value, setValue] = useState("");
 
   const inpRef = useRef(null);
 
   const searchRef = useRef(null);
 
-  const { fetchResource, data, error, loading, currentAbortRef } = useFetch(
+  const { fetchResource, data, loading, currentAbortRef } = useFetch(
     "/api/search",
-    fetcher,
-    true,
-    86400
+    fetcher
   );
 
   useAnimateOnMount(searchRef, "scale-norm opacity-norm", { value }); //scale-norm is a css class i made to scale to 1 and made it important because tailwinf scale-100 wan't working go figure
@@ -60,7 +57,7 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
   useEffect(() => {
     if (value) {
       ((searchRef.current as unknown) as HTMLDivElement).classList.add("h-400");
-      if (value.trim().length > 3) {
+      if (value.trim().length > 1) {
         if (currentAbortRef.current) {
           currentAbortRef.current.abort();
         }
@@ -107,7 +104,7 @@ function SearchBlogs({ theme, visible, setVisible }: Props): ReactElement {
           </div>
         </div>
         {loading ? <div className="top-loader-line"></div> : null}
-        {data?.length && value.length > 3
+        {data?.length && value.length > 1
           ? data.map((res) => (
               <SearchResults
                 data={res}

@@ -1,6 +1,6 @@
 module.exports = {
   mode: "jit",
-  darkMode: 'class',
+  darkMode: "class",
   purge: {
     content: ["./src/**/*.tsx"],
   },
@@ -11,17 +11,17 @@ module.exports = {
         "primary-light": "#FFFFFF",
         "primary-text-light": "#000000",
         "secondary-text-light": "#6A6666",
-        "primary-accent-light": "#6A279F",
+        "primary-accent-light": "#4B96FF",
         "primary-bg-light": "#EBECF1",
         //dark theme
-        "primary-dark": "#1F2028",
+        "primary-dark": "#141621",
         "primary-text-dark": "#FFFFFF",
         "secondary-text-dark": "#FFFFFF",
-        "primary-accent-dark": "#6A279F",
-        "primary-bg-dark": "#1F2028",
+        "primary-accent-dark": "#4B96FF",
+        "primary-bg-dark": "#141621",
 
         //opacity low
-        "accent-low-opa": "rgba(106, 39, 159, 0.5)"
+        "accent-low-opa": "rgba(106, 39, 159, 0.5)",
       },
       borderRadius: {
         "brc-md": "20px",

@@ -12,7 +12,7 @@ interface Props {
 function PostTitle({ text, type, slug }: Props): ReactElement {
   return (
     <Link href={`/blog/${slug}`}>
-      <div
+      <a
         className={`p-2 ${
           type === "horiz"
             ? "w-8/12 text-4xl leading-"
@@ -20,7 +20,7 @@ function PostTitle({ text, type, slug }: Props): ReactElement {
         } text-purple-700 hover:underline transition-all duration-300`}
       >
         {text}
-      </div>
+      </a>
     </Link>
   );
 }
