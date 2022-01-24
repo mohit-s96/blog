@@ -8,6 +8,7 @@ import { BlogListType } from "../../types/blogtypes";
 import { fetchBlogList } from "../../lib/database/getBlogs";
 import { ThemeType } from "../../types/globalTypes";
 import CustomHead from "../components/head";
+import Heromain from "../components/hero/heromain";
 
 type Props = {
   posts: BlogListType[];
@@ -35,7 +36,7 @@ const Index = ({ posts }: Props) => {
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {
           return (
-            <div className="w-10/12 w-95-res mx-auto">
+            <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto">
               {searchVisible ? (
                 <SearchBlogs
                   theme={theme}
@@ -43,7 +44,8 @@ const Index = ({ posts }: Props) => {
                   setVisible={setSearchVisible}
                 />
               ) : null}
-              <TagSelector tags={testTags} theme={theme} variant="md" />
+              {/* <TagSelector tags={testTags} theme={theme} variant="md" /> */}
+              <Heromain />
               <Cards data={posts} theme={theme} />
               <div
                 style={{ width: "100%", height: "50vh", backgroundClip: "red" }}

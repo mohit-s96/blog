@@ -6,6 +6,7 @@ import PostTags from "./PostTags";
 import PostTitle from "./PostTitle";
 import Avatar from "../avatars/Avatar";
 import NavItem from "../nav/NavItem";
+import { PRIMARY_ACCENT_LIGHT } from "../../../constants";
 
 interface Props {
   theme: ThemeType;
@@ -40,7 +41,7 @@ function PostPreviewContent({
       <div className={`p-2 flex flex-col h-full justify-evenly`}>
         <div className="flex items-center p-1 justify-between">
           <Avatar alt="author avatar" size="md">
-            <MIcon color="rgb(106, 39, 159)" className="w-9 h-9" />
+            <MIcon color={PRIMARY_ACCENT_LIGHT} className="w-9 h-9" />
           </Avatar>
           <NavItem
             size="sm"

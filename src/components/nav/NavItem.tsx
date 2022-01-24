@@ -1,4 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
+import { PRIMARY_ACCENT_LIGHT } from "../../../constants";
 import { SizeVariantType, ThemeType } from "../../../types/globalTypes";
 import { SvgProps } from "../svg/collection.svg";
 
@@ -6,7 +7,7 @@ export interface Props {
   children: ReactNode;
   size: "xsm" | SizeVariantType;
   theme: ThemeType;
-  Icon?: ({ color, size }: SvgProps) => JSX.Element;
+  Icon?: (props: SvgProps) => JSX.Element;
   callback?: () => any;
   className?: string;
   wrapperClassname?: string;
@@ -17,7 +18,7 @@ function NavItem({
   children,
   size,
   theme,
-  wrapperClassname,
+  wrapperClassname = "",
   Icon,
   callback = () => {},
 }: Props): ReactElement {
@@ -29,9 +30,12 @@ function NavItem({
       onClick={() => callback()}
     >
       {Icon && (
-        <Icon color={theme === "dark" ? "#ffffff" : "#6A279F"} size={size} />
+        <Icon
+          color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}
+          size={size}
+        />
       )}
-      <span className={`${className}`}>{children}</span>
+      <button className={`${className}`}>{children}</button>
     </div>
   );
 }

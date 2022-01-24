@@ -6,11 +6,20 @@ import ResImage from "./resImages";
 interface Props {
   type: LayoutType;
   images: NewImageData;
+  wrapperClass?: string;
 }
 
-function PostPreviewImage({ type, images }: Props): ReactElement {
+function PostPreviewImage({
+  type,
+  images,
+  wrapperClass = "",
+}: Props): ReactElement {
   return (
-    <div className={`${type === "horiz" ? "w-card-lg-vert" : "w-full"}`}>
+    <div
+      className={`${
+        type === "horiz" ? "w-card-lg-vert" : "w-full"
+      } ${wrapperClass}`}
+    >
       <ResImage
         className={`w-full ${
           type === "horiz"

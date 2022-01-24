@@ -1,3 +1,17 @@
+const {
+  ACCENT_LOW_OPA,
+  PRIMARY_ACCENT_DARK,
+  PRIMARY_ACCENT_LIGHT,
+  PRIMARY_BG_DARK,
+  PRIMARY_BG_LIGHT,
+  PRIMARY_DARK,
+  PRIMARY_LIGHT,
+  PRIMARY_TEXT_DARK,
+  PRIMARY_TEXT_LIGHT,
+  SECONDARY_TEXT_DARK,
+  SECONDARY_TEXT_LIGHT,
+  LIGHT_GRAY,
+} = require("./constants");
 module.exports = {
   mode: "jit",
   darkMode: "class",
@@ -8,20 +22,22 @@ module.exports = {
     extend: {
       colors: {
         //light theme
-        "primary-light": "#FFFFFF",
-        "primary-text-light": "#000000",
-        "secondary-text-light": "#6A6666",
-        "primary-accent-light": "#4B96FF",
-        "primary-bg-light": "#EBECF1",
+        "primary-light": PRIMARY_LIGHT,
+        "primary-text-light": PRIMARY_TEXT_LIGHT,
+        "secondary-text-light": SECONDARY_TEXT_LIGHT,
+        "primary-accent-light": PRIMARY_ACCENT_LIGHT,
+        "primary-bg-light": PRIMARY_BG_LIGHT,
         //dark theme
-        "primary-dark": "#141621",
-        "primary-text-dark": "#FFFFFF",
-        "secondary-text-dark": "#FFFFFF",
-        "primary-accent-dark": "#4B96FF",
-        "primary-bg-dark": "#141621",
+        "primary-dark": PRIMARY_DARK,
+        "primary-text-dark": PRIMARY_TEXT_DARK,
+        "secondary-text-dark": SECONDARY_TEXT_DARK,
+        "primary-accent-dark": PRIMARY_ACCENT_DARK,
+        "primary-bg-dark": PRIMARY_BG_DARK,
+
+        "light-gray": LIGHT_GRAY,
 
         //opacity low
-        "accent-low-opa": "rgba(106, 39, 159, 0.5)",
+        "accent-low-opa": ACCENT_LOW_OPA,
       },
       borderRadius: {
         "brc-md": "20px",

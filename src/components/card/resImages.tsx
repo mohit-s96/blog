@@ -13,6 +13,7 @@ function ResImage({ uris, alt, className = "" }: Props): ReactElement {
       <source media="(min-width: 800px)" srcSet={uris[2].data?.Key} />
       <img
         src={uris[2].data?.Key}
+        title={alt}
         alt={alt}
         className={className}
         width="400"

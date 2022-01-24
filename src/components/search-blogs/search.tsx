@@ -73,16 +73,16 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
     <div className="absolute top-0 z-10 left-0 flex justify-between bg-[rgba(0,0,0,0.8)] w-full h-screen">
       <div
         ref={searchRef}
-        className={`w-3/6 mx-auto my-4 h-20 rounded-3xl ${
-          value ? "dark:bg-gray-700 bg-gray-100" : ""
+        className={`w-3/6 mx-auto my-4 h-20 ${
+          value ? "dark:bg-primary-bg-dark bg-gray-100" : ""
         } transition-all duration-300 flex flex-col w-full-sm scale-0 opacity-0 mt-[5%] shadow-2xl`}
       >
         <div
-          className={`flex items-center rounded-[42px] shadow-xl dark:bg-gray-700 bg-gray-100`}
+          className={`flex items-center shadow-xl dark:bg-primary-bg-dark bg-gray-100`}
         >
           <input
             ref={inpRef}
-            className={`rounded-l-full w-full py-4 px-6 res-inp-h text-2xl leading-tight focus:outline-none padding-sm dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-700`}
+            className={`w-full py-4 px-6 res-inp-h text-2xl leading-tight focus:outline-none padding-sm dark:bg-primary-bg-dark dark:text-white bg-gray-100 text-gray-700`}
             id="search"
             type="text"
             placeholder="search blogs"

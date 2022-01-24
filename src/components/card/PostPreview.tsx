@@ -17,7 +17,7 @@ function PostPreview({
   return (
     <>
       <div
-        className="flex relative my-8 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-2xl w-full-sm responsive-card flex-col mx-res"
+        className={`flex relative my-8 mx-3 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-2xl w-full-sm responsive-card flex-col mx-res`}
         style={{
           borderRadius: "1.5rem",
         }}
@@ -31,7 +31,7 @@ function PostPreview({
             excerpt={excerpt}
             tags={tags}
             slug={uri}
-            type="vert"
+            type={layoutType}
             theme={theme}
           />
         </>

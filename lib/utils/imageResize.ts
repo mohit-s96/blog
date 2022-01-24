@@ -21,11 +21,11 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       deviceWidths.forEach((width, i) => {
         const promise = pipeline
+          .webp({ quality: 100, lossless: true })
           .resize(width, get16_9Height(width), {
             fit: "cover",
             background: { r: 255, g: 255, b: 255, alpha: 0 },
           })
-          .webp()
           .toFile(path.join(os.tmpdir(), fileName + "-" + width + ".webp"));
         promises.push(promise);
       });

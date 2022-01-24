@@ -77,7 +77,7 @@ function useGlobalKeyBind({ options }: BindOptions) {
       window.removeEventListener("keydown", keydown);
       window.removeEventListener("keyup", keyup);
     };
-  }, []);
+  }, [options]);
 }
 
 export default useGlobalKeyBind;

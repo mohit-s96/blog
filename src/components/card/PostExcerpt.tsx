@@ -10,15 +10,16 @@ interface Props {
 function PostExcerpt({ text, theme, type }: Props): ReactElement {
   return (
     <div
-      className={`p-2 leading-7 ${
-        type === "horiz" ? "w-8/12" : "w-full"
-      } text-primary-text-light dark:text-gray-300`}
+      className={`px-2 leading-6 w-full md:w-8/12 text-gray-600 dark:text-gray-300 text-sm 2xl:text-[1em]`}
     >
-      {type === "horiz"
-        ? text
-        : text.length > 100
-        ? text.slice(0, 100).concat("...")
-        : text}
+      {
+        text.slice(0, 100).concat("...")
+        // type === "horiz"
+        //   ? text
+        //   : text.length > 100
+        //   ? text.slice(0, 100).concat("...")
+        //   : text
+      }
     </div>
   );
 }

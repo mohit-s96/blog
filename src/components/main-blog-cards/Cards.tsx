@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React, { ReactElement } from "react";
 import PostPreview, { CardProps } from "../card/PostPreview";
+import HorizCard from "./horiz-card";
 
 export interface CardArrayProps {
   theme: CardProps["theme"];
@@ -14,20 +15,23 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
         latest blogs
       </div>
       <div className={`flex flex-wrap flex-col-res`}>
-        {data.map((blog) => (
-          <PostPreview
-            key={blog.createdAt}
-            theme={theme}
-            layoutType="vert"
-            blog={{
-              ...blog,
-              createdAt: (format(
-                blog.createdAt,
-                "do MMM, yy"
-              ) as unknown) as number,
-            }}
-          />
-        ))}
+        {data
+          .sort((a, b) => a.createdAt - b.createdAt)
+          .reverse()
+          .map((blog) => (
+            <HorizCard
+              key={blog.createdAt}
+              theme={theme}
+              layoutType="horiz"
+              blog={{
+                ...blog,
+                createdAt: (format(
+                  blog.createdAt,
+                  "do MMM, yy"
+                ) as unknown) as number,
+              }}
+            />
+          ))}
       </div>
     </div>
   );
