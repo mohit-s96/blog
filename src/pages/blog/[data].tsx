@@ -63,8 +63,8 @@ const Post = ({
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {
           return (
-            <main
-              className={`grid grid-cols-12 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
+            <section
+              className={`flex justify-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
             >
               {searchVisible ? (
                 <SearchBlogs
@@ -73,13 +73,13 @@ const Post = ({
                   setVisible={setSearchVisible}
                 />
               ) : null}
-              <StatsBar
+              {/* <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}
                 theme={theme}
-              />
+              /> */}
               <MainBlog theme={theme} data={data} />
-              <RelatedBlogs theme={theme} list={relatedBlogs} />
-            </main>
+              {/* <RelatedBlogs theme={theme} list={relatedBlogs} /> */}
+            </section>
           );
         }}
       />

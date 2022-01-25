@@ -5,9 +5,6 @@ export type RedisClientType = typeof redis.createClient extends () => infer Resu
   : never;
 
 export function transformRedisKey(key: string) {
-  console.log("got here with", key);
-
-  debugger;
   return key.split(" ").join("-");
 }
 

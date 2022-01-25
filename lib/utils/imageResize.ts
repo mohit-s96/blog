@@ -12,6 +12,12 @@ const get16_9Height = (width: number) => {
 export async function resizeImages(image: Buffer, fileName: string) {
   return new Promise(async (resolve, reject) => {
     try {
+      // let sizeInKb = Buffer.byteLength(image) / 1024;
+
+      // let quality = sizeInKb > 1024 ? 40 : 80;
+
+      let quality = 100;
+
       const pipeline = sharp(image) as sharp.Sharp;
       const promises: Promise<any>[] = [];
 
@@ -19,9 +25,11 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       fileName = fileName.replace(/ /g, "");
 
-      deviceWidths.forEach((width, i) => {
+      // console.log(quality);
+
+      deviceWidths.forEach((width) => {
         const promise = pipeline
-          .webp({ quality: 100, lossless: true })
+          .webp({ quality })
           .resize(width, get16_9Height(width), {
             fit: "cover",
             background: { r: 255, g: 255, b: 255, alpha: 0 },

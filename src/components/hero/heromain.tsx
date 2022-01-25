@@ -6,15 +6,18 @@ function Heromain({}: Props) {
   const [catImage, setCatImage] = useState(() => "https://cataas.com/cat");
 
   useEffect(() => {
-    let id = setInterval(() => {
-      fetch("https://cataas.com/cat?type=sq").then(async (res) => {
-        const data = await res.blob();
-        const objectURL = URL.createObjectURL(data);
-        setCatImage(objectURL);
-      });
-    }, 15000);
+    let id: any;
+    if (window && window.innerWidth >= 768) {
+      id = setInterval(() => {
+        fetch("https://cataas.com/cat?type=sq").then(async (res) => {
+          const data = await res.blob();
+          const objectURL = URL.createObjectURL(data);
+          setCatImage(objectURL);
+        });
+      }, 15000);
+    }
     return () => {
-      clearInterval(id);
+      id && clearInterval(id);
     };
   }, []);
 
@@ -30,7 +33,7 @@ function Heromain({}: Props) {
             technologies and ocassionaly with low level stuff. This website is
             my personal{" "}
             <a
-              href="https://mohits.dev/blogs"
+              href="https://mohits.dev/blog"
               className="border-b-4 border-primary-accent-light hover:bg-primary-accent-light hover:text-white transition-all duration-200"
             >
               blog
@@ -66,7 +69,7 @@ function Heromain({}: Props) {
         </section>
       </div>
       <button className="text-primary-text-light dark:text-primary-text-dark m-4 px-4 py-2 border-2 border-primary-accent-light rounded-sm outline-none bg-transparent hover:bg-primary-accent-light focus-visible:bg-primary-accent-light transition-all duration-200">
-        about me
+        <a href="/about">about me</a>
       </button>
     </>
   );

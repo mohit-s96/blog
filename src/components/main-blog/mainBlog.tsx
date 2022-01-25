@@ -10,7 +10,7 @@ interface Props {
 
 function MainBlog({ theme, data }: Props): ReactElement {
   return (
-    <main className="2xl:col-span-6 xl:col-span-6 col-span-12 flex justify-center">
+    <main className="2xl:col-span-6 lg:w-6/12 w-full xl:col-span-6 col-span-12 flex justify-center">
       <BlogContents theme={theme} data={data} />
     </main>
   );

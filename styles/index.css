@@ -1,4 +1,9 @@
 @tailwind base;
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 body::-webkit-scrollbar {
   width: 0.35em;
 }
@@ -236,17 +241,34 @@ pre {
 .md-render-parent > h2 {
   font-weight: 600;
   margin: 8px 12px;
-  font-size: xx-large;
+  font-size: x-large;
   transition: all 0.4s ease-out;
-  color: #6a279f;
-  text-decoration: underline;
+  /* color: #6a279f; */
+  /* text-decoration: underline; */
+  border-bottom: 2px solid #4b96ff;
 }
 
+html[class="dark"] .md-render-parent > h2 {
+  color: #fff;
+}
+
+html[class="light"] .md-render-parent > h2 {
+  color: #222;
+}
+
+html[class="light"] .md-render-parent > ul > li,
+ol > li {
+  color: #4b96ff;
+}
+html[class="dark"] .md-render-parent > ul > li,
+ol > li {
+  color: #4b96ff;
+}
 .md-render-parent > ul > li,
 ol > li {
   list-style-type: circle;
   cursor: pointer;
-  color: #6a279f;
+  /* color: #6a279f; */
   font-weight: 600;
   margin-left: 28px;
   padding: 4px;

@@ -30,15 +30,11 @@ function CustomHead({ uri, description, image, title }: Props): ReactElement {
         href="/favicon/favicon.svg"
       />
       <link rel="manifest" href="/favicon/manifest.webmanifest" />
-      <link
-        rel="mask-icon"
-        href="/favicon/icon-192x192.png"
-        color="#000000rgb(106, 39, 159)"
-      />
+      <link rel="mask-icon" href="/favicon/icon-192x192.png" color="#141621" />
       <link rel="shortcut icon" href="/favicon/favicon.svg" />
-      <meta name="msapplication-TileColor" content="rgb(106, 39, 159)" />
+      <meta name="msapplication-TileColor" content="#141621" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-      <meta name="theme-color" content="rgb(106, 39, 159)" />
+      <meta name="theme-color" content="#141621" />
       <link rel="canonical" href={uri} />
       <link rel="icon" href="/favicon/favicon.svg" type="image/svg" />
       <meta name="title" content={title} />

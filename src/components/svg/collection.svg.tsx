@@ -129,6 +129,7 @@ type Props = {
   className?: string;
   fill?: string;
   sdoffset?: number;
+  width?: number;
 };
 export const EyeIcon = ({ color }: Props) => {
   return (
@@ -203,12 +204,12 @@ export const EllipsesIcon = ({ color }: Props) => {
   );
 };
 
-export const FacebookIcon = ({ color }: Props) => {
+export const FacebookIcon = ({ color, width = 24 }: Props) => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width={width}
+      height={width}
+      viewBox={`0 0 ${width} ${width}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -220,12 +221,12 @@ export const FacebookIcon = ({ color }: Props) => {
   );
 };
 
-export const TwitterIcon = ({ color }: Props) => {
+export const TwitterIcon = ({ color, width = 24 }: Props) => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width={width}
+      height={width}
+      viewBox={`0 0 ${width} ${width}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -237,12 +238,12 @@ export const TwitterIcon = ({ color }: Props) => {
   );
 };
 
-export const LinkIcon = ({ color }: Props) => {
+export const LinkIcon = ({ color, width = 24 }: Props) => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width={width}
+      height={width}
+      viewBox={`0 0 ${width} ${width}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -254,12 +255,12 @@ export const LinkIcon = ({ color }: Props) => {
   );
 };
 
-export const RedditIcon = ({ color }: Props) => {
+export const RedditIcon = ({ color, width = 24 }: Props) => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width={width}
+      height={width}
+      viewBox={`0 0 ${width} ${width}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
