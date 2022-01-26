@@ -159,6 +159,8 @@ export function fetchSearchQuery(key: string) {
               tags: 1,
               createdAt: 1,
               isArchived: 1,
+              images: 1,
+              excerpt: 1,
             },
           },
         ]);

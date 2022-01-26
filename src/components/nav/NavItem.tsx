@@ -11,6 +11,7 @@ export interface Props {
   callback?: () => any;
   className?: string;
   wrapperClassname?: string;
+  placeIconAfterText?: boolean;
 }
 
 function NavItem({
@@ -19,6 +20,7 @@ function NavItem({
   size,
   theme,
   wrapperClassname = "",
+  placeIconAfterText,
   Icon,
   callback = () => {},
 }: Props): ReactElement {
@@ -29,13 +31,19 @@ function NavItem({
       } cursor-pointer dark:text-primary-text-dark text-primary-accent-dark ${wrapperClassname}`}
       onClick={() => callback()}
     >
-      {Icon && (
+      {Icon && !placeIconAfterText && (
         <Icon
           color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}
           size={size}
         />
       )}
       <button className={`${className}`}>{children}</button>
+      {Icon && placeIconAfterText && (
+        <Icon
+          color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}
+          size={size}
+        />
+      )}
     </div>
   );
 }

@@ -95,7 +95,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             target="_blank"
             rel="noopener"
             href={`https://twitter.com/intent/tweet?text=check out this blog on ${data.title}. https://mohits.dev/blog/${data.uri}`}
-            className="w-10 h-10 rounded-full bg-primary-bg-light p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <TwitterIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
           </a>
@@ -103,7 +103,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             href={`https://www.facebook.com/sharer/sharer.php?u=https://mohits.dev/blog/${data.uri}`}
             target="_blank"
             rel="noopener"
-            className="w-10 h-10 rounded-full bg-primary-bg-light p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <FacebookIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
           </a>
@@ -111,14 +111,14 @@ function BlogContents({ data, theme }: Props): ReactElement {
             href={`http://ww.reddit.com/submit?url=https://mohits.dev/blog/${data.uri}}&title=${data.title}`}
             target="_blank"
             rel="noopener"
-            className="w-10 h-10 rounded-full bg-primary-bg-light p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <RedditIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
           </a>
           <button
             onClick={copyLink}
             aria-label="copy blog link"
-            className="w-10 h-10 rounded-full bg-primary-bg-light p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <LinkIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
           </button>

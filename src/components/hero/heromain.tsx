@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Props = {};
 
@@ -32,15 +33,14 @@ function Heromain({}: Props) {
             I am a software engineer from India. I mostly work with web
             technologies and ocassionaly with low level stuff. This website is
             my personal{" "}
-            <a
-              href="https://mohits.dev/blog"
-              className="border-b-4 border-primary-accent-light hover:bg-primary-accent-light hover:text-white transition-all duration-200"
-            >
-              blog
-            </a>{" "}
+            <Link href="/blog">
+              <a className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light">
+                blog
+              </a>
+            </Link>{" "}
             where I (try to) post about things I learn. I also do open source{" "}
             <a
-              href="https://github.com/msx47"
+              href="#projects"
               className="border-b-4 border-primary-accent-light hover:bg-primary-accent-light hover:text-white transition-all duration-200"
             >
               projects

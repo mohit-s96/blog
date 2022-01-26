@@ -45,14 +45,17 @@ function StatsBar({ stats, theme }: Props): ReactElement {
           likes: res[1].likes,
           views: res[0].pageViews,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [router]);
 
   return (
     <aside
-      className={`2xl:col-span-3 hidden xl:col-span-3 relative xl:flex justify-center items-start`}
+      className={`hidden xl:flex justify-center items-start absolute top-[10%] left-[5%]`}
     >
-      <div className="fixed flex flex-col justify-center items-center mt-3">
+      <div className=" flex flex-col justify-center items-center mt-3">
         <StatsIcon
           stats={stats}
           theme={theme}

@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 import React, { ReactElement } from "react";
-import PostPreview, { CardProps } from "../card/PostPreview";
+import { CardProps } from "../card/PostPreview";
 import HorizCard from "./horiz-card";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface CardArrayProps {
   theme: CardProps["theme"];
@@ -9,10 +11,21 @@ export interface CardArrayProps {
 }
 
 function Cards({ data, theme }: CardArrayProps): ReactElement {
+  const { pathname } = useRouter();
   return (
     <div className={`flex flex-col`}>
-      <div className="m-2 p-2 text-primary-accent-dark text-2xl">
-        latest blogs
+      <div className="m-2 p-2 text-primary-accent-dark text-2xl flex justify-between">
+        <span>{pathname === "/blog" ? "all blogs" : "latest blogs"}</span>
+        {pathname !== "/blog" ? (
+          <Link href="/blog">
+            <a
+              href="/blog"
+              className="text-primary-text-light dark:text-light-gray border-b-2 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
+            >
+              all blogs
+            </a>
+          </Link>
+        ) : null}
       </div>
       <div className={`flex flex-wrap flex-col-res`}>
         {data

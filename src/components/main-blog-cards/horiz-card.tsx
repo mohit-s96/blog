@@ -13,6 +13,7 @@ function HorizCard({
   blog: { images, title, excerpt, tags, uri: slug, createdAt: time },
   theme,
   layoutType: type = "horiz",
+  blog,
 }: CardProps) {
   return (
     <div className="flex md:p-4 md:mb-0 mb-3">

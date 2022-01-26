@@ -14,6 +14,7 @@ import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Footer from "../../components/footer/footer";
 
 type Props = {
   data: BlogSlug;
@@ -63,23 +64,26 @@ const Post = ({
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {
           return (
-            <section
-              className={`flex justify-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
-            >
-              {searchVisible ? (
-                <SearchBlogs
-                  theme={theme}
-                  visible={searchVisible}
-                  setVisible={setSearchVisible}
-                />
-              ) : null}
-              {/* <StatsBar
+            <>
+              <section
+                className={`flex justify-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
+              >
+                {searchVisible ? (
+                  <SearchBlogs
+                    theme={theme}
+                    visible={searchVisible}
+                    setVisible={setSearchVisible}
+                  />
+                ) : null}
+                <MainBlog theme={theme} data={data} />
+              </section>
+              <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}
                 theme={theme}
-              /> */}
-              <MainBlog theme={theme} data={data} />
-              {/* <RelatedBlogs theme={theme} list={relatedBlogs} /> */}
-            </section>
+              />
+              <RelatedBlogs theme={theme} list={relatedBlogs} />
+              <Footer theme={theme} />
+            </>
           );
         }}
       />

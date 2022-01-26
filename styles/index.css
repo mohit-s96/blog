@@ -88,11 +88,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .svg-container path {
-  fill: transparent;
-  stroke-width: 2;
-  stroke: #d3d3d3;
-  stroke-dasharray: 250;
-  stroke-dashoffset: 0;
+  /* fill: transparent; */
+  /* stroke-width: 2; */
+  /* stroke: #d3d3d3; */
+  /* stroke-dasharray: 250; */
+  /* stroke-dashoffset: 0; */
   transition: transform 0.3s linear;
 }
 .svg-container-blue path {
@@ -149,7 +149,7 @@ svg.blog-liked path {
 }
 
 .svg-container-blue:hover > path {
-  stroke: #23a6d5;
+  stroke: #4b96ff;
   animation: animate-svg-blue 0.3s linear forwards;
 }
 .svg-container-blue:hover {
@@ -169,7 +169,7 @@ svg.blog-liked path {
   }
   100% {
     stroke-dashoffset: 500;
-    fill: #23a6d5;
+    fill: #4b96ff;
   }
 }
 
@@ -177,7 +177,7 @@ svg.blog-liked path {
   transform: scale(1.2);
 }
 .svg-container-green:hover > path {
-  stroke: #6a279f;
+  stroke: #4b96ff;
   animation: animate-svg-green 0.3s linear forwards;
 }
 
@@ -195,7 +195,7 @@ svg.blog-liked path {
   }
   100% {
     stroke-dashoffset: 500;
-    fill: #6a279f;
+    fill: #4b96ff;
   }
 }
 

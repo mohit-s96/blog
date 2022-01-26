@@ -17,7 +17,12 @@ function PostTags({ tags, type, theme, className = "" }: Props): ReactElement {
       } flex flex-wrap ${className}`}
     >
       {tags.slice(0, 3).map((tag) => (
-        <SimpleTags className="text-sm" tag={tag} theme={theme} key={tag} />
+        <SimpleTags
+          className="text-sm bg-primary-accent-light text-primary-light"
+          tag={tag}
+          theme={theme}
+          key={tag}
+        />
       ))}
     </div>
   );

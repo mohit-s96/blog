@@ -25,7 +25,7 @@ function DropDown({ visible, children, theme, fref }: Props): ReactElement {
       ref={fref}
       className={`${visible ? "h-auto p-2 border" : "h-0"} ${
         visible ? "dark:bg-primary-dark bg-primary-light" : ""
-      }  transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-48 absolute shadow-2xl border-accent-low-opa z-10`}
+      }  transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-48 absolute shadow-2xl border-primary-accent-light z-10`}
     >
       {visible ? children : null}
     </button>
