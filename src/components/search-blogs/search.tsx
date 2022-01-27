@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useRef } from "react";
 import React, { ReactElement, useState } from "react";
 import { ThemeType } from "../../../types/globalTypes";
 import { Close } from "../svg/collection.svg";
@@ -6,6 +6,8 @@ import SearchResults from "./searchResults";
 import useAnimateOnMount from "../../hooks/useAnimateOnMount";
 import { BlogSlug } from "../../../types/blogtypes";
 import { useFetch } from "../../hooks/useFetch";
+import { BindOptions } from "../../../types/keyTypes";
+import useGlobalKeyBind from "../../hooks/useGlobalKeyBind";
 
 interface Props {
   theme: ThemeType;
@@ -38,12 +40,44 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
 
   const searchRef = useRef(null);
 
+  const [selectedResultIndexRef, setselectedResultIndexRef] = useState(0);
+
   const { fetchResource, data, loading, currentAbortRef } = useFetch(
     "/api/search",
     fetcher
   );
 
-  useAnimateOnMount(searchRef, "scale-norm opacity-norm", { value }); //scale-norm is a css class i made to scale to 1 and made it important because tailwinf scale-100 wan't working go figure
+  const options: BindOptions = useMemo(
+    () => ({
+      options: [
+        {
+          keys: ["arrowdown"],
+          callback: () => {
+            if (data?.length) {
+              setselectedResultIndexRef(
+                (idx) => (idx + 1 + data.length) % data.length
+              );
+            }
+          },
+        },
+        {
+          keys: ["arrowup"],
+          callback: () => {
+            if (data?.length) {
+              setselectedResultIndexRef(
+                (idx) => (idx - 1 + data.length) % data.length
+              );
+            }
+          },
+        },
+      ],
+    }),
+    [data]
+  );
+
+  useGlobalKeyBind(options);
+
+  useAnimateOnMount(searchRef, "scale-norm opacity-norm", value); //scale-norm is a css class i made to scale to 1 and made it important because tailwinf scale-100 wan't working go figure
 
   useEffect(() => {
     if (visible) {
@@ -105,11 +139,12 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
         </div>
         {loading ? <div className="top-loader-line"></div> : null}
         {data?.length && value.length > 1
-          ? data.map((res) => (
+          ? data.map((res, i) => (
               <SearchResults
                 data={res}
                 key={(res._id as any) as string}
                 setVisible={setVisible}
+                highlighted={selectedResultIndexRef === i}
               />
             ))
           : null}

@@ -59,7 +59,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         transformRedisKey("likes-" + uri)
       )) as number | string;
 
-      console.log(cachedLikes);
       cachedLikes = cachedLikes ? +cachedLikes : 0;
 
       res.status(200).json({ likes: cachedLikes });
