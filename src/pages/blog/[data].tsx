@@ -15,6 +15,7 @@ import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "../../components/footer/footer";
+import Comments from "../../components/comments/comments";
 
 type Props = {
   data: BlogSlug;
@@ -66,7 +67,7 @@ const Post = ({
           return (
             <>
               <section
-                className={`flex justify-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
+                className={`flex flex-col items-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
               >
                 {searchVisible ? (
                   <SearchBlogs
@@ -76,6 +77,7 @@ const Post = ({
                   />
                 ) : null}
                 <MainBlog theme={theme} data={data} />
+                <Comments />
               </section>
               <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}

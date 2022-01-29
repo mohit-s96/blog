@@ -40,6 +40,7 @@ const Index = ({ posts }: Props) => {
                 {/* <Heromain /> */}
                 <Cards data={posts} theme={theme} />
               </div>
+
               <div className="mt-8">
                 <Footer theme={theme} />
               </div>
