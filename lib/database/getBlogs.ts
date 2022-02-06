@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { BlogListType, BlogSlug, CommentSlug } from "../../types/blogtypes";
+import { BlogListType, BlogSlug } from "../../types/blogtypes";
 import fs from "fs";
 import { dbConnect } from "./api";
 
@@ -33,29 +33,6 @@ export function fetchSingleBlog(str: string) {
         .collection(process.env.BLOG_COLLECTION as string)
         .findOne({ uri: str }, {});
       const blogs = (await cursors) as BlogSlug;
-      return blogs;
-    } catch (e) {
-      console.error(e);
-      return Promise.reject(
-        "Something went wrong. Error => " + JSON.stringify(e)
-      );
-    } finally {
-      await client.close();
-    }
-  });
-}
-
-export function fetchComments(idString: string) {
-  const blogId = new ObjectId(idString);
-  return dbConnect<CommentSlug>(async (client) => {
-    try {
-      await client.connect();
-      const cursors = client
-        .db()
-        .collection(process.env.BLOG_COMMENTS as string)
-        .findOne({ blogId }, {});
-      const blogs = (await cursors) as CommentSlug;
-      fs.writeFileSync("data.json", JSON.stringify(blogs), "utf-8");
       return blogs;
     } catch (e) {
       console.error(e);

@@ -52,19 +52,37 @@ export interface CommentMetadata {
   atMentions: string[];
 }
 
-export interface CommentSlug {
-  _id: ObjectId;
+export interface CommentSchema {
+  _id?: ObjectId;
   blogId: string;
   createdAt: number;
   author: string;
+  authorGhId: number;
   inReplyToUser: string;
   isAdmin: boolean;
   hasMarkdown: boolean;
   isVisible: boolean;
   isDeleted: boolean;
-  metadata: CommentMetadata;
   inReplyToComment: ObjectId | "";
   body: string;
+  html: string;
+  hadIllegalHtml: boolean;
+  lastUpdated: number;
+  deletedAt: number;
 }
+
+export type UserSubmittedCommentSchema = Omit<
+  CommentSchema,
+  | "createdAt"
+  | "author"
+  | "authorGhId"
+  | "isAdmin"
+  | "isVisible"
+  | "isDeleted"
+  | "html"
+  | "hadIllegalHtml"
+  | "lastUpdated"
+  | "deletedAt"
+>;
 
 export type BlogListType = Omit<BlogSlug, "metadata" | "blogData">;

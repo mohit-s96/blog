@@ -2,6 +2,7 @@ import Layout from "../../components/layout";
 import { useState, useEffect } from "react";
 import Footer from "../../components/footer/footer";
 import { useRouter } from "next/router";
+import { getUri } from "../../../util/misc";
 
 type Props = {};
 
@@ -17,37 +18,35 @@ const Index = () => {
     window.addEventListener(
       "message",
       (event) => {
-        // console.log("slave", event);
-
         // Do we trust the sender of this message?
-        if (event.origin !== "http://localhost:5000") return;
-        const message = (event.data as string).split(":");
-        if (message[0] === "state") {
-          fetch(`/api/auth`, {
-            method: "POST",
-            body: JSON.stringify({ code }),
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              console.log(res);
-            });
+        if (typeof event.data === "string" && event.data.startsWith("state:")) {
+          if (event.origin !== "http://localhost:5000") return;
+          console.log(event.data);
+
+          const message = (event.data as string).split(":");
+          if (message[0] === "state" && message[1] === state) {
+            fetch(`${getUri("query")}/api/auth`, {
+              method: "POST",
+              body: JSON.stringify({ code }),
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                if (res.message)
+                  event.source?.postMessage("success", event.origin as any);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         }
-        // event.source?.postMessage(
-        //   "hi there yourself!  the secret response " + "is: rheeeeet!",
-        //   event.origin as any
-        // );
       },
       false
     );
-    // console.log(router);
-
-    // console.log(url);
-
-    // if (!code || !state) return;
   }, []);
   return (
     <>

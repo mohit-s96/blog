@@ -15,7 +15,7 @@ import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "../../components/footer/footer";
-import Comments from "../../components/comments/comments";
+import CommentsProvider from "../../components/comments/provider";
 
 type Props = {
   data: BlogSlug;
@@ -77,7 +77,7 @@ const Post = ({
                   />
                 ) : null}
                 <MainBlog theme={theme} data={data} />
-                <Comments />
+                <CommentsProvider />
               </section>
               <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}
