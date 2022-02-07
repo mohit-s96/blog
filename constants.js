@@ -14,5 +14,5 @@ module.exports = {
 
   LIGHT_GRAY: "#B3B9C5",
 
-  ACCENT_LOW_OPA: "rgba(106, 39, 159, 0.5)",
+  ACCENT_LOW_OPA: "rgba(20,27,40, 0.8)",
 };

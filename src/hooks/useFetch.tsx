@@ -52,7 +52,7 @@ export function useFetch<F extends Fetch>(
 ) {
   let isMounted = useRef(true);
   const [data, setData] = useState<Await<ReturnType<F>>>();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const currentAbortRef = useRef<AbortController | null>(null);
@@ -64,22 +64,27 @@ export function useFetch<F extends Fetch>(
     setData(undefined);
     const url = baseURL + path;
     setLoading(true);
-    fetcher(url, body, currentAbortRef.current)
-      .then((res) => {
-        if (isMounted.current) {
-          setLoading(false);
-          setData(res);
-        }
-        if (cache) cacheToLocalStorage(path, res, body);
-      })
-      .catch(() => {
-        if (isMounted.current) {
-          if (!lastAbortRef.current?.signal.aborted) {
+    try {
+      fetcher(url, body, currentAbortRef.current)
+        .then((res) => {
+          if (isMounted.current) {
             setLoading(false);
+            setData(res);
           }
-          setError(true);
-        }
-      });
+          if (cache) cacheToLocalStorage(path, res, body);
+        })
+        .catch((err) => {
+          if (isMounted.current) {
+            if (!lastAbortRef.current?.signal.aborted) {
+              setLoading(false);
+            }
+            setError(err.message || "something went wrong");
+          }
+        });
+    } catch (error: any) {
+      setLoading(false);
+      setError(error);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -112,10 +117,10 @@ export function useFetch<F extends Fetch>(
             }
           }
         }
-      } catch {
+      } catch (err: any) {
         if (isMounted.current) {
           setLoading(false);
-          setError(true);
+          setError(err);
         }
       }
     }

@@ -548,3 +548,6 @@ code.language-css .token.selector > .token.pseudo-element {
 .line-highlight.line-highlight[data-end]:after {
   content: "";
 }
+html[class="dark"] .editor-shadow:focus-visible {
+  box-shadow: 0 0 0 4px #0c2d6b;
+}

@@ -53,17 +53,17 @@ export interface CommentMetadata {
 }
 
 export interface CommentSchema {
-  _id?: ObjectId;
-  blogId: string;
+  _id?: ObjectId | ObjectId;
+  blogId: string | ObjectId;
   createdAt: number;
   author: string;
   authorGhId: number;
-  inReplyToUser: string;
+  inReplyToUser: string | number;
   isAdmin: boolean;
   hasMarkdown: boolean;
   isVisible: boolean;
   isDeleted: boolean;
-  inReplyToComment: ObjectId | "";
+  inReplyToComment: ObjectId | string;
   body: string;
   html: string;
   hadIllegalHtml: boolean;
