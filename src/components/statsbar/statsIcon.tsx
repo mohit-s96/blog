@@ -126,7 +126,12 @@ function StatsIcon({
             }
           }}
         >
-          <DropDown theme={theme} visible={show} fref={focusRef}>
+          <DropDown
+            theme={theme}
+            visible={show}
+            fref={focusRef}
+            className="w-52"
+          >
             <>
               <div className="flex justify-between p-2 items-center w-full hover:bg-gray-300">
                 <button

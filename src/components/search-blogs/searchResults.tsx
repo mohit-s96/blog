@@ -24,6 +24,7 @@ function SearchResults({ data, setVisible, highlighted }: Props): ReactElement {
           keys: ["enter"],
           callback: () => {
             if (highlighted) {
+              setVisible(false);
               push(`/blog/${data.uri}`);
             }
           },

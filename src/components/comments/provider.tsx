@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useReducer, useState } from "react";
-import { CommentSchema } from "../../../types/blogtypes";
+import React, { useEffect, useReducer, useRef, useState } from "react";
+import {
+  CommentSchema,
+  UserSubmittedCommentSchema,
+} from "../../../types/blogtypes";
+import { getUri } from "../../../util/misc";
 import { useFetch } from "../../hooks/useFetch";
 import Comments from "./comments";
 import Editor from "./editor";
@@ -29,6 +33,7 @@ export interface CommentEditor {
   error: string;
   dispatch: React.Dispatch<Action>;
   post: (body?: string | undefined) => void;
+  patch: (body?: string | undefined) => void;
 }
 
 const initialCommentEditorValue: CommentEditor = {
@@ -44,6 +49,7 @@ const initialCommentEditorValue: CommentEditor = {
   error: "",
   dispatch: () => {},
   post: () => {},
+  patch: () => {},
 };
 type EditorActionTypes =
   | "UPDATE_BODY"
@@ -52,7 +58,8 @@ type EditorActionTypes =
   | "UPDATE_ID"
   | "UPDATE_EDIT_MODE"
   | "SET_LOADING"
-  | "SET_ERROR";
+  | "SET_ERROR"
+  | "RESET_STATE";
 type Action = {
   payload: any;
   type: EditorActionTypes;
@@ -77,7 +84,14 @@ const editorReducer = (
     case "UPDATE_EDIT_MODE":
       return {
         ...state,
-        isEditingMode: payload,
+        isEditingMode: true,
+        _id: payload._id,
+        blogId: payload.blogId,
+        body: payload.body,
+        hasMarkdown: payload.hasMarkdown,
+        inReplyToComment: payload.inReplyToComment,
+        inReplyToUser: payload.inReplyToUser,
+        inReplyToUsername: payload.inReplyToUsername,
       };
 
     case "UPDATE_MD":
@@ -105,6 +119,13 @@ const editorReducer = (
         error: payload,
         submitting: false,
       };
+    case "RESET_STATE":
+      return {
+        ...initialCommentEditorValue,
+        dispatch: state.dispatch,
+        post: state.post,
+        patch: state.patch,
+      };
     default:
       return state;
   }
@@ -120,20 +141,22 @@ export interface CommentContextType {
   error: string;
   loading: boolean;
   fetchComments: (body?: string | undefined) => void;
+  changeToEdit: (schema: CommentSchema) => void;
+  delComment: (id: string) => Promise<void>;
 }
 export const GithubAuthContext = React.createContext<Auth>(initialAuthValue);
 export const CommentEditorContext = React.createContext<CommentEditor>(
   initialCommentEditorValue
 );
-export const CommentListContext = React.createContext<CommentContextType | null>(
-  null
+export const CommentListContext = React.createContext<CommentContextType>(
+  {} as any
 );
 
 async function fetcher(path: string) {
   const response = await fetch(path, { credentials: "include" });
   if (!response.ok) throw "error in authentication";
   const data = await response.json();
-  return data as GithubUser;
+  return data.message as GithubUser;
 }
 export function getBlogId(): string {
   if (typeof window !== "undefined") {
@@ -147,7 +170,7 @@ async function commentFetcher(path: string) {
     throw "error fetching comments";
   }
   const data = await response.json();
-  return data as CommentSchema[];
+  return data.message as CommentSchema[];
 }
 async function postComment(path: string, body: string = "") {
   const response = await fetch(path, {
@@ -164,7 +187,41 @@ async function postComment(path: string, body: string = "") {
 
   const newcomment = await response.json();
 
-  return newcomment as CommentSchema;
+  return newcomment.message as CommentSchema;
+}
+const patch = async (body: string = "") => {
+  const response = await fetch(
+    `${getUri("query")}/api/comment/${getBlogId()}`,
+    {
+      credentials: "include",
+      body,
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (!response.ok) throw "error posting comment";
+
+  const newcomment = await response.json();
+
+  return newcomment.message as CommentSchema;
+};
+function ShowComments({ setShow, show, fetch }: any) {
+  return (
+    <div className="w-full text-center my-4">
+      <button
+        onClick={() => {
+          setShow(!show);
+          if (!show) fetch();
+        }}
+        className="h-10 p-2 bg-transparent border border-primary-accent-light text-sm text-primary-accent-light dark:text-white rounded-sm transition-all cursor-pointer hover:bg-primary-accent-light hover:text-white duration-200"
+      >
+        {show ? "close comments" : "show comments"}
+      </button>
+    </div>
+  );
 }
 function CommentsProvider() {
   // const [comments, setComments] = useState<CommentSchema[]>([]);
@@ -172,7 +229,11 @@ function CommentsProvider() {
 
   const [comments, setComments] = useState<CommentSchema[]>([]);
 
+  const [showComments, setShowComments] = useState(false);
+
   const [data, dispatch] = useReducer(editorReducer, initialCommentEditorValue);
+
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const { data: user, error, loading, fetchResource } = useFetch(
     "/api/auth",
@@ -193,22 +254,95 @@ function CommentsProvider() {
     fetchResource: post,
   } = useFetch(`/api/comment/${getBlogId()}`, postComment);
 
+  async function callPatch(body: string = "") {
+    try {
+      dispatch({
+        type: "SET_LOADING",
+        payload: true,
+      });
+      const newcomment = await patch(body);
+      const newcomments = comments.map((comment) => {
+        if (comment._id === newcomment._id) {
+          return {
+            ...comment,
+            hasMarkdown: newcomment.hasMarkdown,
+            body: newcomment.body,
+            lastUpdated: newcomment.lastUpdated,
+            html: newcomment.html,
+          };
+        }
+        return comment;
+      });
+      setComments(newcomments);
+
+      dispatch({
+        payload: "",
+        type: "RESET_STATE",
+      });
+    } catch (error) {
+      dispatch({
+        payload: error,
+        type: "SET_ERROR",
+      });
+    }
+  }
+
+  async function deleteComment(id: string) {
+    const res = await fetch(
+      `${getUri("query")}/api/comment/${getBlogId()}/${id}`,
+      {
+        credentials: "include",
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (res.ok) {
+      const newcomments = comments.filter((cmt) => cmt._id !== id);
+      setComments(newcomments);
+    }
+  }
+
+  function changeToEditMode(schema: CommentSchema) {
+    const payload: UserSubmittedCommentSchema = {
+      _id: schema._id,
+      blogId: schema.blogId,
+      body: schema.body,
+      hasMarkdown: schema.hasMarkdown,
+      inReplyToComment: schema.inReplyToComment || "default",
+      inReplyToUser: schema.inReplyToUser || "default",
+      inReplyToUsername: schema.inReplyToUsername || "",
+    };
+    dispatch({
+      type: "UPDATE_EDIT_MODE",
+      payload,
+    });
+  }
   useEffect(() => {
     if (newcomment) {
       setComments([...comments, newcomment]);
+      dispatch({
+        payload: "",
+        type: "RESET_STATE",
+      });
     }
     dispatch({
       type: "SET_LOADING",
       payload: posloading,
     });
-    dispatch({
-      type: "SET_ERROR",
-      payload: posterror,
-    });
+    if (posterror) {
+      dispatch({
+        type: "SET_ERROR",
+        payload: posterror,
+      });
+    }
   }, [newcomment, posloading, posterror]);
 
   useEffect(() => {
     fetchResource();
+    // fetchComments();
   }, []);
 
   useEffect(() => {
@@ -217,8 +351,6 @@ function CommentsProvider() {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
-
       setAuth(user);
     } else {
       setAuth(undefined);
@@ -226,25 +358,37 @@ function CommentsProvider() {
   }, [user, error]);
 
   return (
-    <div className="translate-y-[-8rem] 2xl:w-8/12 xl:w-9/12 md:w-10/12  w-full flex justify-center">
-      <div className="2xl:w-9/12 xl:w-9/12 md:w-10/12  w-full ">
+    <div className="md:translate-y-[-8rem] 2xl:w-8/12 xl:w-9/12 w-full flex justify-center mt-4 lg:mt-0">
+      <div className="2xl:w-9/12 xl:w-9/12 md:w-11/12 w-full ">
         <GithubAuthContext.Provider
           value={{ user: auth, loading, fetchResource }}
         >
           {!user ? <Signin /> : null}
+          <CommentEditorContext.Provider
+            value={{ ...data, dispatch, post, patch: callPatch }}
+          >
+            {user ? <Editor editorRef={editorRef} /> : null}
+          </CommentEditorContext.Provider>
           <CommentListContext.Provider
             value={{
               comments: comments!,
               loading: commentLoading,
               fetchComments,
               error: commentError,
+              changeToEdit: changeToEditMode,
+              delComment: deleteComment,
             }}
           >
-            <Comments />
+            {showComments ? (
+              <Comments editRef={editorRef} />
+            ) : (
+              <ShowComments
+                show={showComments}
+                setShow={setShowComments}
+                fetch={fetchComments}
+              />
+            )}
           </CommentListContext.Provider>
-          <CommentEditorContext.Provider value={{ ...data, dispatch, post }}>
-            {user ? <Editor /> : null}
-          </CommentEditorContext.Provider>
         </GithubAuthContext.Provider>
       </div>
     </div>

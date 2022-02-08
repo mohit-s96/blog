@@ -27,17 +27,17 @@ function Signin({}: Props) {
     });
   }, []);
   return (
-    <div>
+    <div className="text-center p-2">
       <button
         disabled={loading}
-        className="p-2 bg-green-600 text-white"
+        className="p-2 bg-primary-accent-light text-white"
         onClick={() => {
           window.open(
             `https://github.com/login/oauth/authorize?client_id=Iv1.b7f0e9e6521133a2&redirect_uri=http://localhost:5000/oauth&state=${stateRef.current}`
           );
         }}
       >
-        sign in with github
+        sign in with github to comment
       </button>
     </div>
   );

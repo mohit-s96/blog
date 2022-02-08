@@ -53,7 +53,7 @@ export interface CommentMetadata {
 }
 
 export interface CommentSchema {
-  _id?: ObjectId | ObjectId;
+  _id?: ObjectId | string;
   blogId: string | ObjectId;
   createdAt: number;
   author: string;
@@ -69,6 +69,8 @@ export interface CommentSchema {
   hadIllegalHtml: boolean;
   lastUpdated: number;
   deletedAt: number;
+  inReplyToUsername: string;
+  authorAvatar: string;
 }
 
 export type UserSubmittedCommentSchema = Omit<
@@ -83,6 +85,7 @@ export type UserSubmittedCommentSchema = Omit<
   | "hadIllegalHtml"
   | "lastUpdated"
   | "deletedAt"
+  | "authorAvatar"
 >;
 
 export type BlogListType = Omit<BlogSlug, "metadata" | "blogData">;

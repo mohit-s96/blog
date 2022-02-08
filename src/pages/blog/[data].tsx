@@ -13,7 +13,7 @@ import StatsBar from "../../components/statsbar/statsBar";
 import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/footer/footer";
 import CommentsProvider from "../../components/comments/provider";
 
@@ -47,6 +47,7 @@ const Post = ({
 }: Props) => {
   const router = useRouter();
 
+  const [path, setPath] = useState("default");
   useEffect(() => {
     if (typeof Prism !== undefined) {
       //@ts-ignore
@@ -77,7 +78,7 @@ const Post = ({
                   />
                 ) : null}
                 <MainBlog theme={theme} data={data} />
-                <CommentsProvider />
+                <CommentsProvider key={router.asPath} />
               </section>
               <StatsBar
                 stats={{ commentCount, likes, viewCount, uri, title }}

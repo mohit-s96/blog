@@ -10,11 +10,17 @@ import { ThemeType } from "../../../types/globalTypes";
 export interface Props {
   visible: boolean;
   children: ReactNode;
-  theme: ThemeType;
+  theme?: ThemeType;
   fref: React.RefObject<HTMLButtonElement>;
+  className?: string;
 }
 
-function DropDown({ visible, children, theme, fref }: Props): ReactElement {
+function DropDown({
+  visible,
+  children,
+  fref,
+  className = "",
+}: Props): ReactElement {
   useEffect(() => {
     if (visible) {
       fref.current?.focus();
@@ -25,7 +31,7 @@ function DropDown({ visible, children, theme, fref }: Props): ReactElement {
       ref={fref}
       className={`${visible ? "h-auto p-2 border" : "h-0"} ${
         visible ? "dark:bg-primary-dark bg-primary-light" : ""
-      }  transition-all overflow-hidden flex duration-200 rounded-b-md justify-center flex-col w-48 absolute shadow-2xl border-primary-accent-light z-10`}
+      }  transition-all overflow-hidden flex duration-200 justify-center flex-col absolute shadow-2xl border-primary-accent-light z-10 ${className}`}
     >
       {visible ? children : null}
     </button>

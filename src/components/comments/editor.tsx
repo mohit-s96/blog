@@ -5,9 +5,11 @@ import { UserSubmittedCommentSchema } from "../../../types/blogtypes";
 import { Check } from "../svg/collection.svg";
 import { CommentEditorContext, getBlogId } from "./provider";
 
-type Props = {};
+type Props = {
+  editorRef: React.RefObject<HTMLDivElement>;
+};
 
-function Editor({}: Props) {
+function Editor({ editorRef }: Props) {
   const { pathname } = useRouter();
   const {
     body,
@@ -22,6 +24,7 @@ function Editor({}: Props) {
     _id,
     blogId,
     isEditingMode,
+    patch,
   } = useContext(CommentEditorContext);
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
@@ -43,24 +46,29 @@ function Editor({}: Props) {
   function handleSubmit() {
     dispatch({ type: "SET_ERROR", payload: "" });
     const schema: UserSubmittedCommentSchema = {
+      _id: _id,
       blogId: getBlogId(),
       body,
       hasMarkdown,
       inReplyToComment,
       inReplyToUser,
+      inReplyToUsername,
     };
-
-    post(JSON.stringify(schema));
+    if (isEditingMode) {
+      patch(JSON.stringify(schema));
+    } else {
+      post(JSON.stringify(schema));
+    }
   }
 
   return (
     <div className="flex justify-center items-center w-full">
       <div className="p-5 rounded-[12px] bg-white dark:bg-accent-low-opa w-full">
         {submitting ? <div className="top-loader-line"></div> : null}
-        <p className="text-xl font-semibold text-primary-accent-light cursor-pointer transition-all">
+        <p className="text-xl font-semibold text-primary-accent-light transition-all">
           leave your comment
         </p>{" "}
-        <div className="flex justify-start">
+        <div className="flex justify-start" ref={editorRef}>
           <p className="text-sm py-4 mr-4 dark:text-primary-text-dark text-primary-text-light font-bold">
             markdown: [{hasMarkdown ? "on" : "off"}]
           </p>
@@ -100,20 +108,12 @@ function Editor({}: Props) {
               submitting ? "bg-gray-400" : ""
             }`}
           >
-            Submit comment
+            {isEditingMode ? "update " : "submit "} comment
           </button>
         </div>
       </div>
     </div>
   );
 }
-
-/**
- * .form-control.focus, .form-control:focus, .form-select.focus, .form-select:focus {
-    border-color: var(--color-accent-emphasis);
-    outline: none;
-    box-shadow: var(--color-primer-shadow-focus);
-}
- */
 
 export default Editor;

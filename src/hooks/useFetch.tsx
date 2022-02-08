@@ -68,6 +68,7 @@ export function useFetch<F extends Fetch>(
       fetcher(url, body, currentAbortRef.current)
         .then((res) => {
           if (isMounted.current) {
+            setError("");
             setLoading(false);
             setData(res);
           }

@@ -15,4 +15,6 @@ module.exports = {
   LIGHT_GRAY: "#B3B9C5",
 
   ACCENT_LOW_OPA: "rgba(20,27,40, 0.8)",
+
+  MY_GH_AVATR: "https://avatars.githubusercontent.com/u/17087942?v=4",
 };
