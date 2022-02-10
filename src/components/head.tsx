@@ -21,22 +21,22 @@ function CustomHead({ uri, description, image, title }: Props): ReactElement {
         rel="icon"
         type="image/svg"
         sizes="32x32"
-        href="/favicon/favicon.svg"
+        href="/favicon/favicon.png"
       />
       <link
         rel="icon"
         type="image/svg"
         sizes="16x16"
-        href="/favicon/favicon.svg"
+        href="/favicon/favicon.png"
       />
       <link rel="manifest" href="/favicon/manifest.webmanifest" />
       <link rel="mask-icon" href="/favicon/icon-192x192.png" color="#141621" />
-      <link rel="shortcut icon" href="/favicon/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon/favicon.png" />
       <meta name="msapplication-TileColor" content="#141621" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#141621" />
       <link rel="canonical" href={uri} />
-      <link rel="icon" href="/favicon/favicon.svg" type="image/svg" />
+      <link rel="icon" href="/favicon/favicon.png" type="image/png" />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta property="og:type" content="website" />
@@ -52,7 +52,7 @@ function CustomHead({ uri, description, image, title }: Props): ReactElement {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
   );
 }

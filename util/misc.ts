@@ -10,7 +10,7 @@ export function transformRedisKey(key: string) {
 
 export function getUri(option?: string): string {
   if (option === "query") {
-    return "http://localhost:5001";
+    return "https://api.mohits.dev";
   }
   let uri: string;
   if (process.env.NODE_ENV === "development") uri = "http://localhost:5000";

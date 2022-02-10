@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next --port=5000",
+    "dev": "next --port=4218",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc",

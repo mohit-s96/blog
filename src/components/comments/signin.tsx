@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
+import { checkDevVsProdUrl } from "../../pages/oauth";
 import { GithubAuthContext } from "./provider";
 
 type Props = {};
@@ -33,7 +34,9 @@ function Signin({}: Props) {
         className="p-2 bg-primary-accent-light text-white"
         onClick={() => {
           window.open(
-            `https://github.com/login/oauth/authorize?client_id=Iv1.b7f0e9e6521133a2&redirect_uri=http://localhost:5000/oauth&state=${stateRef.current}`
+            `https://github.com/login/oauth/authorize?client_id=Iv1.b7f0e9e6521133a2&redirect_uri=${checkDevVsProdUrl()}/oauth&state=${
+              stateRef.current
+            }`
           );
         }}
       >

@@ -1,18 +1,20 @@
 import Layout from "../../components/layout";
 import { useState, useEffect } from "react";
 import Footer from "../../components/footer/footer";
-import { useRouter } from "next/router";
 import { getUri } from "../../../util/misc";
 
-type Props = {};
+export function checkDevVsProdUrl() {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:4218"
+    : "https://mohits.dev";
+}
 
 const Index = () => {
-  const router = useRouter();
+  const [status, setStatus] = useState(0);
   useEffect(() => {
     const url = new URL(window.location.href);
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
-    console.log(window.opener);
 
     window.opener.postMessage("loaded", window.opener.origin);
     window.addEventListener(
@@ -20,8 +22,10 @@ const Index = () => {
       (event) => {
         // Do we trust the sender of this message?
         if (typeof event.data === "string" && event.data.startsWith("state:")) {
-          if (event.origin !== "http://localhost:5000") return;
-          console.log(event.data);
+          if (event.origin !== checkDevVsProdUrl()) {
+            setStatus(1);
+            return;
+          }
 
           const message = (event.data as string).split(":");
           if (message[0] === "state" && message[1] === state) {
@@ -41,7 +45,10 @@ const Index = () => {
               })
               .catch((err) => {
                 console.log(err);
+                setStatus(1);
               });
+          } else {
+            setStatus(1);
           }
         }
       },
@@ -54,8 +61,19 @@ const Index = () => {
         render={(theme) => {
           return (
             <>
-              <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto">
-                hi hello
+              <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto text-center">
+                {status === 0 ? (
+                  <>
+                    <div className="top-loader-line"></div>
+                    <p className="text-primary-accent-light p-2 font-bold">
+                      authorizing...
+                    </p>
+                  </>
+                ) : status === 1 ? (
+                  <p className="text-red-600 font-bold p-2">
+                    oops...something went wrong. close this tab and try again
+                  </p>
+                ) : null}
               </div>
               <div className="mt-8">
                 <Footer theme={theme} />
