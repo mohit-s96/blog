@@ -41,7 +41,7 @@ function StatsBar({ stats, theme }: Props): ReactElement {
       })
       .then((res) => {
         setState({
-          commentCount: 0,
+          commentCount: res[0].count,
           likes: res[1].likes,
           views: res[0].pageViews,
         });

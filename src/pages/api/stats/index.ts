@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { google } from "googleapis";
 import { useCors } from "../../../../lib/middleware/corsMW";
 import rateLimit from "../../../../lib/middleware/limitMW";
+import { getUri } from "../../../../util/misc";
 
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
@@ -41,8 +42,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const pageViews = response?.data?.totalsForAllResults!["ga:pageviews"];
 
+    const countRes = await fetch(
+      //trim the /blog from slug with slice
+      `${getUri("query")}/api/comment/${slug.slice(6)}/count`
+    );
+
+    const count = await countRes.json();
+
     return res.status(200).json({
       pageViews,
+      count: count.message,
     });
   } catch (err) {
     console.log(err);

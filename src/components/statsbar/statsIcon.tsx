@@ -78,6 +78,11 @@ function StatsIcon({
       localStorage.setItem("likes", JSON.stringify(likedBlogs));
     }
 
+    setStats((prev) => ({
+      ...prev,
+      likes: prev.likes + 1,
+    }));
+
     fetch(`${getUri()}/api/likes`, {
       credentials: "include",
       method: "POST",
@@ -88,15 +93,16 @@ function StatsIcon({
       },
     })
       .then((res) => {
-        if (res.ok) {
-          setStats((prev) => ({
-            ...prev,
-            likes: prev.likes + 1,
-          }));
+        if (!res.ok) {
+          throw "error increasing likes";
         }
       })
       .catch((err) => {
         console.log(err);
+        setStats((prev) => ({
+          ...prev,
+          likes: prev.likes - 1,
+        }));
       });
 
     setTimeout(() => {
