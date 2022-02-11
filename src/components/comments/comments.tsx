@@ -15,6 +15,12 @@ type ComntProps = {
   eref: React.RefObject<HTMLDivElement>;
   edit: (schema: CommentSchema) => void;
   deleteComment: () => any;
+  setReply: (
+    data: Pick<
+      CommentSchema,
+      "inReplyToComment" | "inReplyToUsername" | "inReplyToUser"
+    >
+  ) => void;
 };
 function SingleComment({
   schema: {
@@ -35,6 +41,7 @@ function SingleComment({
   eref,
   edit,
   deleteComment,
+  setReply,
 }: ComntProps) {
   const dropDownRef = useRef<HTMLButtonElement>(null);
   const [optionsVisible, setOptionsVisible] = useState(false);
@@ -46,10 +53,22 @@ function SingleComment({
     eref.current?.scrollIntoView();
   }
 
+  function startReplyFlow() {
+    setReply({
+      inReplyToComment: _id as string,
+      inReplyToUser: authorGhId,
+      inReplyToUsername: author,
+    });
+    eref.current?.scrollIntoView();
+  }
+
   return (
-    <div className="border-primary-accent-light border-r-[4px] my-4">
+    <div
+      className="border-primary-accent-light border-r-[4px] my-4"
+      id={_id as string}
+    >
       <div className="flex items-center">
-        <div className="w-10/12 flex items-center p-2">
+        <div className="w-10/12 flex items-center p-2 border-gray-400 dark:border-[#03060a] bg-gray-100 dark:bg-[#0f1f36] border-b-[1px]">
           <div className="w-8 h-8 overflow-hidden rounded-full mr-4">
             <img
               className="w-full h-full"
@@ -79,6 +98,9 @@ function SingleComment({
               [edited: {format(lastUpdated, "do MMM, yy")}]
             </span>
           ) : null}
+          {/* <span className="mx-2">
+            <ReplyIcon color="gray" />
+          </span> */}
         </div>
         {user?.id === authorGhId ? (
           <div
@@ -119,6 +141,14 @@ function SingleComment({
           </div>
         ) : null}
       </div>
+      {inReplyToUsername ? (
+        <a
+          href={`#${inReplyToComment}`}
+          className="text-xsm mt-2 inline-block text-center p-1 font-bold text-white bg-primary-accent-light rounded-md"
+        >
+          &gt; replying to - {inReplyToUsername}
+        </a>
+      ) : null}
       {hasMarkdown ? (
         <p
           dangerouslySetInnerHTML={{ __html: html }}
@@ -129,12 +159,23 @@ function SingleComment({
           {body}
         </p>
       )}
+      {user?.id ? (
+        <div className="flex py-2 justify-end w-10/12">
+          <button
+            onClick={startReplyFlow}
+            className="text-xsm h-6 border bg-transparent border-primary-accent-light w-14 hover:bg-primary-accent-light transition-all duration-200"
+          >
+            reply
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
 
 function Comments({ editRef }: Props) {
   const {
+    setReply,
     comments,
     error,
     loading,
@@ -163,9 +204,10 @@ function Comments({ editRef }: Props) {
       {comments.length ? (
         comments
           .sort((a, b) => a.createdAt - b.createdAt)
-          .reverse()
+          // .reverse()
           .map((cmt) => (
             <SingleComment
+              setReply={setReply}
               schema={cmt}
               eref={editRef}
               key={cmt._id as string}

@@ -78,7 +78,7 @@ function Editor({ editorRef }: Props) {
         </div>
         {inReplyToUsername ? (
           <span className="text-xsm mb-4 inline-block text-center p-1 font-bold text-white bg-primary-accent-light rounded-md">
-            &gt; replying to - msx47
+            &gt; replying to - {inReplyToUsername}
           </span>
         ) : null}
         <textarea

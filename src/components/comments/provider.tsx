@@ -143,6 +143,12 @@ export interface CommentContextType {
   fetchComments: (body?: string | undefined) => void;
   changeToEdit: (schema: CommentSchema) => void;
   delComment: (id: string) => Promise<void>;
+  setReply: (
+    data: Pick<
+      CommentSchema,
+      "inReplyToComment" | "inReplyToUsername" | "inReplyToUser"
+    >
+  ) => void;
 }
 export const GithubAuthContext = React.createContext<Auth>(initialAuthValue);
 export const CommentEditorContext = React.createContext<CommentEditor>(
@@ -287,6 +293,22 @@ function CommentsProvider() {
     }
   }
 
+  function setReplyModeOn(
+    data: Pick<
+      CommentSchema,
+      "inReplyToComment" | "inReplyToUsername" | "inReplyToUser"
+    >
+  ) {
+    dispatch({
+      type: "UPDATE_REPLY",
+      payload: {
+        commentId: data.inReplyToComment,
+        userId: data.inReplyToUser,
+        username: data.inReplyToUsername,
+      },
+    });
+  }
+
   async function deleteComment(id: string) {
     const res = await fetch(
       `${getUri("query")}/api/comment/${getBlogId()}/${id}`,
@@ -377,6 +399,7 @@ function CommentsProvider() {
               error: commentError,
               changeToEdit: changeToEditMode,
               delComment: deleteComment,
+              setReply: setReplyModeOn,
             }}
           >
             {showComments ? (
