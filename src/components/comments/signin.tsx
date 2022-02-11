@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
+import { getGhClientId } from "../../../util/misc";
 import { checkDevVsProdUrl } from "../../pages/oauth";
 import { GithubAuthContext } from "./provider";
 
@@ -34,7 +35,7 @@ function Signin({}: Props) {
         className="p-2 bg-primary-accent-light text-white"
         onClick={() => {
           window.open(
-            `https://github.com/login/oauth/authorize?client_id=Iv1.b7f0e9e6521133a2&redirect_uri=${checkDevVsProdUrl()}/oauth&state=${
+            `https://github.com/login/oauth/authorize?client_id=${getGhClientId()}&redirect_uri=${checkDevVsProdUrl()}/oauth&state=${
               stateRef.current
             }`
           );

@@ -7,13 +7,19 @@ export type RedisClientType = typeof redis.createClient extends () => infer Resu
 export function transformRedisKey(key: string) {
   return key.split(" ").join("-");
 }
-
+export function getGhClientId() {
+  return process.env.NODE_ENV === "development"
+    ? "Iv1.1fbf2385d66eb1ca"
+    : "Iv1.b7f0e9e6521133a2";
+}
 export function getUri(option?: string): string {
   if (option === "query") {
-    return "https://api.mohits.dev";
+    return process.env.NODE_ENV === "production"
+      ? "https://api.mohits.dev"
+      : "http://localhost:5001";
   }
   let uri: string;
-  if (process.env.NODE_ENV === "development") uri = "http://localhost:5000";
+  if (process.env.NODE_ENV === "development") uri = "http://localhost:4218";
   else uri = "https://mohits.dev";
 
   return uri;
