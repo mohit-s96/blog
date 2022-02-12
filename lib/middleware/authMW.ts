@@ -6,6 +6,8 @@ function authMW(req: NextApiRequest, res: NextApiResponse, next: any) {
   const cookies = new Cookies(req, res);
   const str = cookies.get("token");
   if (str === process.env.SECRET) {
+    //@ts-ignore
+    req.auth = { token: str };
     next(true);
   } else {
     // next(new Error("Unauthorized"));

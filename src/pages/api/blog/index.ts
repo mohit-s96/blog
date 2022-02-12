@@ -18,7 +18,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const resp = await fetch(`${getUri("query")}/api/blog/hash`, {
         method: req.method,
-        headers: req.headers as any,
+        //@ts-ignore
+        headers: {
+          cookie: req.headers.cookie,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(req.body),
       });
 
