@@ -8,7 +8,7 @@ export function useCors(
   options?: CorsOptions
 ): Promise<any> {
   const defaultOptions: CorsOptions = {
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "PUT"],
     origin:
       process.env.NODE_ENV === "development"
         ? ["http://localhost:3000", "http://localhost:4218"]
