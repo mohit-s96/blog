@@ -62,6 +62,7 @@ function Heromain({}: Props) {
             href="https://cataas.com"
             target="_blank"
             referrerPolicy="no-referrer"
+            rel="noopener"
             className="italic text-gray-400 mt-4 text-sm"
           >
             source: cat api

@@ -4,9 +4,15 @@ interface Props {
   uris: SupaUploadResponseType[];
   alt: string;
   className?: string;
+  priority?: boolean;
 }
 
-function ResImage({ uris, alt, className = "" }: Props): ReactElement {
+function ResImage({
+  uris,
+  alt,
+  className = "",
+  priority = false,
+}: Props): ReactElement {
   return (
     <picture>
       <source media="(max-width: 600px)" srcSet={uris[1].data?.Key} />
@@ -18,6 +24,7 @@ function ResImage({ uris, alt, className = "" }: Props): ReactElement {
         className={className}
         width="400"
         height="225"
+        loading={priority ? "eager" : "lazy"}
       />
     </picture>
   );

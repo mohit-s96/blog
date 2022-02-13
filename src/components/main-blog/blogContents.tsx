@@ -41,9 +41,10 @@ function BlogContents({ data, theme }: Props): ReactElement {
     <div className="w-full flex items-center flex-col">
       <div className="w-full">
         <ResImage
+          priority
           alt={data.images[0].alt}
           uris={data.images[0].permUri}
-          className="w-full hero-img-res"
+          className="w-full"
         />
       </div>
 
