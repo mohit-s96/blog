@@ -104,7 +104,10 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
     }
   }, [value]);
   return (
-    <div className="absolute top-0 z-10 left-0 flex justify-between bg-[rgba(0,0,0,0.8)] w-full h-screen">
+    <div
+      aria-roledescription="search modal which appears when the search button in the navbar is clicked or when the keyboard shortcut, control + k, is pressed"
+      className="absolute top-0 z-10 left-0 flex justify-between bg-[rgba(0,0,0,0.8)] w-full h-screen"
+    >
       <div
         ref={searchRef}
         className={`w-3/6 mx-auto my-4 h-20 ${
@@ -128,7 +131,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
             <span className="text-gray-400 p-1 text-xl mx-2">[Esc]</span>
             <button
               className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-10 h-10 flex items-center justify-center"
-              aria-label="close search"
+              aria-label="close search modal"
               onClick={() => {
                 setVisible(false);
               }}

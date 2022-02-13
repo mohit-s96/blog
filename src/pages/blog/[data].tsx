@@ -67,6 +67,10 @@ const Post = ({
         render={(theme, searchVisible, setSearchVisible) => {
           return (
             <>
+              <StatsBar
+                stats={{ commentCount, likes, viewCount, uri, title }}
+                theme={theme}
+              />
               <section
                 className={`flex flex-col items-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
               >
@@ -80,10 +84,6 @@ const Post = ({
                 <MainBlog theme={theme} data={data} />
                 <CommentsProvider key={router.asPath} />
               </section>
-              <StatsBar
-                stats={{ commentCount, likes, viewCount, uri, title }}
-                theme={theme}
-              />
               <RelatedBlogs theme={theme} list={relatedBlogs} />
               <Footer theme={theme} />
             </>

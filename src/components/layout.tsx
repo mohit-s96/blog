@@ -46,6 +46,7 @@ const Layout = ({ render }: Props) => {
     <>
       <div className={`dark:bg-primary-bg-dark bg-white`}>
         <Navbar
+          visible={searchVisible}
           theme={theme as ThemeType}
           setSearchVisible={setSearchVisible}
           setTheme={setTheme as Dispatch<SetStateAction<ThemeType>>}

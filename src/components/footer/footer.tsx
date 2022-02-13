@@ -30,18 +30,16 @@ function Footer({ theme }: Props) {
           github
         </a>
       </div>
-      {/* <div className="flex justify-center p-1">
-        <span className="text-xsm text-primary-text-light dark:text-light-gray">
-          made with
-        </span>
-      </div> */}
       <div className="flex justify-center p-0">
         <NavItem
+          renderButton={false}
           children={
             <a
+              aria-label="nextjs website"
               href="https://nextjs.org/"
               target="_blank"
               referrerPolicy="no-referrer"
+              rel="noopener"
             >
               <NextJsIcon
                 color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}
@@ -53,11 +51,14 @@ function Footer({ theme }: Props) {
           wrapperClassname="mx-4 p-2"
         />
         <NavItem
+          renderButton={false}
           children={
             <a
+              aria-label="tailwind website"
               href="https://tailwindcss.com/"
               target="_blank"
               referrerPolicy="no-referrer"
+              rel="noopener"
             >
               <TailwindIcon
                 color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}
@@ -69,11 +70,14 @@ function Footer({ theme }: Props) {
           wrapperClassname="mx-4 p-2"
         />
         <NavItem
+          renderButton={false}
           children={
             <a
+              aria-label="vercel website"
               href="https://vercel.com/"
               target="_blank"
               referrerPolicy="no-referrer"
+              rel="noopener"
             >
               <VercelIcon
                 color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}

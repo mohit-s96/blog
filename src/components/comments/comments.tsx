@@ -67,8 +67,8 @@ function SingleComment({
       className="border-primary-accent-light border-r-[4px] my-4"
       id={_id as string}
     >
-      <div className="flex items-center">
-        <div className="w-10/12 flex items-center p-2 border-gray-400 dark:border-[#03060a] bg-gray-100 dark:bg-[#0f1f36] border-b-[1px]">
+      <div className="flex items-center bg-gray-100 dark:bg-[#0f1f36] border-gray-400 dark:border-[#03060a]  border-b-[1px]">
+        <div className="w-10/12 flex items-center p-2 ">
           <div className="w-8 h-8 overflow-hidden rounded-full mr-4">
             <img
               className="w-full h-full"

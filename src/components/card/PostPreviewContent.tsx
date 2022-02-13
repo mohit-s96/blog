@@ -7,6 +7,7 @@ import PostTitle from "./PostTitle";
 import Avatar from "../avatars/Avatar";
 import NavItem from "../nav/NavItem";
 import { PRIMARY_ACCENT_LIGHT } from "../../../constants";
+import { format, fromUnixTime } from "date-fns";
 
 interface Props {
   theme: ThemeType;
@@ -46,9 +47,17 @@ function PostPreviewContent({
           <NavItem
             size="sm"
             theme={theme}
-            children={time}
+            children={
+              <time
+                title={fromUnixTime(time).toDateString()}
+                dateTime={fromUnixTime(time).toUTCString()}
+              >
+                {format(time, "do MMM, yy")}
+              </time>
+            }
             Icon={Clock}
             className="mx-2"
+            renderButton={false}
           />
         </div>
         <PostTitle text={title} theme={theme} type={type} slug={slug} />

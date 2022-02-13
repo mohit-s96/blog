@@ -15,10 +15,6 @@ interface Props {
 }
 
 function RelatedBlogs({ list, theme }: Props): ReactElement {
-  let newlist = list.map((x) => ({
-    ...x,
-    createdAt: (format(x.createdAt!, "do MMM, yy") as unknown) as number,
-  }));
   return (
     <aside
       className={`relative flex flex-col items-start 2xl:w-8/12 xl:w-9/12 w-full mx-auto md:translate-y-[-50%] lg:translate-y-[-25%]`}
@@ -28,7 +24,7 @@ function RelatedBlogs({ list, theme }: Props): ReactElement {
           related blogs
         </h2>
         <div className="mx-auto flex flex-col justify-center items-center ">
-          {newlist.map((x) => (
+          {list.map((x) => (
             <HorizCard
               theme={theme}
               blog={x as BlogListType}

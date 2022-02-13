@@ -12,6 +12,10 @@ export interface Props {
   className?: string;
   wrapperClassname?: string;
   placeIconAfterText?: boolean;
+  renderButton?: boolean;
+  buttonRef?: React.RefObject<HTMLButtonElement>;
+  "aria-label"?: string;
+  "aria-keyshortcuts"?: string;
 }
 
 function NavItem({
@@ -23,6 +27,9 @@ function NavItem({
   placeIconAfterText,
   Icon,
   callback = () => {},
+  buttonRef,
+  renderButton = true,
+  ...rest
 }: Props): ReactElement {
   return (
     <div
@@ -37,7 +44,13 @@ function NavItem({
           size={size}
         />
       )}
-      <button className={`${className}`}>{children}</button>
+      {renderButton ? (
+        <button {...rest} className={`${className}`} ref={buttonRef}>
+          {children}
+        </button>
+      ) : (
+        children
+      )}
       {Icon && placeIconAfterText && (
         <Icon
           color={theme === "dark" ? "#ffffff" : PRIMARY_ACCENT_LIGHT}

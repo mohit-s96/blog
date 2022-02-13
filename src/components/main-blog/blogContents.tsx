@@ -14,6 +14,7 @@ import {
 import format from "date-fns/format";
 import SimpleTags from "../tags/SimpleTags";
 import { PRIMARY_BG_DARK } from "../../../constants";
+import { fromUnixTime } from "date-fns";
 
 interface Props {
   theme: ThemeType;
@@ -72,12 +73,21 @@ function BlogContents({ data, theme }: Props): ReactElement {
               <NavItem
                 size="sm"
                 theme={theme}
+                renderButton={false}
                 wrapperClassname="p-0"
-                className={`font-bold text-sm text-primary-text-light dark:text-light-gray ml-0`}
                 children={
-                  ((format(data.createdAt, "do MMM, yy") +
-                    " by " +
-                    data.author) as unknown) as number
+                  <>
+                    <time
+                      className={`font-bold text-sm text-primary-text-light dark:text-light-gray ml-0`}
+                      title={format(data.createdAt, "do MMM, yy, HH:mm aaa")}
+                      dateTime={fromUnixTime(data.createdAt).toUTCString()}
+                    >
+                      {format(data.createdAt, "do MMM, yy")}
+                    </time>
+                    <span className="font-bold text-sm text-primary-text-light dark:text-light-gray ml-2">
+                      by {data.author}
+                    </span>
+                  </>
                 }
               />
             </div>
@@ -94,6 +104,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           <a
             target="_blank"
             rel="noopener"
+            aria-label="share on twitter"
             href={`https://twitter.com/intent/tweet?text=check out this blog on ${data.title}. https://mohits.dev/blog/${data.uri}`}
             className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
@@ -102,6 +113,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=https://mohits.dev/blog/${data.uri}`}
             target="_blank"
+            aria-label="share on facebook"
             rel="noopener"
             className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
@@ -111,6 +123,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             href={`http://ww.reddit.com/submit?url=https://mohits.dev/blog/${data.uri}}&title=${data.title}`}
             target="_blank"
             rel="noopener"
+            aria-label="share on reddit"
             className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <RedditIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
@@ -118,6 +131,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
           <button
             onClick={copyLink}
             aria-label="copy blog link"
+            name="copy blog link to clipboard"
             className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
           >
             <LinkIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />

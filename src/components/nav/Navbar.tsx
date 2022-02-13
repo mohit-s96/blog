@@ -1,8 +1,13 @@
-import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useEffect,
+  useRef,
+} from "react";
 import Avatar from "../avatars/Avatar";
 import NavItem from "./NavItem";
-import { BrandingImage, GithubIcon, Search } from "../svg/collection.svg";
-import NavInput from "./NavInput";
+import { BrandingImage } from "../svg/collection.svg";
 import { ThemeType } from "../../../types/globalTypes";
 import ToggleTheme from "../util-components/toggle";
 import Link from "next/link";
@@ -12,14 +17,30 @@ export interface Props {
   theme: ThemeType;
   setTheme: Dispatch<SetStateAction<ThemeType>>;
   setSearchVisible: Dispatch<SetStateAction<boolean>>;
+  visible: boolean;
 }
 
-function Navbar({ theme, setTheme, setSearchVisible }: Props): ReactElement {
-  const [active, setActive] = useState(false);
-
+function Navbar({
+  theme,
+  setTheme,
+  setSearchVisible,
+  visible,
+}: Props): ReactElement {
   const changeSearchVisible = () => {
     setSearchVisible((visible) => !visible);
   };
+
+  const initialMounted = useRef(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (initialMounted.current && !visible) {
+      buttonRef.current?.focus();
+    }
+    if (!initialMounted.current) {
+      initialMounted.current = true;
+    }
+  }, [visible]);
 
   return (
     <nav
@@ -27,7 +48,7 @@ function Navbar({ theme, setTheme, setSearchVisible }: Props): ReactElement {
     >
       <Avatar alt="Branding logo image of the letter m" size="md">
         <Link href="/" passHref>
-          <a>
+          <a aria-label="home page">
             <BrandingImage color={PRIMARY_ACCENT_LIGHT} />
           </a>
         </Link>
@@ -36,16 +57,32 @@ function Navbar({ theme, setTheme, setSearchVisible }: Props): ReactElement {
         <NavItem
           theme={theme}
           size="md"
-          children={<a href="https://twitter.com/_msx47">twitter</a>}
+          renderButton={false}
+          children={
+            <a
+              referrerPolicy="no-referrer"
+              className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
+              href="https://twitter.com/_msx47"
+            >
+              twitter
+            </a>
+          }
           wrapperClassname="hidden md:block"
-          className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
         />
         <NavItem
           theme={theme}
           size="md"
           wrapperClassname="hidden md:block"
-          children={<a href="https://github.com/msx47">github</a>}
-          className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
+          renderButton={false}
+          children={
+            <a
+              referrerPolicy="no-referrer"
+              className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
+              href="https://github.com/msx47"
+            >
+              github
+            </a>
+          }
         />
         <NavItem
           theme={theme}
@@ -55,18 +92,13 @@ function Navbar({ theme, setTheme, setSearchVisible }: Props): ReactElement {
               search <span className="hidden xl:inline">[ctrl + k]</span>
             </span>
           }
+          buttonRef={buttonRef}
           callback={changeSearchVisible}
           className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
-          // Icon={Search}
-          //    callback={() => setActive(!active)}
+          aria-keyshortcuts="control or command + k"
+          aria-label="open search modal"
         />
         <ToggleTheme setTheme={setTheme} />
-        {/* <NavInput
-          active={active}
-          theme={theme}
-          callback={() => setActive(false)}
-        /> */}
-        {/* <NavItem theme={theme} size="md" children="about me" /> */}
       </div>
     </nav>
   );

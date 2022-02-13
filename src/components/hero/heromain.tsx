@@ -26,7 +26,7 @@ function Heromain({}: Props) {
     <>
       <div className="flex px-4 pt-4 justify-between">
         <section>
-          <h1 className="text-4xl md:text-7xl md:leading-[4rem] text-primary-text-light dark:text-primary-text-dark py-4">
+          <h1 className="translate-x-[-6px] text-4xl md:text-7xl md:leading-[4rem] text-primary-text-light dark:text-primary-text-dark py-4">
             Hello, I'm Mohit
           </h1>
           <p className="xl:max-w-xl max-w-full leading-[1.8em] text-primary-text-light dark:text-light-gray py-4">
@@ -53,7 +53,7 @@ function Heromain({}: Props) {
           <div className="w-[200px] h-[200px] overflow-hidden rounded-full">
             <img
               src={catImage}
-              alt="random cat images every 5 seconds"
+              alt="random picture of a cat"
               width={200}
               height={200}
             />
@@ -62,15 +62,18 @@ function Heromain({}: Props) {
             href="https://cataas.com"
             target="_blank"
             referrerPolicy="no-referrer"
-            className="italic text-gray-400"
+            className="italic text-gray-400 mt-4 text-sm"
           >
             source: cat api
           </a>
         </section>
       </div>
-      <button className="text-primary-text-light dark:text-primary-text-dark m-4 px-4 py-2 border-2 border-primary-accent-light rounded-sm outline-none bg-transparent hover:bg-primary-accent-light focus-visible:bg-primary-accent-light transition-all duration-200">
-        <a href="/about">about me</a>
-      </button>
+      <a
+        href="/about"
+        className="text-primary-text-light dark:text-primary-text-dark m-4 px-4 py-2 inline-block border-2 border-primary-accent-light rounded-sm outline-none bg-transparent hover:bg-primary-accent-light focus-visible:bg-primary-accent-light transition-all duration-200"
+      >
+        about me
+      </a>
     </>
   );
 }

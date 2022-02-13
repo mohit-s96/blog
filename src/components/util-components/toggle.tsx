@@ -50,7 +50,12 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
   useGlobalKeyBind(options);
 
   return (
-    <button onClick={handleChange} className="cursor-pointer">
+    <button
+      onClick={handleChange}
+      className="cursor-pointer"
+      aria-label="theme-toggle"
+      aria-keyshortcuts="alt + t"
+    >
       {dark ? (
         <NightIcon className="mx-2 hover:scale-150 transition-all duration-500" />
       ) : (

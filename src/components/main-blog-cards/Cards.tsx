@@ -36,13 +36,7 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
               key={blog.createdAt}
               theme={theme}
               layoutType="horiz"
-              blog={{
-                ...blog,
-                createdAt: (format(
-                  blog.createdAt,
-                  "do MMM, yy"
-                ) as unknown) as number,
-              }}
+              blog={blog}
             />
           ))}
       </div>

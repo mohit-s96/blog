@@ -23,7 +23,7 @@ function PostPreviewImage({
       <ResImage
         className={`w-full ${
           type === "horiz"
-            ? "rounded-tl-3xl rounded-bl-3xl"
+            ? "rounded-tl-md rounded-bl-md"
             : "rounded-tl-3xl rounded-tr-3xl"
         }`}
         alt={images.alt}

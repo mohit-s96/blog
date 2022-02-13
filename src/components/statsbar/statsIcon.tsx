@@ -117,8 +117,9 @@ function StatsIcon({
     <>
       <button
         className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer"
-        aria-label="more-options"
+        aria-label="open sharing links dropdown"
         onClick={showMoreOptions}
+        name="sharing links dropdown"
       >
         <EllipsesIcon color="gray" />
       </button>
