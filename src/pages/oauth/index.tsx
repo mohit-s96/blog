@@ -56,33 +56,31 @@ const Index = () => {
     );
   }, []);
   return (
-    <>
-      <Layout
-        render={(theme) => {
-          return (
-            <>
-              <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto text-center">
-                {status === 0 ? (
-                  <>
-                    <div className="top-loader-line"></div>
-                    <p className="text-primary-accent-light p-2 font-bold">
-                      authorizing...
-                    </p>
-                  </>
-                ) : status === 1 ? (
-                  <p className="text-red-600 font-bold p-2">
-                    oops...something went wrong. close this tab and try again
+    <Layout
+      render={(theme) => {
+        return (
+          <>
+            <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto text-center">
+              {status === 0 ? (
+                <>
+                  <div className="top-loader-line"></div>
+                  <p className="text-primary-accent-light p-2 font-bold">
+                    authorizing...
                   </p>
-                ) : null}
-              </div>
-              <div className="mt-8">
-                <Footer theme={theme} />
-              </div>
-            </>
-          );
-        }}
-      />
-    </>
+                </>
+              ) : status === 1 ? (
+                <p className="text-red-600 font-bold p-2">
+                  oops...something went wrong. close this tab and try again
+                </p>
+              ) : null}
+            </div>
+            <div className="mt-8">
+              <Footer theme={theme} />
+            </div>
+          </>
+        );
+      }}
+    />
   );
 };
 

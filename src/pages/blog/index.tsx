@@ -19,10 +19,10 @@ const Index = ({ posts }: Props) => {
   return (
     <>
       <CustomHead
-        uri="https://mohits.dev/"
-        description="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and C++"
-        title="Mohit's Blog"
-        image="https://avatars.githubusercontent.com/u/17087942?v=4"
+        uri="https://mohits.dev/blog"
+        description="This page contains all the articles present on thsi website."
+        title="All Blogs"
+        image="https://mohits.dev/favicon/favicon.png"
       />
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {

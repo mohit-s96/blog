@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { ThemeType } from "../../types/globalTypes";
 import { useTheme } from "next-themes";
 import Navbar from "./nav/Navbar";
