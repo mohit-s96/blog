@@ -1,9 +1,7 @@
 import React, { ReactElement, useLayoutEffect, useRef } from "react";
 import { BlogSlug } from "../../../types/blogtypes";
-import uri from "../../../public/favicon/icon-192x192.png";
 import { ThemeType } from "../../../types/globalTypes";
 import ResImage from "../card/resImages";
-import Avatar from "../avatars/Avatar";
 import NavItem from "../nav/NavItem";
 import {
   FacebookIcon,

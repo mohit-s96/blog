@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import React, { useEffect, useReducer, useRef, useState } from "react";
+import Prism from "prismjs";
 import {
   CommentSchema,
   UserSubmittedCommentSchema,
@@ -280,6 +280,9 @@ function CommentsProvider() {
         return comment;
       });
       setComments(newcomments);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 10);
 
       dispatch({
         payload: "",
@@ -345,6 +348,9 @@ function CommentsProvider() {
   useEffect(() => {
     if (newcomment) {
       setComments([...comments, newcomment]);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 10);
       dispatch({
         payload: "",
         type: "RESET_STATE",
@@ -368,7 +374,12 @@ function CommentsProvider() {
   }, []);
 
   useEffect(() => {
-    if (comments_) setComments(comments_);
+    if (comments_) {
+      setComments(comments_);
+      setTimeout(() => {
+        Prism.highlightAll();
+      }, 10);
+    }
   }, [comments_]);
 
   useEffect(() => {

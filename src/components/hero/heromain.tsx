@@ -69,12 +69,11 @@ function Heromain({}: Props) {
           </a>
         </section>
       </div>
-      <a
-        href="/about"
-        className="text-primary-text-light dark:text-primary-text-dark m-4 px-4 py-2 inline-block border-2 border-primary-accent-light rounded-sm outline-none bg-transparent hover:bg-primary-accent-light focus-visible:bg-primary-accent-light transition-all duration-200"
-      >
-        about me
-      </a>
+      <Link href="/about">
+        <a className="text-primary-text-light dark:text-primary-text-dark m-4 px-4 py-2 inline-block border-2 border-primary-accent-light rounded-sm outline-none bg-transparent hover:bg-primary-accent-light focus-visible:bg-primary-accent-light transition-all duration-200">
+          about me
+        </a>
+      </Link>
     </>
   );
 }

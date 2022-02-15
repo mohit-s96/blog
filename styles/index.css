@@ -20,6 +20,20 @@ body::-webkit-scrollbar-thumb {
   background-color: #e7cafd;
   outline: 1px solid #d9c9e6;
 }
+
+.style-search-scroll::-webkit-scrollbar {
+  width: 0.35em !important;
+}
+
+.style-search-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(127, 22, 168, 0.3) !important;
+}
+
+.style-search-scroll::-webkit-scrollbar-thumb {
+  background-color: #4b96ff !important;
+  outline: 1px solid #4b96ff !important;
+}
+
 .responsive-card {
   width: 47%;
 }
@@ -46,6 +60,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (max-width: 768px) {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 12px !important;
+  }
   .tag-selector {
     display: none !important;
   }
@@ -88,11 +106,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .svg-container path {
-  /* fill: transparent; */
-  /* stroke-width: 2; */
-  /* stroke: #d3d3d3; */
-  /* stroke-dasharray: 250; */
-  /* stroke-dashoffset: 0; */
   transition: transform 0.3s linear;
 }
 .svg-container-blue path {
@@ -283,7 +296,7 @@ ol > li:hover {
   color: #01379b;
 }
 .md-render-parent > p {
-  font-size: large;
+  font-size: medium;
   line-height: 1.8em;
   padding: 8px 12px;
   letter-spacing: 0.015em;
