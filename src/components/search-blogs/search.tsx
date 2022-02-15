@@ -61,6 +61,37 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
           },
         },
         {
+          keys: ["tab"],
+          callback: () => {
+            if (data?.length) {
+              if (selectedResultIndexRef === data.length - 1) {
+                setselectedResultIndexRef(-1);
+                (inpRef as any).current.focus();
+                return;
+              }
+              setselectedResultIndexRef(
+                (idx) => (idx + 1 + data.length) % data.length
+              );
+            }
+          },
+        },
+        {
+          keys: ["tab"],
+          specialKey: "Shift",
+          callback: () => {
+            if (data?.length) {
+              if (selectedResultIndexRef === 0) {
+                setselectedResultIndexRef(data.length);
+                (inpRef as any).current.focus();
+                return;
+              }
+              setselectedResultIndexRef(
+                (idx) => (idx - 1 + data.length) % data.length
+              );
+            }
+          },
+        },
+        {
           keys: ["arrowup"],
           callback: () => {
             if (data?.length) {
@@ -72,7 +103,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
         },
       ],
     }),
-    [data]
+    [data, selectedResultIndexRef]
   );
 
   useGlobalKeyBind(options);
@@ -110,7 +141,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
     >
       <div
         ref={searchRef}
-        className={`w-3/6 mx-auto my-4 h-20 ${
+        className={`overflow-y-scroll style-search-scroll w-3/6 mx-auto my-4 h-20 ${
           value ? "dark:bg-primary-bg-dark bg-gray-100" : ""
         } transition-all duration-300 flex flex-col w-full-sm scale-0 opacity-0 mt-[5%] shadow-2xl`}
       >
@@ -130,7 +161,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
           <div className="p-4 padding-sm flex">
             <span className="text-gray-400 p-1 text-xl mx-2">[Esc]</span>
             <button
-              className="bg-primary-accent-light text-white rounded-full p-2 focus:outline-none w-10 h-10 flex items-center justify-center"
+              className="bg-primary-accent-light text-white rounded-full focus:outline-none w-10 h-10 flex items-center justify-center"
               aria-label="close search modal"
               onClick={() => {
                 setVisible(false);
