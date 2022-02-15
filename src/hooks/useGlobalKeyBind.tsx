@@ -24,8 +24,12 @@ function useGlobalKeyBind({ options }: BindOptions) {
         const keyWhich = "" + KeyCodes[key];
         if (!isPressed.current[keyWhich]) pressed = false;
       });
+      // debugger;
+      let spKeyPressed =
+        (e.altKey || e.ctrlKey || e.shiftKey) && !!option.specialKey;
 
-      let spKeyPressed = true;
+      let spkyflag = e.altKey || e.ctrlKey || e.shiftKey;
+
       if (pressed && option.specialKey) {
         if (option.specialKey === "Alt") {
           if (!e.altKey || e.ctrlKey || e.shiftKey) spKeyPressed = false;
@@ -37,7 +41,10 @@ function useGlobalKeyBind({ options }: BindOptions) {
           if (!e.shiftKey || e.ctrlKey || e.altKey) spKeyPressed = false;
         }
       }
-      if (pressed && spKeyPressed) {
+      if (
+        (pressed && spKeyPressed) ||
+        (pressed && !option.specialKey && !spkyflag)
+      ) {
         if (!activeKey.current) {
           e.preventDefault();
           option.callback();
