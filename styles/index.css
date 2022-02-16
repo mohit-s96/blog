@@ -226,15 +226,10 @@ svg.blog-liked path {
 }
 pre {
   margin: 8px auto !important;
-  width: 95vw;
+  width: 100%;
   overflow: auto !important;
   word-wrap: normal !important;
   white-space: pre !important;
-}
-@media screen and (min-width: 768px) {
-  pre {
-    width: 100%;
-  }
 }
 .hero-img-res {
   height: 15rem;

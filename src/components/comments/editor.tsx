@@ -102,14 +102,26 @@ function Editor({ editorRef }: Props) {
               {error ? error : null}
             </p>
           </div>
-          <button
-            onClick={handleSubmit}
-            className={`h-10 p-2 bg-transparent border border-primary-accent-light text-sm text-primary-accent-light dark:text-white rounded-sm transition-all cursor-pointer hover:bg-primary-accent-light hover:text-white duration-200 ${
-              submitting ? "bg-gray-400" : ""
-            }`}
-          >
-            {isEditingMode ? "update " : "submit "} comment
-          </button>
+          <div>
+            {inReplyToUsername || _id ? (
+              <button
+                onClick={() => {
+                  dispatch({ type: "RESET_STATE", payload: "" });
+                }}
+                className={`h-10 p-2 bg-transparent border border-red-600 text-sm text-red-500 dark:text-white rounded-sm transition-all cursor-pointer hover:bg-red-600 hover:text-white duration-200 mx-2`}
+              >
+                cancel
+              </button>
+            ) : null}
+            <button
+              onClick={handleSubmit}
+              className={`h-10 p-2 bg-transparent border border-primary-accent-light text-sm text-primary-accent-light dark:text-white rounded-sm transition-all cursor-pointer hover:bg-primary-accent-light hover:text-white duration-200 ${
+                submitting ? "bg-gray-400" : ""
+              }`}
+            >
+              {isEditingMode ? "update " : "submit "} comment
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -303,6 +303,10 @@ function CommentsProvider() {
     >
   ) {
     dispatch({
+      type: "RESET_STATE",
+      payload: "",
+    });
+    dispatch({
       type: "UPDATE_REPLY",
       payload: {
         commentId: data.inReplyToComment,
@@ -331,6 +335,10 @@ function CommentsProvider() {
   }
 
   function changeToEditMode(schema: CommentSchema) {
+    dispatch({
+      type: "RESET_STATE",
+      payload: "",
+    });
     const payload: UserSubmittedCommentSchema = {
       _id: schema._id,
       blogId: schema.blogId,
