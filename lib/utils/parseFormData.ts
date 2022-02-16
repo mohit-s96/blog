@@ -17,7 +17,8 @@ export function parseFormData(req: NextApiRequest, res: NextApiResponse) {
         if (
           mimetype !== "image/jpg" &&
           mimetype !== "image/png" &&
-          mimetype !== "image/jpeg"
+          mimetype !== "image/jpeg" &&
+          mimetype !== "image/webp"
         ) {
           return res.status(400).json({ error: "Not an image" });
         }

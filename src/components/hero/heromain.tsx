@@ -52,6 +52,8 @@ function Heromain({}: Props) {
         <section className="flex-col items-center hidden md:flex">
           <div className="w-[200px] h-[200px] overflow-hidden rounded-full">
             <img
+              loading="lazy"
+              className="hidden md:flex"
               src={catImage}
               alt="random picture of a cat"
               width={200}

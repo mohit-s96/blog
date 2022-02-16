@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import * as os from "os";
 import path from "path";
 
-const deviceWidths: number[] = [200, 400, 700];
+const deviceWidths: number[] = [200, 400, 700, 10];
 
 const get16_9Height = (width: number) => {
   return Math.floor((width * 3) / 4);
@@ -42,7 +42,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       const tmpFiles: any[] = [];
 
-      [...new Array(3)].forEach((_, i) => {
+      [...new Array(4)].forEach((_, i) => {
         tmpFiles.push(
           path.join(os.tmpdir(), fileName + "-" + [deviceWidths[i]] + ".webp")
         );
@@ -50,6 +50,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       resolve(tmpFiles);
     } catch (error) {
+      console.log(error);
       reject(
         "something went wrong. it's likely a problem with the server. please try again after sometime"
       );

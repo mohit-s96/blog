@@ -40,8 +40,8 @@ function BlogContents({ data, theme }: Props): ReactElement {
       <div className="w-full">
         <ResImage
           priority
-          alt={data.images[0].alt}
-          uris={data.images[0].permUri}
+          alt={data.images.find((img) => img.isHero)!.alt}
+          uris={data.images.find((img) => img.isHero)!.permUri}
           className="w-full"
         />
       </div>

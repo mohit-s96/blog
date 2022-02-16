@@ -1,14 +1,11 @@
 import { format, fromUnixTime } from "date-fns";
 import React from "react";
-import { PRIMARY_ACCENT_LIGHT } from "../../../constants";
-import Avatar from "../avatars/Avatar";
 import PostExcerpt from "../card/PostExcerpt";
 import { CardProps } from "../card/PostPreview";
 import PostPreviewImage from "../card/PostPreviewImage";
 import PostTags from "../card/PostTags";
 import PostTitle from "../card/PostTitle";
 import NavItem from "../nav/NavItem";
-import { MIcon, Clock } from "../svg/collection.svg";
 
 function HorizCard({
   blog: { images, title, excerpt, tags, uri: slug, createdAt: time },
@@ -19,7 +16,7 @@ function HorizCard({
     <div className="flex md:p-4 md:mb-0 mb-3">
       <PostPreviewImage
         type={type}
-        images={images[0]}
+        images={images.find((img) => img.isHero)!}
         wrapperClass="hidden md:block"
       />
       <div className={`px-2 flex flex-col h-full justify-evenly w-full`}>
