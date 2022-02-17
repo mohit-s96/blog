@@ -8,6 +8,7 @@ interface Props {
   className?: string;
   priority?: boolean;
   lowres?: string;
+  forceload?: boolean;
 }
 
 function ResImage({
@@ -16,6 +17,7 @@ function ResImage({
   className = "",
   priority = false,
   lowres,
+  forceload = false,
 }: Props): ReactElement {
   const [src, setSrc] = useState("");
   const imageRef = useRef<HTMLImageElement>(null);
@@ -24,7 +26,7 @@ function ResImage({
     /**
      * only load non-content images on medium or > devices or if the page is a blog page in which case we atleast have to show the hero image
      */
-    if (window.innerWidth >= 768 || /\/blog\/*/.test(asPath)) {
+    if (window.innerWidth >= 768 || (/\/blog\/*/.test(asPath) && forceload)) {
       const uri = uris[2].data?.Key!;
       const image = new Image();
       image.onload = () => {
@@ -46,9 +48,15 @@ function ResImage({
         width="400"
         height="225"
       />
-      <picture>
-        <source media="(max-width: 600px)" srcSet={uris[1].data?.Key} />
-        <source media="(min-width: 601px)" srcSet={uris[2].data?.Key} />
+      <picture className="">
+        <source
+          media="(max-width: 600px)"
+          srcSet={src.length ? uris[1].data?.Key : ""}
+        />
+        <source
+          media="(min-width: 601px)"
+          srcSet={src.length ? uris[2].data?.Key : ""}
+        />
         <img
           ref={imageRef}
           src={src}
@@ -57,6 +65,7 @@ function ResImage({
           className={"absolute top-0 left-0 blur-img " + className}
           width="400"
           height="225"
+          loading={priority ? "eager" : "lazy"}
         />
       </picture>
     </div>

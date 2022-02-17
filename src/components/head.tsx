@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import Head from "next/head";
 
 interface Props {
@@ -6,9 +6,16 @@ interface Props {
   uri: string;
   description: string;
   image: string;
+  children?: ReactNode;
 }
 
-function CustomHead({ uri, description, image, title }: Props): ReactElement {
+function CustomHead({
+  uri,
+  description,
+  image,
+  title,
+  children = "",
+}: Props): ReactElement {
   return (
     <Head>
       <title>{title}</title>
@@ -52,6 +59,7 @@ function CustomHead({ uri, description, image, title }: Props): ReactElement {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
+      {children}
     </Head>
   );
 }

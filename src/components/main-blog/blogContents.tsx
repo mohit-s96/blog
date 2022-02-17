@@ -57,6 +57,7 @@ function BlogContents({ data }: Props): ReactElement | null {
           uris={data.images.find((img) => img.isHero)!.permUri}
           className="w-full h-full"
           lowres={data.lowres}
+          forceload
         />
       </div>
 

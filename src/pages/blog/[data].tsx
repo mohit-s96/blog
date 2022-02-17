@@ -62,6 +62,18 @@ const Post = ({
         description={excerpt}
         title={title}
         image={images[0].permUri[0].data!.Key}
+        children={
+          <link
+            //@ts-ignore
+            crossOrigin
+            rel="preconnect"
+            href={
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:5001"
+                : "https://api.mohits.dev"
+            }
+          />
+        }
       />
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {
