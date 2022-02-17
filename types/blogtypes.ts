@@ -40,6 +40,7 @@ export interface BlogSlug {
   readingTime: string;
   lastEdited: number | null;
   isArchived: boolean;
+  lowres?: string;
 }
 
 export type RelatedBlogsType = Array<

@@ -339,6 +339,20 @@ ol > li:hover {
   opacity: 0.1;
   background-color: #bb160a;
 }
+.blur-img {
+  filter: blur(16px);
+}
+.blur-anim {
+  animation: blurAnim 0.3s linear forwards;
+}
+@keyframes blurAnim {
+  0% {
+    filter: blur(16px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
 /* Write your own custom base styles here */
 
 /* Start purging... */

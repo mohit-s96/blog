@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import React, {
   Dispatch,
   ReactElement,
@@ -15,23 +16,29 @@ interface Props {
   setTheme: Dispatch<SetStateAction<ThemeType>>;
 }
 
-function ToggleTheme({ setTheme }: Props): ReactElement {
-  const [dark, setDark] = useState(false);
-
-  const handleChange = () => {
-    if (dark) {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-    setDark(!dark);
-  };
+function ToggleTheme({}: Props): ReactElement | null {
+  const { theme, setTheme } = useTheme();
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("theme") === "dark") {
-      setDark(true);
-    }
+    setLoaded(true);
   }, []);
+
+  const handleChange = () => {
+    // if (dark) {
+    //   setTheme("light");
+    // } else {
+    //   setTheme("dark");
+    // }
+    // setDark(!dark);
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("theme") === "dark") {
+  //     setDark(true);
+  //   }
+  // }, []);
 
   const options: BindOptions = useMemo(
     () => ({
@@ -48,7 +55,7 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
     [handleChange]
   );
   useGlobalKeyBind(options);
-
+  if (!loaded) return null;
   return (
     <button
       onClick={handleChange}
@@ -56,7 +63,7 @@ function ToggleTheme({ setTheme }: Props): ReactElement {
       aria-label="theme-toggle"
       aria-keyshortcuts="alt + t"
     >
-      {dark ? (
+      {theme === "dark" ? (
         <NightIcon className="mx-2 hover:scale-150 transition-all duration-500" />
       ) : (
         <SunIcon

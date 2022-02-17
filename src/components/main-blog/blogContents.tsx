@@ -1,4 +1,10 @@
-import React, { ReactElement, useLayoutEffect, useRef } from "react";
+import React, {
+  ReactElement,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { BlogSlug } from "../../../types/blogtypes";
 import { ThemeType } from "../../../types/globalTypes";
 import ResImage from "../card/resImages";
@@ -13,15 +19,23 @@ import format from "date-fns/format";
 import SimpleTags from "../tags/SimpleTags";
 import { PRIMARY_BG_DARK } from "../../../constants";
 import { fromUnixTime } from "date-fns";
+import { useTheme } from "next-themes";
 
 interface Props {
   theme: ThemeType;
   data: BlogSlug;
 }
 
-function BlogContents({ data, theme }: Props): ReactElement {
+function BlogContents({ data }: Props): ReactElement | null {
+  const { theme } = useTheme();
   const divRef = useRef<HTMLDivElement>(null);
   const moveUpRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   useLayoutEffect(() => {
     if (window.innerWidth > 768) {
       const height = divRef.current?.getBoundingClientRect().height;
@@ -34,21 +48,21 @@ function BlogContents({ data, theme }: Props): ReactElement {
   const copyLink = () => {
     window.navigator.clipboard.writeText("https://mohits.dev/blog/" + data.uri);
   };
-
   return (
     <div className="w-full flex items-center flex-col">
-      <div className="w-full">
+      <div className="w-full overflow-hidden lg:h-[448px]">
         <ResImage
           priority
           alt={data.images.find((img) => img.isHero)!.alt}
           uris={data.images.find((img) => img.isHero)!.permUri}
-          className="w-full"
+          className="w-full h-full"
+          lowres={data.lowres}
         />
       </div>
 
       <div
         ref={divRef}
-        className={`xl:translate-y-[-70%] w-full dark:bg-primary-bg-dark bg-white`}
+        className={`md:translate-y-[-70%] w-full dark:bg-primary-bg-dark bg-white`}
       >
         <div className="flex p-2">
           <p
@@ -71,7 +85,7 @@ function BlogContents({ data, theme }: Props): ReactElement {
             <div className="flex items-center w-full justify-center">
               <NavItem
                 size="sm"
-                theme={theme}
+                theme={theme as any}
                 renderButton={false}
                 wrapperClassname="p-0"
                 children={
@@ -99,42 +113,52 @@ function BlogContents({ data, theme }: Props): ReactElement {
             {data.readingTime} read
           </span>
         </div>
-        <div className="items-center flex w-full p-2 justify-center">
-          <a
-            target="_blank"
-            rel="noopener"
-            aria-label="share on twitter"
-            href={`https://twitter.com/intent/tweet?text=check out this blog on ${data.title}. https://mohits.dev/blog/${data.uri}`}
-            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
-          >
-            <TwitterIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=https://mohits.dev/blog/${data.uri}`}
-            target="_blank"
-            aria-label="share on facebook"
-            rel="noopener"
-            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
-          >
-            <FacebookIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
-          </a>
-          <a
-            href={`http://ww.reddit.com/submit?url=https://mohits.dev/blog/${data.uri}}&title=${data.title}`}
-            target="_blank"
-            rel="noopener"
-            aria-label="share on reddit"
-            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
-          >
-            <RedditIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
-          </a>
-          <button
-            onClick={copyLink}
-            aria-label="copy blog link"
-            name="copy blog link to clipboard"
-            className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
-          >
-            <LinkIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
-          </button>
+        <div className="items-center flex w-full p-2 justify-center h-[56px]">
+          {loaded ? (
+            <>
+              <a
+                target="_blank"
+                rel="noopener"
+                aria-label="share on twitter"
+                href={`https://twitter.com/intent/tweet?text=check out this blog on ${data.title}. https://mohits.dev/blog/${data.uri}`}
+                className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+              >
+                <TwitterIcon
+                  color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK}
+                />
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://mohits.dev/blog/${data.uri}`}
+                target="_blank"
+                aria-label="share on facebook"
+                rel="noopener"
+                className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+              >
+                <FacebookIcon
+                  color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK}
+                />
+              </a>
+              <a
+                href={`http://ww.reddit.com/submit?url=https://mohits.dev/blog/${data.uri}}&title=${data.title}`}
+                target="_blank"
+                rel="noopener"
+                aria-label="share on reddit"
+                className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+              >
+                <RedditIcon
+                  color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK}
+                />
+              </a>
+              <button
+                onClick={copyLink}
+                aria-label="copy blog link"
+                name="copy blog link to clipboard"
+                className="w-10 h-10 rounded-full bg-primary-bg-light dark:bg-primary-bg-dark p-2 md:mr-2 mr-0 scale-75 md:scale-100 dark:bg-transparent dark:hover:bg-primary-accent-light transition-all duration-200"
+              >
+                <LinkIcon color={theme === "dark" ? "#fff" : PRIMARY_BG_DARK} />
+              </button>
+            </>
+          ) : null}
         </div>
       </div>
       <div ref={moveUpRef}>

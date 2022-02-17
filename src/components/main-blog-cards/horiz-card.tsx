@@ -8,20 +8,21 @@ import PostTitle from "../card/PostTitle";
 import NavItem from "../nav/NavItem";
 
 function HorizCard({
-  blog: { images, title, excerpt, tags, uri: slug, createdAt: time },
+  blog: { lowres, images, title, excerpt, tags, uri: slug, createdAt: time },
   theme,
   layoutType: type = "horiz",
 }: CardProps) {
   return (
-    <div className="flex md:p-4 md:mb-0 mb-3">
+    <div className="flex md:p-4 md:mb-0 mb-3 w-full">
       <PostPreviewImage
+        lowres={lowres}
         type={type}
         images={images.find((img) => img.isHero)!}
         wrapperClass="hidden md:block"
       />
-      <div className={`px-2 flex flex-col h-full justify-evenly w-full`}>
+      <div className={`pl-2 flex flex-col justify-evenly flex-grow`}>
         <PostTitle text={title} theme={theme} type={type} slug={slug} />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           <PostTags
             tags={tags}
             theme={theme}

@@ -6,7 +6,7 @@ import path from "path";
 const deviceWidths: number[] = [200, 400, 700, 10];
 
 const get16_9Height = (width: number) => {
-  return Math.floor((width * 3) / 4);
+  return Math.floor((width * 9) / 16);
 };
 
 export async function resizeImages(image: Buffer, fileName: string) {

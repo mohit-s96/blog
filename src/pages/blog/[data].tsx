@@ -106,9 +106,38 @@ export async function getStaticProps(path: Params) {
   const data = await fetchSingleBlog(path.params.data);
   const relatedSearchQuery = data.tags.join(" ");
   let relatedBlogs = await fetchSearchQuery(relatedSearchQuery);
+
+  let promises: Promise<any>[] = [];
+
   relatedBlogs.forEach((blog) => {
+    const lowresuri = blog.images!.find((x) => x.isHero)!.permUri[3].data!.Key;
+    promises.push(fetch(lowresuri));
     blog._id = blog._id?.toHexString() as any;
   });
+
+  const resp = await Promise.all(promises);
+
+  promises = [];
+
+  resp.forEach((res) => {
+    promises.push(res.arrayBuffer());
+  });
+
+  const base64Strings = await Promise.all(promises);
+
+  relatedBlogs.forEach((blog, i) => {
+    const buffer = Buffer.from(base64Strings[i]);
+    blog.lowres = "data:image/webp;base64, " + buffer.toString("base64");
+  });
+
+  const lowResImageData = await fetch(
+    data.images.find((x) => x.isHero)!.permUri[3].data!.Key
+  );
+  const blob = await lowResImageData.arrayBuffer();
+  const buffer = Buffer.from(blob);
+  const text = buffer.toString("base64");
+
+  data.lowres = "data:image/webp;base64, " + text;
 
   data._id = data._id?.toHexString() as any;
 
