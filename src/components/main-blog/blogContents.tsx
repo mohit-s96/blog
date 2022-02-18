@@ -34,6 +34,21 @@ function BlogContents({ data }: Props): ReactElement | null {
 
   useEffect(() => {
     setLoaded(true);
+    //@ts-ignore
+    import("prismjs/plugins/line-numbers/prism-line-numbers");
+    //@ts-ignore
+    import("prismjs/plugins/toolbar/prism-toolbar").then(() => {
+      console.log("here");
+
+      //@ts-ignore
+      import("prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard").then(
+        (module) => {
+          console.log(module);
+
+          console.log("there");
+        }
+      );
+    });
   }, []);
 
   useLayoutEffect(() => {
@@ -49,7 +64,7 @@ function BlogContents({ data }: Props): ReactElement | null {
     window.navigator.clipboard.writeText("https://mohits.dev/blog/" + data.uri);
   };
   return (
-    <div className="w-full flex items-center flex-col">
+    <div className="w-full flex items-center flex-col line-numbers">
       <div className="w-full overflow-hidden lg:h-[448px]">
         <ResImage
           priority

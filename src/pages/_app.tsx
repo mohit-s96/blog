@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { pageview } from "../../lib/utils/gtag";
 import "../../styles/index.css";
+import "../../styles/prism.css";
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {

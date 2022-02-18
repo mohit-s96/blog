@@ -46,12 +46,8 @@ const Post = ({
   relatedBlogs,
 }: Props) => {
   const router = useRouter();
-
-  const [path, setPath] = useState("default");
   useEffect(() => {
     if (typeof Prism !== undefined) {
-      //@ts-ignore
-      Prism.manual = true;
       Prism.highlightAll();
     }
   }, [router]);
