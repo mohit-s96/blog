@@ -20,6 +20,7 @@ import SimpleTags from "../tags/SimpleTags";
 import { PRIMARY_BG_DARK } from "../../../constants";
 import { fromUnixTime } from "date-fns";
 import { useTheme } from "next-themes";
+import Prism from "prismjs";
 
 interface Props {
   theme: ThemeType;
@@ -38,16 +39,10 @@ function BlogContents({ data }: Props): ReactElement | null {
     import("prismjs/plugins/line-numbers/prism-line-numbers");
     //@ts-ignore
     import("prismjs/plugins/toolbar/prism-toolbar").then(() => {
-      console.log("here");
-
-      //@ts-ignore
-      import("prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard").then(
-        (module) => {
-          console.log(module);
-
-          console.log("there");
-        }
-      );
+      import(
+        //@ts-ignore
+        "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
+      ).then(() => Prism.highlightAll());
     });
   }, []);
 
@@ -98,27 +93,45 @@ function BlogContents({ data }: Props): ReactElement | null {
         </div>
         <div className={`flex w-full justify-center`}>
           <div className="items-center flex w-full p-2">
-            <div className="flex items-center w-full justify-center">
-              <NavItem
+            <div className="flex items-center w-full justify-center flex-col">
+              {/* <NavItem
                 size="sm"
                 theme={theme as any}
                 renderButton={false}
                 wrapperClassname="p-0"
-                children={
-                  <>
-                    <time
-                      className={`font-bold text-sm text-primary-text-light dark:text-light-gray ml-0`}
-                      title={format(data.createdAt, "do MMM, yy, HH:mm aaa")}
-                      dateTime={fromUnixTime(data.createdAt).toUTCString()}
-                    >
-                      {format(data.createdAt, "do MMM, yy")}
-                    </time>
-                    <span className="font-bold text-sm text-primary-text-light dark:text-light-gray ml-2">
-                      by {data.author}
-                    </span>
-                  </>
-                }
-              />
+                children={ */}
+              <p className="pt-[2px]">
+                <time
+                  className={`font-bold text-sm text-primary-text-light dark:text-light-gray ml-0`}
+                  title={format(data.createdAt, "do MMM, yy, HH:mm aaa")}
+                  dateTime={fromUnixTime(data.createdAt).toUTCString()}
+                >
+                  {format(data.createdAt, "do MMM, yy")}
+                </time>
+                <span className="font-bold text-sm text-primary-text-light dark:text-light-gray ml-2">
+                  by {data.author}
+                </span>
+              </p>
+              {data.lastEdited ? (
+                <p className="pt-[2px]">
+                  <span className="italic text-sm text-primary-text-light dark:text-light-gray ml-2">
+                    [edited{" "}
+                  </span>
+                  <time
+                    className={`text-sm text-primary-text-light dark:text-light-gray ml-0`}
+                    title={format(data.lastEdited, "do MMM, yy, HH:mm aaa")}
+                    dateTime={fromUnixTime(data.createdAt).toUTCString()}
+                  >
+                    {format(data.createdAt, "do MMM, yy")}
+                  </time>
+                  <span className="italic text-sm text-primary-text-light dark:text-light-gray">
+                    ]
+                  </span>
+                </p>
+              ) : null}
+              {/* </div> */}
+              {/* } */}
+              {/* /> */}
             </div>
           </div>
         </div>
