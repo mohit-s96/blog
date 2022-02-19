@@ -59,9 +59,9 @@ function StatsBar({ stats, theme }: Props): ReactElement {
         <StatsIcon
           stats={stats}
           theme={theme}
-          commentCount={state.commentCount}
-          likes={state.likes}
-          views={state.views}
+          commentCount={state.commentCount || 0}
+          likes={state.likes || 0}
+          views={state.views || 0}
           setStats={setState}
         />
       </div>

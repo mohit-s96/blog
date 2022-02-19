@@ -288,7 +288,7 @@ ol > li:hover {
 }
 .md-render-parent > p > a {
   font-weight: 600;
-  color: #01379b;
+  color: #4486ff;
 }
 .md-render-parent > p {
   font-size: medium;
@@ -298,15 +298,16 @@ ol > li:hover {
 }
 
 .md-render-parent > blockquote {
-  padding: 12px;
+  padding: 8px;
   background-color: transparent;
-  font-weight: 600;
+  /* font-weight: bold; */
   color: #4b96ff;
   /* opacity: 0.1; */
-  font-size: 1em;
-  margin: 16px 0;
+  font-size: 0.9em;
+  margin: 16px auto;
   border-left: 4px solid #4b96ff;
   position: relative;
+  width: 98%;
 }
 
 .md-render-parent > blockquote::after {
@@ -321,13 +322,17 @@ ol > li:hover {
 }
 
 .md-render-parent > blockquote.bq-warn {
-  color: #bb9b0a;
+  color: #8f7502;
   border-left: 4px solid #ffde4b;
+}
+
+html[class="dark"] .md-render-parent > blockquote.bq-warn {
+  color: #bb9b0a;
 }
 
 .md-render-parent > blockquote.bq-warn::after {
   opacity: 0.2;
-  background-color: #ffde4b;
+  background-color: #ffdb3b;
 }
 
 .md-render-parent > blockquote.bq-err {
@@ -380,9 +385,9 @@ ol > li:hover {
   }
 }
 p > code {
-  font-size: small;
-  padding: 1px;
-  background-color: rgb(190, 185, 185);
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+  background-color: rgba(175, 184, 193, 0.2);
 }
 html[class="dark"] .editor-shadow:focus-visible {
   box-shadow: 0 0 0 4px #0c2d6b;

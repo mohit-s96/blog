@@ -205,12 +205,15 @@ function StatsIcon({
           {likes} likes
         </span>
       </button>
-      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
+      <a
+        href="#comments"
+        className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer"
+      >
         <CommentIcon color="gray" />
         <span className="font-bold p-2 text-gray-500 text-sm">
           {commentCount} comments
         </span>
-      </button>
+      </a>
       <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
         <EyeIcon color="gray" />
         <span className="font-bold p-2 text-gray-500 text-sm">

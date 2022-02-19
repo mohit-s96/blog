@@ -216,7 +216,7 @@ const patch = async (body: string = "") => {
 };
 function ShowComments({ setShow, show, fetch }: any) {
   return (
-    <div className="w-full text-center my-4">
+    <div className="w-full text-center my-4" id="comments">
       <button
         onClick={() => {
           setShow(!show);

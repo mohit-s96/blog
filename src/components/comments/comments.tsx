@@ -185,7 +185,7 @@ function Comments({ editRef }: Props) {
   } = useContext(CommentListContext);
 
   return (
-    <div className="flex lg:p-5 p-1 w-full flex-col">
+    <div className="flex lg:p-5 p-1 w-full flex-col" id="comments">
       {error ? (
         <p className="p-2 text-center font-bold">
           <p className="text-red-500">
