@@ -12,6 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (uname === process.env.UNAME && pass === process.env.PASS) {
       cookies.set("token", process.env.SECRET, {
         httpOnly: true,
+        domain: ".mohits.dev",
       });
       res.status(200).json({ message: "success" });
     } else {

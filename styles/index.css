@@ -258,6 +258,7 @@ pre {
 
 html[class="dark"] .md-render-parent > h2 {
   color: #fff;
+  margin-top: 1em;
 }
 
 html[class="light"] .md-render-parent > h2 {

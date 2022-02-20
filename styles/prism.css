@@ -43,8 +43,18 @@ html[class="dark"] pre[class*="language-"] {
   padding-top: 1em;
   padding-bottom: 1em;
   margin: 0.5em 0;
-  overflow: auto;
+  overflow-y: scroll;
   border-radius: 0.3em;
+}
+
+@media screen and (max-width: 768px) {
+  html pre[class*="language-"] {
+    width: 98vw;
+  }
+
+  .copy-to-clipboard-button {
+    margin-left: 12px;
+  }
 }
 
 /* Inline code */
@@ -548,7 +558,7 @@ html[class="light"] pre[class*="language-"] {
   padding-top: 1em;
   padding-bottom: 1em;
   margin: 0.5em 0;
-  overflow: auto;
+  overflow-y: scroll;
   border-radius: 0.3em;
 }
 
