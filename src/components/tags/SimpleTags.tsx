@@ -9,7 +9,9 @@ interface Props {
 
 function SimpleTags({ tag, className = "" }: Props): ReactElement {
   return (
-    <span className={`p-0 mr-1 rounded-sm ${className}`}>{"#" + tag}</span>
+    <span className={`p-0 my-[2px] mr-1 rounded-sm ${className}`}>
+      {"#" + tag}
+    </span>
   );
 }
 

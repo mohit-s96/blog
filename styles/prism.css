@@ -48,7 +48,10 @@ html[class="dark"] pre[class*="language-"] {
 }
 
 @media screen and (max-width: 768px) {
-  html pre[class*="language-"] {
+  /*
+  this fix limits the size of pre element on smaller screens. this is critical css so include this if inlining css in the future
+  */
+  html pre {
     width: 98vw;
   }
 

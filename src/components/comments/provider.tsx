@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
-import Prism from "prismjs";
+// import Prism from "prismjs";
 import {
   CommentSchema,
   UserSubmittedCommentSchema,
@@ -281,6 +281,7 @@ function CommentsProvider() {
       });
       setComments(newcomments);
       setTimeout(() => {
+        //@ts-ignore
         Prism.highlightAll();
       }, 10);
 
@@ -357,6 +358,7 @@ function CommentsProvider() {
     if (newcomment) {
       setComments([...comments, newcomment]);
       setTimeout(() => {
+        //@ts-ignore
         Prism.highlightAll();
       }, 10);
       dispatch({
@@ -385,6 +387,7 @@ function CommentsProvider() {
     if (comments_) {
       setComments(comments_);
       setTimeout(() => {
+        //@ts-ignore
         Prism.highlightAll();
       }, 10);
     }

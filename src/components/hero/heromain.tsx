@@ -4,7 +4,7 @@ import Link from "next/link";
 type Props = {};
 
 function Heromain({}: Props) {
-  const [catImage, setCatImage] = useState(() => "/assets/cat.jpeg");
+  const [catImage, setCatImage] = useState("/assets/cat.jpeg");
 
   useEffect(() => {
     let id: any;

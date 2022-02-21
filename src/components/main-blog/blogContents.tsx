@@ -62,7 +62,7 @@ function BlogContents({ data }: Props): ReactElement | null {
     <div className="w-full flex items-center flex-col line-numbers">
       <div className="w-full overflow-hidden lg:h-[448px]">
         <ResImage
-          priority
+          // priority
           alt={data.images.find((img) => img.isHero)!.alt}
           uris={data.images.find((img) => img.isHero)!.permUri}
           className="w-full h-full"
@@ -82,7 +82,7 @@ function BlogContents({ data }: Props): ReactElement | null {
             {data.title}
           </p>
         </div>
-        <div className="flex p-2 justify-center w-full">
+        <div className="flex p-2 justify-center w-full flex-wrap">
           {data.tags.map((tag) => (
             <SimpleTags
               key={tag}
@@ -94,12 +94,6 @@ function BlogContents({ data }: Props): ReactElement | null {
         <div className={`flex w-full justify-center`}>
           <div className="items-center flex w-full p-2">
             <div className="flex items-center w-full justify-center flex-col">
-              {/* <NavItem
-                size="sm"
-                theme={theme as any}
-                renderButton={false}
-                wrapperClassname="p-0"
-                children={ */}
               <p className="pt-[2px]">
                 <time
                   className={`font-bold text-sm text-primary-text-light dark:text-light-gray ml-0`}

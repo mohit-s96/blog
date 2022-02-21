@@ -4,6 +4,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/*
+without this there will always be a little gap on the right side of the page on smaller screens
+*/
+html,
+body {
+  overflow-x: hidden;
+}
 body::-webkit-scrollbar {
   width: 0.35em;
 }

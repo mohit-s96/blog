@@ -10,10 +10,10 @@ import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
 import StatsBar from "../../components/statsbar/statsBar";
-import Prism from "prismjs";
-import "prismjs/components/prism-bash";
+// import Prism from "prismjs";
+// import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../../components/footer/footer";
 import CommentsProvider from "../../components/comments/provider";
 
@@ -23,33 +23,16 @@ type Props = {
 };
 
 const Post = ({
-  data: {
-    author,
-    excerpt,
-    blogData,
-    commentCount,
-    tags,
-    slugType,
-    shares,
-    images,
-    createdAt,
-    commentsAllowed,
-    likes,
-    title,
-    uri,
-    viewCount,
-    _id,
-    metadata,
-    rawBody,
-  },
+  data: { excerpt, commentCount, images, likes, title, uri, viewCount },
   data,
   relatedBlogs,
 }: Props) => {
   const router = useRouter();
   useEffect(() => {
-    if (typeof Prism !== undefined) {
+    import("prismjs").then(() => {
+      //@ts-ignore
       Prism.highlightAll();
-    }
+    });
   }, [router]);
   return (
     <>
