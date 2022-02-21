@@ -55,8 +55,16 @@ html[class="dark"] pre[class*="language-"] {
     width: 98vw;
   }
 
+  /* add overrides for comment section */
+  html p.comment-md-parent pre {
+    width: 100% !important;
+  }
+
   .copy-to-clipboard-button {
     margin-left: 12px;
+  }
+  .comment-md-parent .copy-to-clipboard-button {
+    margin-left: 0;
   }
 }
 

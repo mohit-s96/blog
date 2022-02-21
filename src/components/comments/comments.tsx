@@ -152,7 +152,7 @@ function SingleComment({
       {hasMarkdown ? (
         <p
           dangerouslySetInnerHTML={{ __html: html }}
-          className="line-numbers md-render-parent pl-6 md:pl-14 p-2 text-sm md:w-10/12 mt-1 leading-7 dark:text-white text-primary-text-light"
+          className="line-numbers md-render-parent comment-md-parent pl-6 md:pl-14 p-2 text-sm md:w-10/12 mt-1 leading-7 dark:text-white text-primary-text-light"
         ></p>
       ) : (
         <p className="pl-6 md:pl-14 p-2 text-sm md:w-10/12 mt-1 leading-7 dark:text-white text-primary-text-light">

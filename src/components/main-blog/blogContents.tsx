@@ -36,9 +36,10 @@ function BlogContents({ data }: Props): ReactElement | null {
   useEffect(() => {
     setLoaded(true);
     //@ts-ignore
-    import("prismjs/plugins/line-numbers/prism-line-numbers");
-    //@ts-ignore
+    // this has to be the order of dynamic imports otherwise line-numbers or copy button or both won't work
     import("prismjs/plugins/toolbar/prism-toolbar").then(() => {
+      //@ts-ignore
+      import("prismjs/plugins/line-numbers/prism-line-numbers").then(() => {});
       import(
         //@ts-ignore
         "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
