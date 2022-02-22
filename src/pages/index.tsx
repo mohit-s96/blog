@@ -22,7 +22,7 @@ const Index = ({ posts }: Props) => {
         uri="https://mohits.dev/"
         description="Mohit is a software engineer. He writes about JavaScript, TypeScript, Node.JS, CSS, GraphQL and C++"
         title="Mohit's Blog"
-        image="https://mohits.dev/assets/logo.svg"
+        image="https://mohits.dev/assets/card-image.jpg"
       />
       <Layout
         render={(theme, searchVisible, setSearchVisible) => {
