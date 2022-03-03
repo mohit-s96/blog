@@ -9,8 +9,8 @@ export function transformRedisKey(key: string) {
 }
 export function getGhClientId() {
   return process.env.NODE_ENV === "development"
-    ? "Iv1.1fbf2385d66eb1ca"
-    : "Iv1.b7f0e9e6521133a2";
+    ? "72ba60606cc41b612b32"
+    : "6e44f1ddcba0998ccd19";
 }
 export function getUri(option?: string): string {
   if (option === "query") {

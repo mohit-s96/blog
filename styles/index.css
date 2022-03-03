@@ -306,12 +306,12 @@ ol > li:hover {
 }
 
 .md-render-parent > blockquote {
-  padding: 8px;
+  padding: 16px 8px;
   background-color: transparent;
   /* font-weight: bold; */
   color: #4b96ff;
   /* opacity: 0.1; */
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
   margin: 16px auto;
   border-left: 4px solid #4b96ff;
   position: relative;
@@ -344,8 +344,8 @@ html[class="dark"] .md-render-parent > blockquote.bq-warn {
 }
 
 .md-render-parent > blockquote.bq-err {
-  color: #bb160a;
-  border-left: 4px solid #bb160a;
+  color: #ff4e41;
+  border-left: 4px solid #c41d11;
 }
 
 .md-render-parent > blockquote.bq-err::after {
