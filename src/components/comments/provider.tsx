@@ -166,7 +166,8 @@ async function fetcher(path: string) {
 }
 export function getBlogId(): string {
   if (typeof window !== "undefined") {
-    return window.location.href.split("/").at(-1)!;
+    const uriPaths = window.location.href.split("/");
+    return uriPaths[uriPaths.length - 1];
   }
   return "";
 }
