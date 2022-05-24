@@ -2,13 +2,17 @@
 
 [🔗 Visit here](https://mohits.dev)
 
-#### WIP 🚧 👷‍♂️ 🛠
-
-Hi I am building this personal blog from scratch. I am not using any pre-existing blog service because I wanted to work on a fun project.
+Hi I built this personal blog from scratch. I am not using any pre-existing blog service because I wanted to work on a fun project. The nodejs part can be found [here](https://github.com/mohit-s96/redis-search-service).
 
 #### Tech Stack
 
 - NextJS - React server and backend
+
+- NodeJS - Comment, search and auth service
+
+- Redis - Caching layer
+
+- AWS - NodeJS deployments
 
 - MongoDB - Database/CMS
 
