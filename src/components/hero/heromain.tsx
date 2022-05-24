@@ -4,7 +4,7 @@ import Link from "next/link";
 type Props = {};
 
 function Heromain({}: Props) {
-  const [catImage, setCatImage] = useState("/assets/cat.jpeg");
+  const [catImage, setCatImage] = useState("/assets/cat.png");
 
   useEffect(() => {
     let id: any;
@@ -30,9 +30,15 @@ function Heromain({}: Props) {
             Hello, I'm Mohit
           </h1>
           <p className="xl:max-w-xl max-w-full leading-[1.8em] text-primary-text-light dark:text-light-gray py-4">
-            I am a software engineer from India. I mostly work with web
-            technologies and ocassionaly with low level stuff. This website is
-            my personal{" "}
+            I am a software engineer from India currently working{" "}
+            <a
+              href="https://bigbinary.com"
+              className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
+            >
+              @bigbinary
+            </a>
+            . I mostly work with web technologies and ocassionaly with low level
+            stuff. This website is my personal{" "}
             <Link href="/blog">
               <a className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light">
                 blog

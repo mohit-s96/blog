@@ -25,9 +25,15 @@ function index({}: Props) {
                     Hello, I'm Mohit
                   </h1>
                   <p className="xl:max-w-xl max-w-full leading-[1.8em] text-primary-text-light dark:text-light-gray py-2">
-                    I am a software engineer from India. I mostly work with web
-                    technologies and ocassionaly with low level stuff. This
-                    website is my personal{" "}
+                    I am a software engineer from India currently working{" "}
+                    <a
+                      href="https://bigbinary.com"
+                      className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
+                    >
+                      @bigbinary
+                    </a>
+                    . I mostly work with web technologies and ocassionaly with
+                    low level stuff. This website is my personal{" "}
                     <Link href="/blog">
                       <a className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light">
                         blog
@@ -41,8 +47,7 @@ function index({}: Props) {
                     >
                       projects
                     </a>{" "}
-                    where I build random things that I find interesting. I also
-                    like cats 🐱
+                    where I build random things that I find interesting.
                   </p>
                   <p className="xl:max-w-xl max-w-full leading-[1.8em] text-primary-text-light dark:text-light-gray py-2">
                     I have worked with various clients and companies, mostly on
@@ -50,27 +55,13 @@ function index({}: Props) {
                     I am a life-long learner and like learning new things and
                     acquiring new perspective on things. I am{" "}
                     <span
-                      title="as of Feb' 2022"
+                      title="as of May' 2022"
                       className="border-dotted border-b-2 border-primary-dark dark:border-primary-light"
                     >
                       currently
                     </span>{" "}
-                    learning about <i>three.js</i> and graphics programming in
-                    general.
-                  </p>
-                  <p className="xl:max-w-xl max-w-full leading-[1.8em] text-primary-text-light dark:text-light-gray py-2">
-                    I have been recently looking for a full-time role
-                    <strong> -preferably remote-</strong>, so if you'd like to
-                    work with me then please reach out to me on twitter{" "}
-                    <a
-                      href="https://twitter.com/_msx47"
-                      className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
-                      referrerPolicy="no-referrer"
-                      rel="noopener"
-                    >
-                      @_msx47
-                    </a>{" "}
-                    or on discord @msx47#7906
+                    learning more about <i>microservices, architecture</i> and
+                    backend in general.
                   </p>
                 </section>
                 <aside>

@@ -63,7 +63,6 @@ function BlogContents({ data }: Props): ReactElement | null {
     <div className="w-full flex items-center flex-col line-numbers">
       <div className="w-full overflow-hidden lg:h-[448px]">
         <ResImage
-          // priority
           alt={data.images.find((img) => img.isHero)!.alt}
           uris={data.images.find((img) => img.isHero)!.permUri}
           className="w-full h-full"
@@ -113,7 +112,7 @@ function BlogContents({ data }: Props): ReactElement | null {
                     [edited{" "}
                   </span>
                   <time
-                    className={`text-sm text-primary-text-light dark:text-light-gray ml-0`}
+                    className={`italic text-sm text-primary-text-light dark:text-light-gray ml-0`}
                     title={format(data.lastEdited, "do MMM, yy, HH:mm aaa")}
                     dateTime={fromUnixTime(data.createdAt).toUTCString()}
                   >
