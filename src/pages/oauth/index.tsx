@@ -16,44 +16,51 @@ const Index = () => {
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
 
-    window.opener.postMessage("loaded", window.opener.origin);
-    window.addEventListener(
-      "message",
-      (event) => {
-        // Do we trust the sender of this message?
-        if (typeof event.data === "string" && event.data.startsWith("state:")) {
-          if (event.origin !== checkDevVsProdUrl()) {
-            setStatus(1);
-            return;
-          }
+    try {
+      window.opener.postMessage("loaded", window.opener.origin);
+      window.addEventListener(
+        "message",
+        (event) => {
+          // Do we trust the sender of this message?
+          if (
+            typeof event.data === "string" &&
+            event.data.startsWith("state:")
+          ) {
+            if (event.origin !== checkDevVsProdUrl()) {
+              setStatus(1);
+              return;
+            }
 
-          const message = (event.data as string).split(":");
-          if (message[0] === "state" && message[1] === state) {
-            fetch(`${getUri("query")}/api/auth`, {
-              method: "POST",
-              body: JSON.stringify({ code }),
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                if (res.message)
-                  event.source?.postMessage("success", event.origin as any);
+            const message = (event.data as string).split(":");
+            if (message[0] === "state" && message[1] === state) {
+              fetch(`${getUri("query")}/api/auth`, {
+                method: "POST",
+                body: JSON.stringify({ code }),
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                credentials: "include",
               })
-              .catch((err) => {
-                console.log(err);
-                setStatus(1);
-              });
-          } else {
-            setStatus(1);
+                .then((res) => res.json())
+                .then((res) => {
+                  if (res.message)
+                    event.source?.postMessage("success", event.origin as any);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setStatus(1);
+                });
+            } else {
+              setStatus(1);
+            }
           }
-        }
-      },
-      false
-    );
+        },
+        false
+      );
+    } catch (error) {
+      setStatus(1);
+    }
   }, []);
   return (
     <Layout
