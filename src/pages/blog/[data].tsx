@@ -10,8 +10,6 @@ import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
 import StatsBar from "../../components/statsbar/statsBar";
-// import Prism from "prismjs";
-// import "prismjs/components/prism-bash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "../../components/footer/footer";
@@ -32,6 +30,12 @@ const Post = ({
     import("prismjs").then(() => {
       //@ts-ignore
       Prism.highlightAll();
+      // this is a hack. TODO: find better ways to fix this this. problem is that Prism.highlightAll
+      // runs before the page is rendered so it highlights nothing.
+      setTimeout(() => {
+        //@ts-ignore
+        Prism.highlightAll();
+      }, 2000);
     });
   }, [router]);
   return (
