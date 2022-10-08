@@ -6,7 +6,9 @@ import React, {
   useState,
   useEffect,
   useMemo,
+  useRef,
 } from "react";
+import { flushSync } from "react-dom";
 import { ThemeType } from "../../../types/globalTypes";
 import { BindOptions } from "../../../types/keyTypes";
 import useGlobalKeyBind from "../../hooks/useGlobalKeyBind";
@@ -22,23 +24,22 @@ function ToggleTheme({}: Props): ReactElement | null {
 
   useEffect(() => {
     setLoaded(true);
+    if (theme === "system") {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        // dark mode
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    }
   }, []);
 
   const handleChange = () => {
-    // if (dark) {
-    //   setTheme("light");
-    // } else {
-    //   setTheme("dark");
-    // }
-    // setDark(!dark);
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("theme") === "dark") {
-  //     setDark(true);
-  //   }
-  // }, []);
 
   const options: BindOptions = useMemo(
     () => ({
