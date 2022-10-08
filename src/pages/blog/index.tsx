@@ -1,14 +1,9 @@
 import Layout from "../../components/layout";
-// import data from "../../data.json";
-import Cards, { CardArrayProps } from "../../components/main-blog-cards/Cards";
-import TagSelector from "../../components/tags/TagSelector";
-import { useState, useEffect } from "react";
+import Cards from "../../components/main-blog-cards/Cards";
 import SearchBlogs from "../../components/search-blogs/search";
 import { BlogListType } from "../../../types/blogtypes";
 import { fetchBlogList } from "../../../lib/database/getBlogs";
-import { ThemeType } from "../../../types/globalTypes";
 import CustomHead from "../../components/head";
-import Heromain from "../../components/hero/heromain";
 import Footer from "../../components/footer/footer";
 
 type Props = {
@@ -36,11 +31,8 @@ const Index = ({ posts }: Props) => {
                     setVisible={setSearchVisible}
                   />
                 ) : null}
-                {/* <TagSelector tags={testTags} theme={theme} variant="md" /> */}
-                {/* <Heromain /> */}
                 <Cards data={posts} theme={theme} />
               </div>
-
               <div className="mt-8">
                 <Footer theme={theme} />
               </div>
