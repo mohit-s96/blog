@@ -44,7 +44,7 @@ const Post = ({
         uri={`https://mohits.dev/blog/${uri}`}
         description={excerpt}
         title={title}
-        image={images[0].permUri[2].data!.Key}
+        image={images.find(img => img.isHero)!.permUri[2].data!.Key}
         children={
           <link
             //@ts-ignore
