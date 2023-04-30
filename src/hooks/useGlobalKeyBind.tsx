@@ -24,7 +24,6 @@ function useGlobalKeyBind({ options }: BindOptions) {
         const keyWhich = "" + KeyCodes[key];
         if (!isPressed.current[keyWhich]) pressed = false;
       });
-      // debugger;
       let spKeyPressed =
         (e.altKey || e.ctrlKey || e.shiftKey) && !!option.specialKey;
 

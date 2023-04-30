@@ -199,7 +199,6 @@ function Comments({ editRef }: Props) {
           </button>
         </p>
       ) : null}
-      {/* <SingleComment /> */}
       {loading ? <div className="top-loader-line w-full"></div> : null}
       {comments.length ? (
         comments

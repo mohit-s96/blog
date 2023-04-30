@@ -400,3 +400,26 @@ p > code {
 html[class="dark"] .editor-shadow:focus-visible {
   box-shadow: 0 0 0 4px #0c2d6b;
 }
+
+.heart-liked > svg {
+  animation: heart-pop-out 0.4s linear forwards;
+}
+
+@keyframes heart-pop-out {
+  0%{
+    scale: 0.75;
+    opacity: 0.25;
+  }
+  25%{
+    scale: 1.5;
+    opacity: 0.50;
+  }
+  50%{
+    scale: 2.0;
+    opacity: 0.75;
+  }
+  100%{
+    scale: 1;
+    opacity: 1;
+  }
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
-// import Prism from "prismjs";
 import {
   CommentSchema,
   UserSubmittedCommentSchema,
@@ -167,7 +166,11 @@ async function fetcher(path: string) {
 export function getBlogId(): string {
   if (typeof window !== "undefined") {
     const uriPaths = window.location.href.split("/");
-    return uriPaths[uriPaths.length - 1];
+    const blogId = uriPaths[uriPaths.length - 1];
+    if (blogId.endsWith("#comments")) {
+      return blogId.slice(0, -9); // "#comments.length === 9"
+    }
+    return blogId;
   }
   return "";
 }
@@ -215,7 +218,7 @@ const patch = async (body: string = "") => {
 
   return newcomment.message as CommentSchema;
 };
-function ShowComments({ setShow, show, fetch }: any) {
+function ShowComments({ setShow, show, fetch, commentCount }: any) {
   return (
     <div className="w-full text-center my-4" id="comments">
       <button
@@ -225,13 +228,12 @@ function ShowComments({ setShow, show, fetch }: any) {
         }}
         className="h-10 p-2 bg-transparent border border-primary-accent-light text-sm text-primary-accent-light dark:text-white rounded-sm transition-all cursor-pointer hover:bg-primary-accent-light hover:text-white duration-200"
       >
-        {show ? "close comments" : "show comments"}
+        {show ? "close comments" : `show comments (${commentCount || 0})`}
       </button>
     </div>
   );
 }
-function CommentsProvider() {
-  // const [comments, setComments] = useState<CommentSchema[]>([]);
+function CommentsProvider({ commentCount }: { commentCount: number }) {
   const [auth, setAuth] = useState<GithubUser>();
 
   const [comments, setComments] = useState<CommentSchema[]>([]);
@@ -403,7 +405,7 @@ function CommentsProvider() {
   }, [user, error]);
 
   return (
-    <div className="md:translate-y-[-8rem] 2xl:w-8/12 xl:w-9/12 w-full flex justify-center mt-4 lg:mt-0">
+    <div className="2xl:w-8/12 xl:w-9/12 w-full flex justify-center mt-4">
       <div className="2xl:w-9/12 xl:w-9/12 md:w-11/12 w-full ">
         <GithubAuthContext.Provider
           value={{ user: auth, loading, fetchResource }}
@@ -432,6 +434,7 @@ function CommentsProvider() {
                 show={showComments}
                 setShow={setShowComments}
                 fetch={fetchComments}
+                commentCount={commentCount}
               />
             )}
           </CommentListContext.Provider>

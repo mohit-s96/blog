@@ -60,6 +60,7 @@ function SearchResults({ data, setVisible, highlighted }: Props): ReactElement {
             className={`font-bold py-2 dark:text-primary-light text-primary-dark text-sm-res cursor-pointer ${
               highlighted ? "border-primary-accent-light border-2" : ""
             }`}
+            onClick={() => setVisible(false)}
           >
             {data.title}
           </a>
@@ -73,17 +74,6 @@ function SearchResults({ data, setVisible, highlighted }: Props): ReactElement {
           {data.excerpt?.slice(0, 80)}
         </p>
       </div>
-      {/* <div className="flex">
-        {data.tags?.slice(0, 2).map((tag) => (
-          <Tags
-            key={tag}
-            children={`#${tag}`}
-            accent
-            variant="sm"
-            className="mr-2 font-bold p-2 padding-0-res rounded-none"
-          />
-        ))}
-      </div> */}
     </div>
   );
 }

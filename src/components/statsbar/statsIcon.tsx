@@ -197,7 +197,7 @@ function StatsIcon({
           </DropDown>
         </div>
       }
-      <button className="flex flex- p-2 my-2 flex-col justify-center items-center cursor-pointer">
+      <button className="flex p-2 my-2 flex-col justify-center items-center cursor-pointer">
         <span onClick={debounce(handleLikeClick, 500, false)} ref={likeRef}>
           <HeartIcon color="gray" />
         </span>
