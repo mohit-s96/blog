@@ -4,14 +4,13 @@ import {
   fetchSingleBlog,
 } from "../../../lib/database/getBlogs";
 import SearchBlogs from "../../components/search-blogs/search";
-import { BlogSlug, RelatedBlogsType } from "../../../types/blogtypes";
+import { BlogSlug } from "../../../types/blogtypes";
 import CustomHead from "../../components/head";
 import Layout from "../../components/layout";
 import MainBlog from "../../components/main-blog/mainBlog";
 import RelatedBlogs from "../../components/related-bar/relatedBlogs";
-import StatsBar from "../../components/statsbar/statsBar";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/footer/footer";
 import CommentsProvider from "../../components/comments/provider";
 
@@ -21,10 +20,11 @@ type Props = {
 };
 
 const Post = ({
-  data: { excerpt, commentCount, images, likes, title, uri, viewCount },
+  data: { excerpt, images, title, uri },
   data,
   relatedBlogs,
 }: Props) => {
+  const [commentCount, setCommentCount] = useState(0);
   const router = useRouter();
   useEffect(() => {
     import("prismjs").then(() => {
@@ -44,7 +44,7 @@ const Post = ({
         uri={`https://mohits.dev/blog/${uri}`}
         description={excerpt}
         title={title}
-        image={images.find(img => img.isHero)!.permUri[2].data!.Key}
+        image={images.find((img) => img.isHero)!.permUri[2].data!.Key}
         children={
           <link
             //@ts-ignore
@@ -62,10 +62,6 @@ const Post = ({
         render={(theme, searchVisible, setSearchVisible) => {
           return (
             <>
-              <StatsBar
-                stats={{ commentCount, likes, viewCount, uri, title }}
-                theme={theme}
-              />
               <section
                 className={`flex flex-col items-center 2xl:w-10/12 w-full mx-auto dark:bg-primary-bg-dark bg-white`}
               >
@@ -76,8 +72,15 @@ const Post = ({
                     setVisible={setSearchVisible}
                   />
                 ) : null}
-                <MainBlog theme={theme} data={data} />
-                <CommentsProvider key={router.asPath} />
+                <MainBlog
+                  theme={theme}
+                  data={data}
+                  setCommentCount={setCommentCount}
+                />
+                <CommentsProvider
+                  key={router.asPath}
+                  commentCount={commentCount}
+                />
               </section>
               <RelatedBlogs theme={theme} list={relatedBlogs} />
               <Footer theme={theme} />

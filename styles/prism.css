@@ -1,6 +1,6 @@
 html[class="dark"] code[class*="language-"],
 html[class="dark"] pre[class*="language-"] {
-  background: hsl(220, 13%, 18%);
+  background: hsl(233deg 30% 13.37%);
   color: hsl(220, 14%, 71%);
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono",
@@ -18,6 +18,17 @@ html[class="dark"] pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+}
+
+.code-toolbar {
+  max-width: 95vw;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.code-toolbar > pre{
+  padding-left: 18px;
 }
 
 /* Selection */

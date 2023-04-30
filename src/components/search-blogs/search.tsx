@@ -40,7 +40,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
 
   const searchRef = useRef(null);
 
-  const [selectedResultIndexRef, setselectedResultIndexRef] = useState(0);
+  const [selectedResultIndexRef, setselectedResultIndexRef] = useState(-1);
 
   const { fetchResource, data, loading, currentAbortRef } = useFetch(
     "/api/search",
@@ -108,7 +108,7 @@ function SearchBlogs({ visible, setVisible }: Props): ReactElement {
 
   useGlobalKeyBind(options);
 
-  useAnimateOnMount(searchRef, "scale-norm opacity-norm", value); //scale-norm is a css class i made to scale to 1 and made it important because tailwinf scale-100 wan't working go figure
+  useAnimateOnMount(searchRef, "scale-norm opacity-norm", value); //scale-norm is a css class i made to scale to 1 and made it important because tailwind scale-100 wasn't working go figure
 
   useEffect(() => {
     if (visible) {

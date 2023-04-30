@@ -54,11 +54,12 @@ function CustomHead({
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="600" />
       <meta property="og:image:height" content="600" />
-      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={uri} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
+      <meta name="twitter:creator" content="@_msx47" />
       {children}
     </Head>
   );
