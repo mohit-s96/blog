@@ -15,7 +15,7 @@
     "cookies": "^0.8.0",
     "cors": "^2.8.5",
     "date-fns": "2.23.0",
-    "googleapis": "^91.0.0",
+    "googleapis": "^123.0.0",
     "gray-matter": "4.0.3",
     "lru-cache": "^6.0.0",
     "mongodb": "^4.1.1",

@@ -3,6 +3,7 @@ import { google } from "googleapis";
 import { useCors } from "../../../../lib/middleware/corsMW";
 import rateLimit from "../../../../lib/middleware/limitMW";
 import { getUri } from "../../../../util/misc";
+const analyticsData = google.analyticsdata("v1beta");
 
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
@@ -13,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await useCors(req, res);
     await limiter.check(res, 60, "CACHE_TOKEN"); // 60 requests per minute
 
-    const startDate = req.query.startDate || "2021-10-10";
+    const startDate = (req.query.startDate as string) || "2021-10-10";
 
     const slug = req.query.slug;
 
@@ -26,21 +27,46 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       scopes: ["https://www.googleapis.com/auth/analytics.readonly"],
     });
 
-    const analytics = google.analytics({
-      auth,
-      version: "v3",
+    google.options({ auth });
+
+    const response = await analyticsData.properties.runReport({
+      property: `properties/${process.env.GA_PROP_ID}`,
+      requestBody: {
+        dateRanges: [
+          {
+            startDate,
+            endDate: "2023-08-01",
+          },
+        ],
+        dimensions: [
+          {
+            name: "pagePath",
+          },
+        ],
+        metrics: [
+          {
+            name: "eventCount",
+          },
+        ],
+        dimensionFilter: {
+          filter: {
+            fieldName: "eventName",
+            stringFilter: {
+              value: "page_view",
+            },
+          },
+        },
+      },
     });
 
-    const response = await analytics.data.ga.get({
-      "end-date": "today",
-      ids: `ga:${process.env.GOOGLE_ANALYTICS_VIEW_ID as any}`,
-      metrics: "ga:pageviews",
-      dimensions: "ga:pagePath",
-      filters: `ga:pagePath==${slug}`,
-      "start-date": startDate as string,
-    });
+    const slugMap = (response.data.rows || []).reduce((acc, curr) => {
+      if (curr.dimensionValues?.[0].value) {
+        acc[curr.dimensionValues[0].value] = curr.metricValues![0].value!;
+      }
+      return acc;
+    }, {} as Record<string, string>);
 
-    const pageViews = response?.data?.totalsForAllResults!["ga:pageviews"];
+    const pageViews = slugMap[slug as string];
 
     const countRes = await fetch(
       //trim the /blog from slug with slice
@@ -51,7 +77,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(200).json({
       pageViews,
-      count: count.message,
+      count: 2,
     });
   } catch (err) {
     console.log(err);

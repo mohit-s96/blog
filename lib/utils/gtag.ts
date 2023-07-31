@@ -1,9 +1,10 @@
-export const GA_TRACKING_ID = "UA-213526771-1";
+export const GA_TRACKING_ID = "G-B3E279FWGR";
 
 export const pageview = (url: string, title: string) => {
-  (window as any).gtag("config", GA_TRACKING_ID, {
+  (window as any).gtag("event", "page_view", {
     page_location: url,
     page_title: title,
+    page_path: window.location.pathname,
   });
 };
 interface Props {
