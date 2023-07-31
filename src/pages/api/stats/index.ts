@@ -35,7 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         dateRanges: [
           {
             startDate,
-            endDate: "2023-08-01",
+            endDate: "today",
           },
         ],
         dimensions: [
@@ -77,7 +77,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(200).json({
       pageViews,
-      count: 2,
+      count: count.message,
     });
   } catch (err) {
     console.log(err);
