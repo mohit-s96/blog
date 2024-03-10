@@ -8,7 +8,7 @@ export interface Props {
   size: "xsm" | SizeVariantType;
   theme: ThemeType;
   Icon?: (props: SvgProps) => JSX.Element;
-  callback?: () => any;
+  onClick?: () => any;
   className?: string;
   wrapperClassname?: string;
   placeIconAfterText?: boolean;
@@ -26,7 +26,7 @@ function NavItem({
   wrapperClassname = "",
   placeIconAfterText,
   Icon,
-  callback = () => {},
+  onClick = () => {},
   buttonRef,
   renderButton = true,
   ...rest
@@ -36,7 +36,7 @@ function NavItem({
       className={`focus:outline-black p-2 flex justify-center items-center font-bold ${
         size === "sm" ? "text-sm" : size === "xsm" ? "text-xsm" : "text-base"
       } cursor-pointer dark:text-primary-text-dark text-primary-accent-dark ${wrapperClassname}`}
-      onClick={() => callback()}
+      onClick={onClick}
     >
       {Icon && !placeIconAfterText && (
         <Icon
