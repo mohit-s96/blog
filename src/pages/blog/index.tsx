@@ -23,7 +23,7 @@ const Index = ({ posts }: Props) => {
         render={(theme, searchVisible, setSearchVisible) => {
           return (
             <>
-              <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto">
+              <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto h-[92vh] flex flex-col justify-between">
                 {searchVisible ? (
                   <SearchBlogs
                     theme={theme}
@@ -32,9 +32,9 @@ const Index = ({ posts }: Props) => {
                   />
                 ) : null}
                 <Cards data={posts} theme={theme} />
-              </div>
-              <div className="mt-8">
-                <Footer theme={theme} />
+                <div className="mt-8">
+                  <Footer theme={theme} />
+                </div>
               </div>
             </>
           );
