@@ -96,7 +96,7 @@ export const KeyCodes = {
   quote: 222,
 };
 
-export type SpecialKeyTypes = "Control" | "Shift" | "Alt";
+export type SpecialKeyTypes = "Control" | "Shift" | "Alt" | "Meta";
 export type BasicKeyTypes =
   | "backspace"
   | "tab"
