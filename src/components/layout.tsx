@@ -28,6 +28,13 @@ const Layout = ({ render }: Props) => {
         },
       },
       {
+        keys: ["k"],
+        specialKey: "Meta",
+        callback: () => {
+          setSearchVisible(true);
+        },
+      },
+      {
         keys: ["escape"],
         callback: () => {
           setSearchVisible(false);
@@ -38,7 +45,7 @@ const Layout = ({ render }: Props) => {
   useGlobalKeyBind(options);
   return (
     <>
-      <div className={`dark:bg-primary-bg-dark bg-white`}>
+      <div className={`dark:bg-primary-bg-dark bg-white min-h-screen`}>
         <Navbar
           visible={searchVisible}
           theme={theme as ThemeType}
