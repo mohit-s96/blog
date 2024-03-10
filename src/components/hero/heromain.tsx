@@ -10,7 +10,7 @@ function Heromain({}: Props) {
     let id: any;
     if (window && window.innerWidth >= 768) {
       id = setInterval(() => {
-        fetch("https://cataas.com/cat?type=sq").then(async (res) => {
+        fetch("https://cataas.com/cat?type=square").then(async (res) => {
           const data = await res.blob();
           const objectURL = URL.createObjectURL(data);
           setCatImage(objectURL);
@@ -51,8 +51,7 @@ function Heromain({}: Props) {
             >
               projects
             </a>{" "}
-            where I build random things that I find interesting. I also like
-            cats 🐱
+            where I build random things that I find interesting.
           </p>
         </section>
         <section className="flex-col items-center hidden md:flex">
