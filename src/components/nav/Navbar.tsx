@@ -78,7 +78,7 @@ function Navbar({
             <a
               referrerPolicy="no-referrer"
               className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
-              href="https://github.com/msx47"
+              href="https://github.com/mohit-s96"
             >
               github
             </a>
@@ -93,7 +93,7 @@ function Navbar({
             </span>
           }
           buttonRef={buttonRef}
-          callback={changeSearchVisible}
+          onClick={changeSearchVisible}
           className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
           aria-keyshortcuts="control or command + k"
           aria-label="open search modal"

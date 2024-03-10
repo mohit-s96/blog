@@ -25,7 +25,7 @@ function Footer({ theme }: Props) {
         </a>
         <a
           className="text-sm text-primary-accent-light font-bold p-1"
-          href="https://github.com/msx47"
+          href="https://github.com/mohit-s96"
         >
           github
         </a>

@@ -185,7 +185,7 @@ function StatsIcon({
               <div className="flex justify-between p-2 items-center w-full hover:bg-gray-300">
                 <a
                   className="p-2 text-gray-600 text-sm font-bold"
-                  href="https://github.com/msx47/blog"
+                  href="https://github.com/mohit-s96/blog"
                   target="_blank"
                   rel="noopener"
                 >
