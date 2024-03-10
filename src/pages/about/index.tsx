@@ -18,7 +18,7 @@ function index({}: Props) {
               title="About me - Mohit's Blog"
               image="https://mohits.dev/favicon/favicon.png"
             />
-            <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto mb-2">
+            <div className="2xl:w-7/12 xl:w-8/12 md:w-10/12 w-95-res mx-auto mb-2 h-[92vh] flex flex-col justify-between">
               <div className="px-4 pt-4 justify-between border-primary-accent-light border-l-2">
                 <section>
                   <h1 className="translate-x-[-6px] text-4xl md:text-7xl md:leading-[4rem] text-primary-text-light dark:text-primary-text-dark py-4">
@@ -55,13 +55,12 @@ function index({}: Props) {
                     I am a life-long learner and like learning new things and
                     acquiring new perspective on things. I am{" "}
                     <span
-                      title="as of May' 2022"
+                      title="as of Nov' 2023"
                       className="border-dotted border-b-2 border-primary-dark dark:border-primary-light"
                     >
                       currently
                     </span>{" "}
-                    learning more about <i>microservices, architecture</i> and
-                    backend in general.
+                    learning more about <i>JS engine internals</i>.
                   </p>
                 </section>
                 <aside>
@@ -71,7 +70,7 @@ function index({}: Props) {
                   <br />
                   <a
                     className="p-0 my-2 inline-block text-primary-accent-light font-bold hover:underline focus-visible:underline focus-visible:bg-primary-accent-light transition-all duration-200"
-                    href="https://firebasestorage.googleapis.com/v0/b/fir-auth-4f7e7.appspot.com/o/Mohit%20Srivastava%20Resume.docx?alt=media&token=2294d8aa-68c2-4a57-a57f-b1c70279e3e0"
+                    href="https://firebasestorage.googleapis.com/v0/b/fir-auth-4f7e7.appspot.com/o/Mohit%20Srivastava%20Resume-23.docx?alt=media&token=0202c5eb-9ba8-45d9-a934-bbaf53837002"
                     rel="noopener"
                     referrerPolicy="no-referrer"
                   >
@@ -80,7 +79,7 @@ function index({}: Props) {
                   <br />
                   <a
                     className="p-0 my-2 inline-block text-primary-accent-light font-bold hover:underline focus-visible:underline focus-visible:bg-primary-accent-light transition-all duration-200"
-                    href="https://firebasestorage.googleapis.com/v0/b/fir-auth-4f7e7.appspot.com/o/Mohit%20Srivastava%20Resume.pdf?alt=media&token=39d4f4a6-70a1-4afb-948b-2231aac6d782"
+                    href="https://firebasestorage.googleapis.com/v0/b/fir-auth-4f7e7.appspot.com/o/Mohit%20Srivastava%20Resume-23.pdf?alt=media&token=37d17b44-536f-49b4-8d92-37d28ff7f6e3"
                     rel="noopener"
                     referrerPolicy="no-referrer"
                   >
@@ -88,8 +87,8 @@ function index({}: Props) {
                   </a>
                 </aside>
               </div>
+              <Footer theme={theme} />
             </div>
-            <Footer theme={theme} />
           </>
         );
       }}
