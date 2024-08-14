@@ -6,6 +6,7 @@ interface Props {
   uri: string;
   description: string;
   image: string;
+  keywords?: string[];
   children?: ReactNode;
 }
 
@@ -14,6 +15,7 @@ function CustomHead({
   description,
   image,
   title,
+  keywords = [],
   children = "",
 }: Props): ReactElement {
   return (
@@ -46,6 +48,7 @@ function CustomHead({
       <link rel="icon" href="/favicon/favicon.png" type="image/png" />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords.join(", ")} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={title} />
       <meta property="og:url" content={uri} />
@@ -59,7 +62,7 @@ function CustomHead({
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      <meta name="twitter:creator" content="@_msx47" />
+      <meta name="twitter:creator" content="@techwagie" />
       {children}
     </Head>
   );

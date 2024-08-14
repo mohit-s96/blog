@@ -20,7 +20,7 @@ type Props = {
 };
 
 const Post = ({
-  data: { excerpt, images, title, uri },
+  data: { excerpt, images, title, uri, keywords },
   data,
   relatedBlogs,
 }: Props) => {
@@ -45,10 +45,10 @@ const Post = ({
         description={excerpt}
         title={title}
         image={images.find((img) => img.isHero)!.permUri[2].data!.Key}
+        keywords={keywords}
         children={
           <link
-            //@ts-ignore
-            crossOrigin
+            crossOrigin="true"
             rel="preconnect"
             href={
               process.env.NODE_ENV === "development"
