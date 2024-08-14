@@ -19,7 +19,7 @@ function Footer({ theme }: Props) {
       <div className="flex justify-center p-1">
         <a
           className="text-sm font-bold text-primary-accent-light p-1"
-          href="https://twitter.com/_msx47"
+          href="https://twitter.com/techwagie"
         >
           twitter
         </a>

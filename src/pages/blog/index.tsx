@@ -15,7 +15,7 @@ const Index = ({ posts }: Props) => {
     <>
       <CustomHead
         uri="https://mohits.dev/blog"
-        description="This page contains all the articles present on thsi website."
+        description="This page contains all the articles present on this website."
         title="All Blogs"
         image="https://mohits.dev/favicon/favicon.png"
       />

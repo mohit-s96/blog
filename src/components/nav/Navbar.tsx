@@ -62,7 +62,7 @@ function Navbar({
             <a
               referrerPolicy="no-referrer"
               className="outline-none border-b-2 font-bold border-primary-accent-light hover:bg-primary-accent-light transition-all mx-2 duration-200 hover:text-white focus-visible:bg-primary-accent-light focus-visible:text-white"
-              href="https://twitter.com/_msx47"
+              href="https://twitter.com/techwagie"
             >
               twitter
             </a>

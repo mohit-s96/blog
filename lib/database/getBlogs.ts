@@ -117,6 +117,7 @@ export function fetchSearchQuery(key: string) {
               isArchived: 1,
               images: 1,
               excerpt: 1,
+              keywords: 1,
             },
           },
         ]);
