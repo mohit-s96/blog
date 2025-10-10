@@ -7,11 +7,8 @@ import React, {
 } from "react";
 import Avatar from "../avatars/Avatar";
 import NavItem from "./NavItem";
-import { BrandingImage } from "../svg/collection.svg";
 import { ThemeType } from "../../../types/globalTypes";
 import ToggleTheme from "../util-components/toggle";
-import Link from "next/link";
-import { PRIMARY_ACCENT_LIGHT } from "../../../constants";
 
 export interface Props {
   theme: ThemeType;
@@ -46,13 +43,11 @@ function Navbar({
     <nav
       className={`w-full flex justify-between items-center p-2 overflow-hidden bg-white dark:bg-primary-dark sticky top-0 z-10`}
     >
-      <Avatar alt="Branding logo image of the letter m" size="md">
-        <Link href="/" passHref>
-          <a aria-label="home page">
-            <BrandingImage color={PRIMARY_ACCENT_LIGHT} />
-          </a>
-        </Link>
-      </Avatar>
+      <Avatar
+        alt="Overlapping spirals"
+        size="md"
+        imageUri="/favicon/favicon.png"
+      />
       <div className="flex justify-between items-center">
         <NavItem
           theme={theme}
