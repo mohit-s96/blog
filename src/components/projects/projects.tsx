@@ -4,6 +4,12 @@ interface Props {}
 
 const projects = [
   {
+    pName: "fs utils",
+    uri: "https://github.com/mohit-s96/fs-utils",
+    about:
+      "fast and opinionated file system utilities in c. multithreaded alternatived to ls, cp, find, du, etc.",
+  },
+  {
     pName: "blog",
     uri: "https://github.com/mohit-s96/blog",
     about:
@@ -26,12 +32,6 @@ const projects = [
     uri: "https://github.com/mohit-s96/youtube_ocr_extension",
     about:
       "this is a chrome extension for copying text from within a youtube video. it uses TesseractJS for the OCR stuff.",
-  },
-  {
-    pName: "terminal reddit",
-    uri: "https://github.com/mohit-s96/terminal-reddit",
-    about:
-      "this is the latest thing I am working on. it's a zero dependency reddit client for the terminal. it's still very early in development and I plan to add a lot of things.",
   },
 ];
 
