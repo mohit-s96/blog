@@ -9,6 +9,7 @@ import Avatar from "../avatars/Avatar";
 import NavItem from "./NavItem";
 import { ThemeType } from "../../../types/globalTypes";
 import ToggleTheme from "../util-components/toggle";
+import Link from "next/link";
 
 export interface Props {
   theme: ThemeType;
@@ -43,11 +44,15 @@ function Navbar({
     <nav
       className={`w-full flex justify-between items-center p-2 overflow-hidden bg-white dark:bg-primary-dark sticky top-0 z-10`}
     >
-      <Avatar
-        alt="Overlapping spirals"
-        size="md"
-        imageUri="/favicon/favicon.png"
-      />
+      <Link href="/">
+        <a>
+          <Avatar
+            alt="Overlapping spirals"
+            size="md"
+            imageUri="/favicon/favicon.png"
+          />
+        </a>
+      </Link>
       <div className="flex justify-between items-center">
         <NavItem
           theme={theme}
