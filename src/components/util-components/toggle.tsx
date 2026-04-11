@@ -46,7 +46,7 @@ function ToggleTheme({}: Props): ReactElement | null {
       options: [
         {
           keys: ["t"],
-          specialKey: "Alt",
+          // specialKey: "Alt",
           callback: () => {
             handleChange();
           },
