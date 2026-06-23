@@ -180,9 +180,9 @@ function BlogContents({ data, setCommentCount }: Props): ReactElement | null {
                   <time
                     className={`italic text-sm text-primary-text-light dark:text-light-gray ml-0`}
                     title={format(data.lastEdited, "do MMM, yy, HH:mm aaa")}
-                    dateTime={fromUnixTime(data.createdAt).toUTCString()}
+                    dateTime={fromUnixTime(data.lastEdited).toUTCString()}
                   >
-                    {format(data.createdAt, "do MMM, yy")}
+                    {format(data.lastEdited, "do MMM, yy")}
                   </time>
                   <span className="italic text-sm text-primary-text-light dark:text-light-gray">
                     ]
@@ -207,8 +207,8 @@ function BlogContents({ data, setCommentCount }: Props): ReactElement | null {
                           liked
                             ? "#df2563"
                             : theme === "dark"
-                            ? "#E5E4E2"
-                            : PRIMARY_BG_DARK
+                              ? "#E5E4E2"
+                              : PRIMARY_BG_DARK
                         }
                         width={28}
                       />
