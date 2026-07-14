@@ -12,7 +12,7 @@ export function useCors(
     origin:
       process.env.NODE_ENV === "development"
         ? ["http://localhost:3000", "http://localhost:4218"]
-        : "https://admin.mohits.dev",
+        : ["https://admin.mohits.dev", "https://v2.mohits.dev"],
     credentials: true,
   };
 
