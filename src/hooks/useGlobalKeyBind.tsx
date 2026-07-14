@@ -57,6 +57,15 @@ function useGlobalKeyBind({ options }: BindOptions) {
         }
       }
 
+      if (option && option.disableInInput) {
+        if (
+          e.target instanceof HTMLInputElement ||
+          e.target instanceof HTMLTextAreaElement
+        ) {
+          return;
+        }
+      }
+
       if (
         (pressed && spKeyPressed) ||
         (pressed && !option.specialKey && !spkyflag)

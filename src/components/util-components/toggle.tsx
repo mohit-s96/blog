@@ -50,6 +50,7 @@ function ToggleTheme({}: Props): ReactElement | null {
           callback: () => {
             handleChange();
           },
+          disableInInput: true,
         },
       ],
     }),

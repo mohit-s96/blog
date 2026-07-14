@@ -199,6 +199,7 @@ export interface KeyBindOptions {
   specialKey?: SpecialKeyTypes;
   callback: () => any;
   longPress?: boolean;
+  disableInInput?: boolean;
 }
 export type BindOptions = {
   options: KeyBindOptions[];
