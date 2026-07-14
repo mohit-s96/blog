@@ -17,13 +17,11 @@ function Cards({ data, theme }: CardArrayProps): ReactElement {
       <div className="m-2 p-2 text-primary-accent-dark text-2xl flex justify-between">
         <span>{pathname === "/blog" ? "all articles" : "latest articles"}</span>
         {pathname !== "/blog" ? (
-          <Link href="/blog">
-            <a
-              href="/blog"
-              className="text-primary-text-light dark:text-light-gray border-b-2 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
-            >
-              all articles
-            </a>
+          <Link
+            href="/blog"
+            className="text-primary-text-light dark:text-light-gray border-b-2 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
+          >
+            all articles
           </Link>
         ) : null}
       </div>

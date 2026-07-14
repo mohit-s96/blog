@@ -85,11 +85,7 @@ function useGlobalKeyBind({ options }: BindOptions) {
      *
      * @see {https://stackoverflow.com/questions/73412298/keyup-event-not-firing-when-meta-key-is-held-mac-osx-only-how-to-handle-in}
      */
-    if (
-      specialKeys
-        .filter((k) => k !== "Meta")
-        .indexOf(e.key as SpecialKeyTypes) > -1
-    ) {
+    if (specialKeys.some((key) => key !== "Meta" && key === e.key)) {
       return;
     }
     if (e.key === "Meta") {

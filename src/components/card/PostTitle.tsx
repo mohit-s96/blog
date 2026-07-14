@@ -12,17 +12,16 @@ interface Props {
 
 function PostTitle({ text, type, slug }: Props): ReactElement {
   return (
-    <Link href={`/blog/${slug}`}>
-      <a
-        style={{
-          color: PRIMARY_ACCENT_LIGHT,
-        }}
-        className={`px-2 ${
-          type === "horiz" ? "text-lg font-bold" : "text-2xl font-bold"
-        } hover:underline transition-all duration-300 w-full`}
-      >
-        {text}
-      </a>
+    <Link
+      href={`/blog/${slug}`}
+      style={{
+        color: PRIMARY_ACCENT_LIGHT,
+      }}
+      className={`px-2 ${
+        type === "horiz" ? "text-lg font-bold" : "text-2xl font-bold"
+      } hover:underline transition-all duration-300 w-full`}
+    >
+      {text}
     </Link>
   );
 }

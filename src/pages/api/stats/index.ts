@@ -17,6 +17,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const startDate = (req.query.startDate as string) || "2021-10-10";
 
     const slug = req.query.slug;
+    if (typeof slug !== "string") {
+      return res.status(400).json({ message: "slug is required" });
+    }
 
     const auth = new google.auth.GoogleAuth({
       credentials: {
@@ -66,7 +69,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return acc;
     }, {} as Record<string, string>);
 
-    const pageViews = slugMap[slug as string];
+    const pageViews = slugMap[slug];
 
     const countRes = await fetch(
       //trim the /blog from slug with slice

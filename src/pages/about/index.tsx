@@ -34,10 +34,11 @@ function index({}: Props) {
                     </a>
                     . I mostly work with web technologies and ocassionaly with
                     low level stuff. This website is my personal{" "}
-                    <Link href="/blog">
-                      <a className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light">
-                        blog
-                      </a>
+                    <Link
+                      href="/blog"
+                      className="text-primary-text-light dark:text-light-gray border-b-4 border-primary-accent-light hover:bg-primary-accent-light transition-all duration-200 dark:hover:text-primary-light"
+                    >
+                      blog
                     </Link>{" "}
                     where I (try to) post about things I learn. I also do open
                     source{" "}

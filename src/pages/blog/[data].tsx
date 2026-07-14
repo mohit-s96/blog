@@ -48,7 +48,7 @@ const Post = ({
         keywords={keywords}
         children={
           <link
-            crossOrigin="true"
+            crossOrigin="anonymous"
             rel="preconnect"
             href={
               process.env.NODE_ENV === "development"

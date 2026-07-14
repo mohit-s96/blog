@@ -45,13 +45,11 @@ function Navbar({
       className={`w-full flex justify-between items-center p-2 overflow-hidden bg-white dark:bg-primary-dark sticky top-0 z-10`}
     >
       <Link href="/">
-        <a>
-          <Avatar
-            alt="Overlapping spirals"
-            size="md"
-            imageUri="/favicon/favicon.png"
-          />
-        </a>
+        <Avatar
+          alt="Overlapping spirals"
+          size="md"
+          imageUri="/favicon/favicon.png"
+        />
       </Link>
       <div className="flex justify-between items-center">
         <NavItem

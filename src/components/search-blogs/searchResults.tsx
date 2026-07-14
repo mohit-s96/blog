@@ -54,16 +54,15 @@ function SearchResults({ data, setVisible, highlighted }: Props): ReactElement {
       className={`p-2 m-2 flex flex-col w-[98%] mx-auto rounded-2xl dark:bg-primary-bg-dark bg-primary-bg-light `}
     >
       <div className="flex justify-between">
-        <Link href={`/blog/${data.uri}`}>
-          <a
-            ref={focusRef}
-            className={`font-bold py-2 dark:text-primary-light text-primary-dark text-sm-res cursor-pointer ${
-              highlighted ? "border-primary-accent-light border-2" : ""
-            }`}
-            onClick={() => setVisible(false)}
-          >
-            {data.title}
-          </a>
+        <Link
+          href={`/blog/${data.uri}`}
+          ref={focusRef}
+          className={`font-bold py-2 dark:text-primary-light text-primary-dark text-sm-res cursor-pointer ${
+            highlighted ? "border-primary-accent-light border-2" : ""
+          }`}
+          onClick={() => setVisible(false)}
+        >
+          {data.title}
         </Link>
         <p className="p-2 text-sm dark:text-primary-light text-primary-dark text-sm-res">
           {format(data.createdAt as number, "do MMM, yy")}

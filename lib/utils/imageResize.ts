@@ -1,4 +1,4 @@
-import sharp from "sharp";
+import sharp, { type Sharp } from "sharp";
 import fs from "fs/promises";
 import * as os from "os";
 import path from "path";
@@ -18,7 +18,7 @@ export async function resizeImages(image: Buffer, fileName: string) {
 
       let quality = 100;
 
-      const pipeline = sharp(image) as sharp.Sharp;
+      const pipeline: Sharp = sharp(image);
       const promises: Promise<any>[] = [];
 
       fileName = fileName.split(".").slice(0, -1).join("");
