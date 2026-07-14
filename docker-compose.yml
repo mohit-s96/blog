@@ -1,0 +1,9 @@
+# compose.yml
+services:
+  blog-v2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mohit-blog-v2
+    ports:
+      - "8080:80"

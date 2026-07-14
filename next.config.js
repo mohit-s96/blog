@@ -3,6 +3,7 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  output: "export",
 };
 
 module.exports = nextConfig;
