@@ -4,7 +4,7 @@ services:
     ports: []
     labels:
       - traefik.enable=true
-      - traefik.http.routers.blog-v2.rule=Host(`v2.mohits.dev`)
+      - traefik.http.routers.blog-v2.rule=Host(`mohits.dev`)
       - traefik.http.services.blog-v2.loadbalancer.server.port=80
       # future stuff
       # - traefik.http.routers.blog-v2.entrypoints=websecure
