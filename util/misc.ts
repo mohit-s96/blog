@@ -13,16 +13,16 @@ export function getGhClientId() {
     : "6e44f1ddcba0998ccd19";
 }
 export function getUri(option?: string): string {
-  if (option === "query") {
-    return process.env.NODE_ENV === "production"
-      ? "https://api.mohits.dev"
-      : "http://localhost:5001";
-  }
-  let uri: string;
-  if (process.env.NODE_ENV === "development") uri = "http://localhost:4218";
-  else uri = "https://mohits.dev";
+  // if (option === "query") {
+  return process.env.NODE_ENV === "production"
+    ? "https://api.mohits.dev"
+    : "http://localhost:5001";
+  // }
+  // let uri: string;
+  // if (process.env.NODE_ENV === "development") uri = "http://localhost:4218";
+  // else uri = "https://mohits.dev";
 
-  return uri;
+  // return uri;
 }
 //@ts-ignore
 export function debounce(func, wait, immediate) {
