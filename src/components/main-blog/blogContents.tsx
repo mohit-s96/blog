@@ -44,7 +44,7 @@ function BlogContents({ data, setCommentCount }: Props): ReactElement | null {
     promises.push(
       fetch(`${getUri()}/api/stats${queryParams}`, {
         credentials: "include",
-        method: "POST",
+        method: "GET",
       })
     );
     promises.push(
@@ -207,8 +207,8 @@ function BlogContents({ data, setCommentCount }: Props): ReactElement | null {
                           liked
                             ? "#df2563"
                             : theme === "dark"
-                              ? "#E5E4E2"
-                              : PRIMARY_BG_DARK
+                            ? "#E5E4E2"
+                            : PRIMARY_BG_DARK
                         }
                         width={28}
                       />
