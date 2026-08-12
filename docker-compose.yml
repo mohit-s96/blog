@@ -1,10 +1,17 @@
-# compose.yml
 services:
   blog-v2:
     build:
       context: .
       dockerfile: Dockerfile
+      target: development
     image: mohit-blog-v2
     ports:
-      - "3000:80"
-    restart: "unless-stopped"
+      - "3001:3001"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      WATCHPACK_POLLING: "true"
+
+volumes:
+  node_modules:

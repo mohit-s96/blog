@@ -3,7 +3,7 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
-  output: "export",
+  ...(process.env.NODE_ENV === "production" ? { output: "export" } : {}),
 };
 
 module.exports = nextConfig;

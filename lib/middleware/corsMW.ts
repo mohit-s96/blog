@@ -11,7 +11,7 @@ export function useCors(
     methods: ["POST", "GET", "PUT"],
     origin:
       process.env.NODE_ENV === "development"
-        ? ["http://localhost:3000", "http://localhost:4218"]
+        ? ["http://localhost:3001"]
         : ["https://admin.mohits.dev", "https://v2.mohits.dev"],
     credentials: true,
   };

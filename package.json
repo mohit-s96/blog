@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next --port=4218",
+    "dev": "next dev --webpack --hostname 0.0.0.0 --port 3001",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc",

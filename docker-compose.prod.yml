@@ -1,7 +1,11 @@
 # compose.prod.yml
 services:
   blog-v2:
-    ports: []
+    build:
+      target: production
+    ports: !reset []
+    volumes: !reset []
+    environment: !reset {}
     labels:
       - traefik.enable=true
       - traefik.http.routers.blog-v2.rule=Host(`mohits.dev`)

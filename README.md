@@ -2,6 +2,16 @@
 
 [🔗 Visit here](https://mohits.dev)
 
+### Local development
+
+Start the hot-reloading development server with:
+
+```sh
+docker compose up --build
+```
+
+Open [http://localhost:3001](http://localhost:3001). Source files are bind-mounted into the container, so saving a file triggers Next.js Fast Refresh.
+
 Hi I built this personal blog from scratch. I am not using any pre-existing blog service because I wanted to work on a fun project. The nodejs part can be found [here](https://github.com/mohit-s96/redis-search-service).
 
 #### Tech Stack

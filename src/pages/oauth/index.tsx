@@ -5,7 +5,7 @@ import { getUri } from "../../../util/misc";
 
 export function checkDevVsProdUrl() {
   return process.env.NODE_ENV === "development"
-    ? "http://localhost:4218"
+    ? "http://localhost:3001"
     : "https://mohits.dev";
 }
 
