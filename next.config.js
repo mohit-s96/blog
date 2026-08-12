@@ -1,9 +1,9 @@
+const { PHASE_PRODUCTION_BUILD } = require("next/constants");
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = (phase) => ({
   turbopack: {
     root: __dirname,
   },
-  ...(process.env.NODE_ENV === "production" ? { output: "export" } : {}),
-};
-
-module.exports = nextConfig;
+  ...(phase === PHASE_PRODUCTION_BUILD ? { output: "export" } : {}),
+});

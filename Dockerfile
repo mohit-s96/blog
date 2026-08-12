@@ -1,6 +1,5 @@
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
-ENV NODE_ENV=production
 RUN corepack enable
 COPY package.json yarn.lock ./
 RUN corepack yarn install --frozen-lockfile
