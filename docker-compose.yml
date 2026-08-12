@@ -7,3 +7,4 @@ services:
     image: mohit-blog-v2
     ports:
       - "3000:80"
+    restart: "unless-stopped"
